@@ -1,3 +1,7 @@
 data
-test
+testing
 .vscode
+.python-version
+.env
+__pycache__
+outputs

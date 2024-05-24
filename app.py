@@ -55,10 +55,10 @@ def main():
             }
             
             feltnummer_i_ejndkomst = st.text_input("Feltnummer i ejndkomst 8)")
-            bruttoløn = st.toggle(label="Bruttoløn (0010)", value=False)
 
             st.subheader("Opsamling til lønstatistik IL-typer")
             opsamling_til_lonstatistik = {
+                "Bruttoløn": st.toggle(label="Bruttoløn (0010)", value=False),
                 "Fastlønnede": st.text_input("Fastlønnede"),
                 "Timelønnede": st.text_input("Timelønnede"),
                 "Akkord og tidlønnsarbejde": st.text_input("Akkord og tidlønnsarbejde"),
@@ -82,6 +82,7 @@ def main():
     with col3:
         st.header("Leaderboard")
         
+        
         # Mockup leaderboard
         leaderboard = {
             "Alice": 10,
@@ -92,8 +93,19 @@ def main():
         }
 
         # Display leaderboard
+        total = 0
         for user, count in leaderboard.items():
             st.write(f"{user}: {count} forms")
+            total += count
+        
+        st.write(f"Total forms: {total}")
+
+
+
+       
+
+
+            
 
 if __name__ == '__main__':
     main()
