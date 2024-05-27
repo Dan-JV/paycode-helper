@@ -13,6 +13,14 @@ st.set_page_config(page_title= "guide buddy",
                 #     }
                     )
 
+
+def pick_random_paycode():
+    st.write("Picking a random paycode")
+
+
+def submit_paycode():
+    st.write("Submitting paycode")
+
 def main():
     # Set up the layout with three columns
     
@@ -20,11 +28,7 @@ def main():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        paycode_gen_col, paycode_skip_col = st.columns(2)
-        with paycode_gen_col:
-            st.button("Generate paycode")
-        with paycode_skip_col:
-            st.button("Skip this paycode")
+        st.button("Pick Random Paycode", on_click=pick_random_paycode)
         
         st.header("Data Entry Form")
         
@@ -72,7 +76,7 @@ def main():
                 "Akkord og tidlønnsarbejde": st.text_input("Akkord og tidlønnsarbejde"),
             }
 
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit', on_click=submit_paycode)
 
     with col2:
         st.header("AI Summary")
