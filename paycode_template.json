@@ -1,40 +1,38 @@
 {   
     "prefilled": {
-        "paycode": "paycode number",
-        "name": "Name of the paycode",
-        "print_sequence": "What is this?",
-        "type": ["fast", "variable", "STILLINGSKATEGORI","VARIABELEFTREG" , "FRAVÆR"]
+        "paycode": null,
+        "name": null,
+        "print_sequence": null,
+        "type": null
     },
     "bools": {
             "calculations": {
-            "Løndel/-felt standardnavn": [0,1],
-            "AM-bidrag": [0,1],
-            "A-indk. og A-skat": [0,1],
-            "Feriepenge, SH opsp. og fritvalgs (0013)": [0,1],
-            "Feriefridags opsp.": [0,1],
-            "St. Bededagstillæg": [0,1],
-            "Pension PO1 PO2 FO2 GRL 7)": [0,1],
-            "Arbejdsmarkeds pension 5)": [0,1],
-            "ATP-bidrag": [0,1],
-            "Negativt fortegn 4)": [0,1],
-            "Autoløn": [0,1],
-            "Egen teksttekst 9) ikke saldo-tekst": [0,1],
-            "Bruttoløn (0010)": [0,1]
+            "Løndel/-felt standardnavn": null,
+            "AM-bidrag": null,
+            "A-indk. og A-skat": null,
+            "Feriepenge, SH opsp. og fritvalgs (0013)": null,
+            "Feriefridags opsp.": null,
+            "St. Bededagstillæg": null,
+            "Pension PO1 PO2 FO2 GRL 7)": null,
+            "Arbejdsmarkeds pension 5)": null,
+            "ATP-bidrag": null,
+            "Negativt fortegn 4)": null,
+            "Autoløn": null,
+            "Egen teksttekst 9) ikke saldo-tekst": null,
+            "Bruttoløn (0010)": null
         }
     },
     "text_fields": {
         "Feltnummer i eindkomst 8)": "",
-        "Opsamling til lønstatistik IL-typer": {
-            "Fastlønnede": "",
-            "Timelønnede": "",
-            "Akkord og tidlønnsarbejde": ""
-        },
-        "input": "We need a well defined input schema"
-    },
-    "information":{
-        "use_story": "How this paycode is commonly used",
-        "critical_information": "Any critical information that needs to be known when using the paycode",
-        "extra_notes": "Extra information that might be useful to know when using the paycode"
+        "Fastlønnede": "",
+        "Timelønnede": "",
+        "Akkord og tidlønnsarbejde": "",
+        "input": "",
+        "general_description": "",
+        "critical_information": "",
+        "use_case_1": "",
+        "use_case_2": "",
+        "use_case_3": ""
     },
     "guides" : [],
     "tags" : []
