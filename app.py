@@ -13,11 +13,23 @@ st.set_page_config(page_title= "guide buddy",
                 #     }
                     )
 
+
+def pick_random_paycode():
+    st.write("Picking a random paycode")
+
+
+def submit_paycode():
+    st.write("Submitting paycode")
+
 def main():
     # Set up the layout with three columns
+    
+
     col1, col2, col3 = st.columns(3)
 
     with col1:
+        st.button("Pick Random Paycode", on_click=pick_random_paycode)
+        
         st.header("Data Entry Form")
         
         # User input form based on the provided JSON structure
@@ -64,7 +76,7 @@ def main():
                 "Akkord og tidlønnsarbejde": st.text_input("Akkord og tidlønnsarbejde"),
             }
 
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit', on_click=submit_paycode)
 
     with col2:
         st.header("AI Summary")
