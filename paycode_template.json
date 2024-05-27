@@ -3,7 +3,7 @@
         "paycode": "paycode number",
         "name": "Name of the paycode",
         "print_sequence": "What is this?",
-        "type": ["fast", "variable", "STILLINGSKATEGORI","VARIABELEFTREG" , "FRAVÆR"],
+        "type": ["fast", "variable", "STILLINGSKATEGORI","VARIABELEFTREG" , "FRAVÆR"]
     },
     "bools": {
             "calculations": {
@@ -29,7 +29,7 @@
             "Timelønnede": "",
             "Akkord og tidlønnsarbejde": ""
         },
-        "input": "We need a well defined input schema",
+        "input": "We need a well defined input schema"
     },
     "information":{
         "use_story": "How this paycode is commonly used",
@@ -37,5 +37,5 @@
         "extra_notes": "Extra information that might be useful to know when using the paycode"
     },
     "guides" : [],
-    "tags" : [],
+    "tags" : []
   }
