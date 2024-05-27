@@ -15,9 +15,17 @@ st.set_page_config(page_title= "guide buddy",
 
 def main():
     # Set up the layout with three columns
+    
+
     col1, col2, col3 = st.columns(3)
 
     with col1:
+        paycode_gen_col, paycode_skip_col = st.columns(2)
+        with paycode_gen_col:
+            st.button("Generate paycode")
+        with paycode_skip_col:
+            st.button("Skip this paycode")
+        
         st.header("Data Entry Form")
         
         # User input form based on the provided JSON structure
