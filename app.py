@@ -14,12 +14,21 @@ st.set_page_config(page_title= "guide buddy",
                     )
 
 
+def update_leaderboard():
+    pass
+
+def fill_paycode_form():
+    pass
+
+
 def pick_random_paycode():
     st.write("Picking a random paycode")
 
 
 def submit_paycode():
     st.write("Submitting paycode")
+    st.success("Thank you!")
+    update_leaderboard()
 
 def main():
     # Set up the layout with three columns
@@ -76,7 +85,10 @@ def main():
                 "Akkord og tidlønnsarbejde": st.text_input("Akkord og tidlønnsarbejde"),
             }
 
-            submit_button = st.form_submit_button(label='Submit', on_click=submit_paycode)
+            submit_button = st.form_submit_button(label='Submit')
+
+            if submit_button:
+                submit_paycode()
 
     with col2:
         st.header("AI Summary")
