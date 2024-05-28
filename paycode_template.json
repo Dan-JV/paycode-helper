@@ -3,7 +3,8 @@
         "paycode": null,
         "name": null,
         "print_sequence": null,
-        "type": null
+        "type": null,
+        "kommentar": null
     },
     "bools": {
             "Løndel/-felt standardnavn": null,
