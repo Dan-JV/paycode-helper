@@ -22,12 +22,14 @@ def fill_paycode_form():
     pass
 
 
-def submit_paycode():
 def submit_paycode(paycode):
     move_paycode_from_source_to_target(source_bucket="paycodehelper-processing", target_bucket="paycodehelper-documented", paycode=paycode)
     st.write("Submitting paycode")
     st.success("Thank you!")
     update_leaderboard()
+
+
+
 
 def main():
     # Set up the layout with three columns
@@ -36,10 +38,10 @@ def main():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        pick_random = st.button("Pick Random Paycode")
+        st.button("Pick Random Paycode", on_click=get_random_paycode, args=("paycodehelper-templates", "paycodehelper-processing"))
 
-        if pick_random:
-            paycode = get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
+        #if pick_random:
+            #st.session_state.paycode = get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
         
         st.header("Data Entry Form")
         
