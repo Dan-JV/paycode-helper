@@ -12,9 +12,32 @@ documented_bucket = 'paycodehelper-documented'
 lock_timeout = datetime.timedelta(minutes=30)
 
 def list_available_paycodes(bucket: str) -> list:
-    # TODO: this only returns the top 1000 objects, need to implement pagination
-    response = s3.list_objects_v2(Bucket=bucket)
-    return response
+    paginator = s3.get_paginator('list_objects_v2')
+    response_iterator = paginator.paginate(Bucket=bucket)
+    
+    available_paycodes = []
+
+    for page in response_iterator:
+        if "Contents" in page:
+            for object in page["Contents"]:
+                available_paycodes.append(object["Key"])
+    return available_paycodes
+
+
+def cleanup_inprocessing_bucket():
+    # move objects to other bucket and delete the bucket
+    available_paycodes = list_available_paycodes(bucket="paycodehelper-processing")
+    for paycode in available_paycodes:
+        s3.copy_object(Bucket="paycodehelper-templates", CopySource={'Bucket': 'paycodehelper-processing', 'Key': paycode}, Key=paycode)
+        s3.delete_object(Bucket="paycodehelper-processing", Key=paycode)
+
+def move_paycode_from_source_to_target(source_bucket: str, target_bucket: str, paycode: str):
+    s3.copy_object(Bucket=target_bucket, CopySource={'Bucket': source_bucket, 'Key': paycode}, Key=paycode)
+    s3.delete_object(Bucket=source_bucket, Key=paycode)
+
+
+
+
 
 def get_random_paycode(source_bucket:str,target_bucket:str) -> dict:
     """Retrieves a random paycode json file from the source bucket and the moves it to processing bucket. Fianlly it deleted the file from the source bucket."""
