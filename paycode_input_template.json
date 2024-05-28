@@ -12,7 +12,7 @@
             "Autoløn": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
             "Egen teksttekst 9) ikke saldo-tekst": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
             "Bruttoløn": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Akkord og tidlønnsarbejde": {"help": "Help us fill this", "possible_values": [2010,2020],"default":2020}
+            "Akkord og tidlønnsarbejde": {"help": "Help us fill this", "possible_values": [2010,2020],"default":0}
     },
     "text_area": {
         "General beskrivelse": {"help": "Help us fill this"},
