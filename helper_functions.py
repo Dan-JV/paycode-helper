@@ -37,8 +37,6 @@ def move_paycode_from_source_to_target(source_bucket: str, target_bucket: str, p
 
 
 
-
-
 def get_random_paycode(source_bucket:str,target_bucket:str) -> dict:
     """Retrieves a random paycode json file from the source bucket and the moves it to processing bucket. Fianlly it deleted the file from the source bucket."""
     available_paycodes = list_available_paycodes(bucket=source_bucket)
@@ -59,26 +57,3 @@ def get_random_paycode(source_bucket:str,target_bucket:str) -> dict:
     #return the paycode json file
     return paycode_json
 
-def submit_paycode(paycode):
-    s3.copy_object(Bucket=bucket_name, CopySource={'Bucket': bucket_name, 'Key': paycode}, Key=paycode, Metadata={'status': 'done', 'locked_at': ''}, MetadataDirective='REPLACE')
-
-
-
-if 'paycode' not in st.session_state:
-    st.session_state.paycode = None
-
-def get_new_paycode():
-    paycode = get_random_paycode()
-    if paycode:
-        st.session_state.paycode = paycode
-    else:
-        st.warning("No available paycodes at the moment. Please try again later.")
-
-if st.session_state.paycode is None:
-    st.button("Get Random Paycode", on_click=get_new_paycode)
-else:
-    st.write(f"Current Paycode: {st.session_state.paycode}")
-    if st.button("Submit Paycode"):
-        submit_paycode(st.session_state.paycode)
-        st.session_state.paycode = None
-        st.success("Paycode submitted successfully!")
