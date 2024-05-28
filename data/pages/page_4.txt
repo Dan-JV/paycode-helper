@@ -1,0 +1,47 @@
+https://help.vismaenterprise.dk/vismaloen-standard/tillaeg/5-barn-syg-efter-anciennitet
+
+# Barn syg efter anciennitet
+
+## Barn sygeløn efter anciennitet
+- **Fraværskode 13** - Sygefravær
+- **Fraværslønart 3871** - Barn Syg i timer ift. Lønanciennitet
+- **Resultattabel LANC05**
+- **Resultattabel LANC06**
+- **Resultattabel LANC07**
+- **Resultattabel LANC08**
+I nogle overenskomster er der defineret anciennitetsperiode, hvor timelønnede i nogle uger/måneder/år efter ansættelse ikke skal have løn i forbindelse med barn syg og efterfølgende skal de have dagpenge, for til sidste når de har været ansat længe nok, får deres timeløn eller en maks sats.Udbetaling af løn i forbindelse med barn syg efter ’Lønanciennitetsdato’, oprettes på følgende måde:⚠️OBS: Det er vigtigt at resultattabellerne for sygdom LANC01-LANC04 er oprettet med værdier, for ellers virker nedenstående opsætning ikke.
+GuideBarn syg beregnes i nogle overenskomster på følgende måde:* De første 3 måneder af ansættelsen er der ingen løn ved Barn syg. Feltet ’Lønanciennitetsdato’ på Medarbejder stamoplysninger udfyldes med datoen, hvor fra ancienniteten skal beregnes og resultattabel LANC05 og LANC06 oprettes.
+* Fra 3 måneder til 6 måneder udbetales dagpengesats pr. time (Ingen opsætning af resultattabel)
+* Fra 6 måneder og derefter udbetales der fuld løn under Barn syg, eller max. 145 kr. i timen. Resultattabel LANC07 og LANC08 oprettes.For at benytte ovenstående oprettes fraværskode 13 - Sygefravær, med fraværslønart 3871 - Barn Syg i timer ift. lønanciennitet, på de relevante stillingskategorier:1. Gå til Opsætning → Stillingskategori
+2. Vælg  ’Tilladte fraværskoder’ i højremenuen
+3. Klik på Ny
+4. Udfyld fraværskode, lønart, enhed, fradato og tildato
+5. Klik på OK 👩‍🏫 Eksempel: Sygdom de første 3 månederResultattabellerne oprettes med følgende værdier:* Resultattabel LANC05 - Lønanc. barn syg uden LønOprettes med enhed hvor der ikke skal udbetales løn 1 = dage, 2 = uger, 3 = måneder eller 4 = år
+* Resultattabel LANC06 - Lønanc.barn syg uden LønOprettes med varigheden for hvor længe der ikke udbetales løn, med antal dage, uger, måned eller år.Resultattabel LANC05 og LANC06 ”hører” sammen. Udbetales der ikke løn under Barn Syg de første 3 måneder, skal resultattabel LANC05 oprettes med 3 (for måned) og resultattabel LANC06 oprettes med 3 (for 3 måneder) 👩‍🏫 Eksempel: Sygdom fra 3 måneder til 6 månederUdbetaling af dagpenge i perioden fra 3 til 6 måneder sker automatisk.* Resultattabel 3872 - Barn syg maxgrænseOprettes for de relevante løngrupper hvis der skal udbetales en anden sats end timelønnen. Udfyldes resultattabellen ikke, så udbetales der timelønnen. 👩‍🏫 Eksempel: Sygdom fra 6 måneder og fremResultattabellerne oprettes med følgende værdier:* Resultattabel LANC07 - Lønanciennitet barn syg m. lønOprettes med enhed for den anciennitet det kræves inden der udbetales løn under Barn syg 1 = dage, 2 = uger, 3 = måneder eller 4 = år.
+* Resultattabel LANC08 - Lønanc. barn syg m. løn antalOprettes med antallet af f.eks. uger/måneder/år før at der udbetales løn under Barn syg.Resultattabel LANC07 og LANC08 ”hører” sammen. Udbetales der løn efter 6 måneder oprettes resultattabel LANC07 med 3 (for måned) og resultattabel LANC08 med 6 (6 måneders anciennitet før der bliver udbetalt løn under Barn Syg):1. Gå til Opsætning → Resultattabel
+2. Vælg ‘Resultattabel LANC05’
+3. Klik på Find
+4. Klik på Ny periode
+5. Udfyld feltet ’Fyldig’
+6. Klik på OK
+7. Vælg ’Resultattrin’ i højremenuen
+8. Klik på Ny
+9. Vælg ‘Løngruppen’ og angiv procentsats for aflønningsformen
+10. Klik på Gem
+11. Gentag punkt 2 til 10 på følgende resultattabeller: , LANC06, LANC07 og LANC08
+
+## Barn sygeløn på timelønnede med fast månedsløn
+Har du timelønnede medarbejdere hvor de får et fast antal timer hver lønperiode f.eks. hver måned, oprettet
+* Resultattabel 3873 - Træk for sygetimelønAngivesmed et 1 tal, medarbejderen vil blive trukket i løn for de timer medarbejderen har barn syg.
+
+## Barn sygeløn på månedslønnede med fast løn
+Har du månedslønnede medarbejdere, som får udbetalt sygeløn i stedet for deres faste månedsløn, når de har barn syge. Skal du gøre følgende:
+* Resultattabel ANCVIS - Ancvis kun enhederOprettes for de løngrupper som er månedslønnede, med et 1 tal for at fraværet bliver vist på lønsedlen
+* Resultattabel ANCTRK - Anctrk træk med timesatsOprettes for de løngrupper som er månedslønnede, med et 1 tal for at fraværet bliver trukket fra månedslønnen med timesatsen hvis lønancienniteten ikke er opfyldt.
+
+## Bogføring af sygeløn
+Til bogføringen oprettes på din kontoplan følgende lønarter:
+* Lønart 38701 – Barn Syg med træk
+* Lønart 38711 – Barn Syg Dagpenge
+* Lønart 38731 – Barn Syg med timeløn eller nedsat sats
+* Lønart 38734 – Barn Syg træk månedslønnet

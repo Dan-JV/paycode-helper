@@ -1,0 +1,31 @@
+https://help.vismaenterprise.dk/vismaloen-standard/medarbejder/37-flyt-medarbejder
+
+# Flyt medarbejder
+
+## Flytning af medarbejder
+Medarbejderen fratrædes på det gamle lønnummer med kode 8 – Medarbejder uden ferie. Så oprettes medarbejderen på den nye Arbejdsgiver med det nye lønnummer. På Stamoplysninger i feltet ’Rekvisition Type’, vælges der IKKE et skattekort, men der vælges i stedet ’Ingen rekvisition’ og ingen ’dato’.  Medarbejderen oprettes færdig og efterfølgende skal du på ’Medarbejder stamoplysninger ’ i højremenuen foretage en ’Genrekvirer eSkattekort’ for at få et abonnement på eSkattekort og få medarbejderen tilmeldt eIndkomst på den nye arbejdsgiver og det nye lønnummer.
+## Saldo lønarter til flyt af saldi
+Ved flytning til en anden arbejdsgiver kan det være aktuelt at flytte saldi mellem to medarbejdernumre. I Visma Løn findes en række lønarter, som kan hjælpe dig med at flytte saldi.Lønarterne skal registreres på det nye lønnummer med en positiv værdi og på det gamle lønnummer der flyttes fra med en negativ værdi.For lønarter med saldi i forskellige årstal, skal lønarten oprettes for hvert år, der er en saldo. Lønarten oprettes under Variable lønoplysninger.| Lønart | Navn | Input | Kommentar |
+| 41011 | Feriedage | Rest DageMånedKalender ÅrArbejdstidsprocentOptjente feriedage | Anvendes på det lønnr. Medarbejderen flyttes til.Fortegn: positivMÅ KUN ANVENDES I DEN FØRSTE LØNKØRSEL PÅ NYT LØNNR. |
+| 41014 | Feriepenge (ferie med løn) | Bruttoferiepenge i ferieåretMånedKalender År  | Anvendes på det lønnr. Medarbejderen flyttes til.Fortegn: positivMÅ KUN ANVENDES I DEN FØRSTE LØNKØRSEL PÅ NYT LØNNR. |
+| 41016 | Ferietimer | Rest TimerMånedKalender ÅrArbejdstidsprocent | Anvendes på det lønnr. Medarbejderen flyttes til.Måned angives med kalendermåned før den første lønkørselFortegn: positivMÅ KUN ANVENDES I DEN FØRSTE LØNKØRSEL PÅ NYT LØNNR. |
+| 40122 | Feriekort saldi | Rest feriepengeFerieårRest feriedage | Kan anvendes på både gammelt og nyt lønnr.Fortegn: Positiv eller negativ |
+| 40115 | Feriedage og ferieår | Dage og optjeningsåret f.eks. 2022 | Anvendes på det lønnr. Medarbejderen flyttes fra.Fortegn: minus |
+| 40118 | Ferietimer og ferieår | Timer og optjeningsåret f.eks. 2022 | Anvendes på det lønnr. Medarbejderen flyttes fra.Fortegn: minus |
+| 3800 | Feriefridage | Dage |   |
+| 3801 | Feriefritimer | Timer |   |
+| 3300 | Omsorgsdage | Dage |   |
+| 3301 | Omsorgstimer | Timer |   |
+| 40020 | Ferietillæg (lov grundlag) | Ferietillæg BeløbMånedKalender ÅrGrundlag Ferieberettigede løn | Anvendes på det lønnr. Medarbejderen flyttes TIL.Måned angives med kalendermåned før den første lønkørselFortegn: positiv |
+| 40030 | Korrektion Ferietillæg lovgrundlag Ferieår | Ferietillæg BeløbGrundlag Ferieberettigede løn | Anvendes på det lønnr. Medarbejderen flyttes FRA.Fortegn: minus |
+| 40021 | Ferietillæg (OK-grundlag) | Ferietillæg BeløbMånedKalender ÅrGrundlag Ferieberettigede løn | Anvendes på det lønnr. Medarbejderen flyttes TIL.Måned angives med kalendermåned før den første lønkørselFortegn: positiv |
+| 40031 | Korrektion Ferietillæg (OK-grundlag) Ferieår | Ferietillæg BeløbGrundlag Ferieberettigede løn | Anvendes på det lønnr. Medarbejderen flyttes FRA.Fortegn: minus |
+| 3400 | Aftalefridage i dage | Dage |   |
+| 3401 | Aftalefridage i timer | Timer |   |
+| 1400 | Afspadsering | Timer |   |
+| 620 | Kilometergodtgørelse | KM | Oprettes med saldoen fra tidligere lønnummer. |
+| 621 | Skattefri fradrag ved Jubilæum/Fratrædelsesgodtgørelse | Beløb | Her angives de 8.000 kr. hvis de har været anvendes på det tidligere lønnummer i samme indkomstår. |
+| 4415 | Fritvalgskonto - saldo | Beløb |   |
+| 14452 | SH-saldo | Beløb |   |
+| 373 | Seniorordning | Beløb |   |
+| 7510 | Store bededagstillæg - saldo | Beløb |   |

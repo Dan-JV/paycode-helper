@@ -1,0 +1,149 @@
+https://help.vismaenterprise.dk/vismaloen-standard/tillaeg/91-anciennitetsbestemt-timelon
+
+# Anciennitetsbestemt timeløn
+
+## Udbetaling af anciennitetsbestemt løn
+Lønarter til brug for udbetaling af anciennitetsbestemt løn. I skærmbilledet Medarbejderstam oplysninger vises et felt, der indeholder medarbejderens anciennitet i år, måneder og dage. (ÅÅMMDD).
+* Variabel lønart 1105 - Timeløn / anciennitetInput er timer og lønarten starter lønart 1213 Timetillæg.
+* Variabel lønart 1210 - Timeløn / ancienniteInput er timer.
+* Variabel lønart 1211 - Tillæg beløb / anciennitetUdbetaler beløbet fra resultattabel
+* Lønart 1213 - Timeløntillæg / anciennitetLønarten har sats i resultattabel og startes af lønart 1105 - Timeløn eller lønart 1215 - Timeløn
+* Fast lønart 1214 - Tillæg beløb / anciennitetLønarten har beløb i resultattabel.
+* Fast Lønart 1215 - Timeløn / anciennitetLønarten starter lønart 1213 - Personligt tillæg.
+I tilknytning til lønarterne er der oprettet nogle opslagstabeller.
+* Til lønart 1105 er tilknyttet opslagstabel OPS1105
+* Til lønart 1210 er tilknyttet opslagstabel OPSANC01
+* Til lønart 1211 er tilknyttet opslagstabel OPSANC02
+* Til lønart 1213 er tilknyttet opslagstabel OPSANC03
+* Til lønart 1214 er tilknyttet opslagstabel OPSANC04
+* Til lønart 1215 er tilknyttet opslagstabel OPSANC05.
+I opslagstabellerne oprettes de anciennitetsintervaller/opslagsværdier, der skal udløse et givent tillæg.
+Opslagsværdierne skal være i hele måneder.
+
+### Resultattabeller
+Følgende resultattabeller kan benyttes til ovenstående opslagstabeller:
+* ANC01, ANC02, ANC03, ANC04, ANC05, ANC06, ANC07, ANC08, ANC09 og ANC10.
+👩‍🏫 Eksempel
+* I opslagstabel OPS1105 oprettes:
+Opslagsværdi ‘6’, - Resultattabel 1105
+* Opslagsværdi ‘12’, - Resultattabel 1105
+
+I resultattabel 1105 oprettes:* Timelønnen for de respektive løngrupper
+
+I opslagstabel OPSANC03 oprettes:* Opslagsværdi ‘6’, - Resultattabel ANC01 og
+* Opslagsværdi ‘12’, - Resultattabel ANC02
+
+I resultattabel ANC01 oprettes:* 1,00 (krone) for de pågældende løngrupper og
+
+I resultattabel ANC02 oprettes* 2,00 (kroner) for de pågældende løngrupper.
+
+
+I ovennævnte eksempel vil alle timer, indrapporteret på lønart 1105, blive tillagt kr. 0,00, hvis medarbejderen har under 6 måneders anciennitet, kr. 1,00, hvis medarbejderens anciennitet er mellem 6 og 12 måneder og kr. 2,00, hvis ancienniteten er over 12 måneder.
+
+## Fraværslønart til anciennitetsstyring ved udbetaling af dagpenge/timeløn
+I forbindelse med sygdom på timelønnede står der i nogle overenskomster, at ved mindre end 9 måneders anciennitet udbetales dagpenge og ved mere end 9 måneders anciennitet udbetales timeløn. Det kan styres automatisk i Visma Løn.
+På de relevante stillingskategorier skal fraværskode 13 eller 14 tilrettes med
+* Fraværslønart 3964 - Dagpenge timeløn anciennitet
+Fraværslønarten tilknyttes på følgende måde:
+1. Gå til Opsætning → Stillingskategori
+2. Angiv stillingskategori
+3. Klik Find
+4. Vælg Tilladte fraværskoder i højremenuen
+5. Dobbeltklik på fraværskoden
+6. Angiv slutdato
+7. Klik Gem
+8. Klik Ny
+9. Angiv 'fraværskode 14', 'lønart 3964' og 'startdato'
+10. Klik OK
+Medarbejderens anciennitet oprettes under Medarbejder → Medarbejder stamoplysninger i feltet ’Anciennitet’, hvor du angiver antal år, måneder og dage, medarbejder har været ansat. På formatet ÅÅMMDD (Å = år, M = måned og D = dage). Ancienniteten bliver løbende fremskrevet, når der afvikles en lønkørsel.
+Herefter defineres en ’Opslagstabel’ og to ’Resultattabeller’, hvor der angives f.eks.  9 måneder anciennitet, hvis det er det, overenskomsten foreskriver.
+* Opslagstabel ’DAGPENGE’ – angives med 9 måneder samt hvilken resultattabel, opslagstrinet skal pege på.
+Oprettelse af Opslagstabel
+1. Gå til Opsætning → Opslagstabel
+2. Vælg Opslagstabel DAGPENGE
+3. Klik Find
+4. Klik Ny periode
+5. Angiv Gyldig
+6. Klik OK 
+7. Vælg Opslagstrin i højremenuen
+8. Angiv opslagsværdien og resultattabel 'ANC01 – ANC10'
+9. Klik OK
+Herefter skal den pågældende resultattabel ’Anc01-Anc10' angives med antal måneder ud for de pågældende løngrupper:
+* Resultattabel ’Anc01-Anc10'
+Opsætning af resultattabel:
+1. Gå til Opsætning → Resultattabel
+2. Angiv resultattabellen
+3. Klik Find
+4. Klik Ny periode
+5. Angiv gyldighed 
+6. Klik OK
+7. Vælg Resultattrin i højremenuen
+8. Skriv løngruppe og antal måneder i aflønningsform, evt. 9
+9. Klik OK
+Resultattabel ’DPANC’ benyttes til arbejdsgivers regel for, hvornår der skal udbetales dagpenge og hvornår der skal udbetales timeløn. I dette eksempel er der tale om dagpenge, når der er mindre end 9 måneders anciennitet. Resultattabel ’DPANC’ opsættes til f.eks. 9 måneder.
+* Resultattabel ’DPANC’
+Opsætning af resultattabel:
+1. Klik på Opsætning → Resultattabel
+2. Angiv resultattabellen
+3. Klik Find
+4. Klik Ny periode
+5. Angiv gyldighed 
+6. Klik OK
+7. Vælg Resultattrin i højremenuen
+8. Skriv løngruppen og antal måneder i aflønningsform, evt. 9
+9. Klik OK
+
+## Fraværslønart til anciennitetsstyring ved udbetaling af dagpenge/månedsløn
+I forbindelse med sygdom på månedslønnede står der i nogle overenskomster, at ved mindre end 9 måneders anciennitet udbetales dagpenge, og at der ved mere end 9 måneders anciennitet betales almindelig månedsløn. Det kan styres automatisk i Visma Løn.
+Der er oprettet en fraværskode som skal tilknyttes den relevante stillingskategori.
+* 12 - Sygefravær.
+ Til fraværskoden er der oprettet en fraværslønart
+* Fraværslønart 3966
+Fraværskode og fraværslønart tilknyttes på følgende måde:
+1. Gå til Opsætning → Stillingskategori
+2. Angiv den relevante stillingskategori
+3. Klik Find
+4. Vælg Tilladte fraværskoder i højremenuen 
+5. Tryk Ny
+6. Angiv 'fraværskode 12', 'fraværslønart 3966' og 'startdato'
+7. Klik OK
+Anciennitet på medarbejderen angives under Medarbejder → Medarbejder stamoplysninger i feltet ’Anciennitet’, hvor du taster antal år, måneder og dage, medarbejder har været ansat. Benyt formatet ÅÅMMDD (Å = år, M = måned og D = dage). Ancienniteten bliver løbende fremskrevet, når der afvikles en lønkørsel.
+Herefter defineres en ’Opslagstabel’ og to ’Resultattabeller’, hvor der angives f.eks.  9 måneders anciennitet, hvis det er det, overenskomsten foreskriver.
+* Opslagstabel ’DAGPENGE’ – angives med 9 måneder samt hvilken resultattabel, opslagstrinet skal pege på.
+Oprettelse af Opslagstabel
+1. Gå til Opsætning → Opslagstabel
+2. Vælg Opslagstabel DAGPENGE
+3. Klik Ny periode
+4. Klik OK
+5. Angiv gyldighed 
+6. Klik OK
+7. Vælg Opslagstrin i højremenuen
+8. Indtast opslagsværdien og resultattabel 'ANC01 – ANC10'
+9. Klik OK
+Herefter skal den pågældende resultattabel ’Anc01-Anc10' angives med antal måneder ud for de pågældende løngrupper:
+* Resultattabel ’Anc01-Anc10’.
+Opsætning af resultattabel
+1. Gå til Opsætning → Resultattabel
+2. Angiv resultattabellen
+3. Klik Find
+4. Klik Ny periode
+5. Angiv gyldighed 
+6. Klik OK
+7. Vælg Resultattarin i højremenuen
+8. Skriv løngruppe og antal måneder i aflønningsform, evt. '9'
+9. Klik OK
+Resultattabel ’DPANC’ benyttes til arbejdsgivers regel for, hvornår der skal udbetales dagpenge og hvornår der skal udbetales timeløn. I dette eksempel er der tale om dagpenge, når der er mindre end 9 måneders anciennitet. Resultattabel ’DPANC’ opsættes til f.eks. 9 måneder.
+* Resultattabel ’DPANC’.
+Opsætning af resultattabel:
+1. Gå til Opsætning → Resultattabel
+2. Angiv resultattabellen
+3. Klik Find
+4. Klik Ny periode
+5. Angiv gyldighed 
+6. Klik OK
+7. Vælg Resultattrin i højremenuen
+8. Skriv løngruppen og antal måneder i aflønningsform, evt. '9'
+9. Klik OK
+Ved brug af fraværskode 12 og fraværslønart 3966 vil der ved mindre end 9 måneders anciennitet blive udbetalt dagpengesats til det antal timer, som er registreret på fraværet, og der vil blive modregnet timeløn svarende til månedsløn divideret med normtiden på ansættelsesforholdet. Ved mere end 9 måneders anciennitet vil fraværet blive vist på lønsedlen, og der udbetales den normale månedsløn.
+Vi gør opmærksom på, at opsætningen af antal måneder for udbetaling af dagpenge kan være andet end 9 måneder. Det kan også være forskelligt fra løngruppe til løngruppe.
+Fraværslønart, der benytter anciennitet til beregning, kan ikke anvende efterregulering.

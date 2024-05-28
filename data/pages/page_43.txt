@@ -1,0 +1,19 @@
+https://help.vismaenterprise.dk/vismaloen-standard/arbejdsgiver/24-brugerrettigheder-i-visma-lon
+
+# Brugerrettigheder i Visma Løn
+
+| Beskrivelse | Produkt |
+| Fuld adgang uden godkender | Visma Løn (MLE standard) |
+| Fuld adgang uden opsætning og godkender | Visma Løn (MLE standard) |
+| Fuld adgang uden opsætning | Visma Løn (MLE standard) |
+| Kun fravær | Visma Løn (MLE standard) |
+| Fuld adgang | Visma Løn (MLE standard) |
+| Læseadgang + godkender | Visma Løn (MLE standard) |
+| Læseadgang | Visma Løn (MLE standard) |
+| Kun adgang til indberetning af fravær og variable | Visma Løn (MLE standard) |
+| Fuld adgang med PP Finans | Visma Løn Finans m/PP (MLE Finans) |
+| Læseadgang med PP Finans | Visma Løn Finans m/PP (MLE Finans) |
+| Fuld adgang Visma Løn Finans (MLE-Finans) | Visma Løn Finans (MLE-Finans) |
+| Læseadgang Visma Løn Finans (MLE-Finans) | Visma Løn Finans (MLE-Finans) |
+
+Ønsker du at oprette, redigere eller slette brugere af Visma Løn. Se vejledning til [Brugeradministration](https://help.vismaenterprise.dk/vismaloen-standard/opsaetning-og-kom-igang/00022-brugeradministration)

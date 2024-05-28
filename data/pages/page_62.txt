@@ -1,0 +1,39 @@
+https://help.vismaenterprise.dk/vismaloen-standard/eindkomst/46-udskydelse-af-a-skat-og-am-bidrag
+
+# Udskydelse af A-skat og AM-bidrag
+
+Som en del af en ny inflationshjælpepakke har regeringen og et bredt politisk flertal aftalt likviditetshjælp til alle  virksomheder. Man vil derfor udskyde betalingsfrister for indeholdt A-skat og AM-bidrag i juli og august 2023 henholdsvis 3½ måned og 6 måneder.
+
+| Betalingsfrister |
+| Arbejdsgiver stamoplysninger står med Tilmelding i Visma Løn: |
+|   | Gældende | Udskudt betaling | Gældende | Udskudt betaling |
+| Juni | 10. juli | 31. oktober 2023 |   |   |
+| Juli | 10. august | 12. februar 2024 | 31. juli | 10. november 2023 |
+| August |   |   | 31. august | 29. februar 2024  |
+
+## Ændring af betalingsfrister i Visma Løn
+Du skal ændre datoen for betaling af A-skat og AM-bidrag i Visma Løn, inden du kører din lønkørsel for juni måned. Når du ændrer afregningstypen for A-skat, følger AM-bidraget automatisk med, og du skal derfor ikke ændre på AM-bidraget.
+## Ændring af A-skat/AM-bidrag for små og mellemstore virksomheder
+1. Gå til Opsætning → Afregningstype
+2. Angiv Afregningstype 8500 for A-skat for små og mellemstore virksomheder
+3. Klik på Find
+4. Vælg Afregningsperiode i højremenuen 
+5. Find lønperioden f.eks. 
+Dobbeltklik på linjen
+6. Ret i feltet ’Betal.dato’ til f.eks. 31-10-2023
+7. Klik på Gem
+
+
+Gentag punkt 5 for juli måned.
+## Ændring af A-skat/AM-bidrag for store virksomheder
+1. Gå til Opsætning → Afregningstype
+2. Angiv Afregningstype 8505 for A-skat for store virksomheder
+3. Klik på Find
+4. Vælg Afregningsperiode i højremenuen
+5. Find lønperioden f.eks.
+Dobbeltklik på linjen:
+6. Ret i feltet ’Betal.dato’ til f.eks. 10-11-2023
+7. Klik på Gem
+
+
+Gentag fra punkt 5 for august måned.

@@ -1,0 +1,567 @@
+https://help.vismaenterprise.dk/vismaloen-standard/decantral-registrering/94-decentralized-recordings
+
+# Decentralized recordings (english)
+
+## Description
+### Type
+K – Key, data entries in key fields are mandatory
+N – Numeric
+X – Alphanumeric, characters
+% – The field may be deleted/left blank
+D – Date field, DDMMYYYY
+M – Mandatory, values MUST be entered at time of creation
+Å – Year, the year 2000 and later
+### File name
+The file name will not be ‘checked’ which means that you can decide what the name of the file should be.
+However, a file name can only be loaded into the salary system once. The maximum number of characters allowed is 20 and these characters may a combination of numbers and letters.
+### File format
+In Visma Løn, you can load a file from an external system. The file must be in csv-format (Windows code page 1252 ANSI or UTF-8 with BOM) and should have a preset layout. In a csv-file, the following characters are not allowed in data; ’,’ (comma) ’;’ (semicolon) ” (quotation marks) as these are used as separators. 
+Separator characters in Visma Løn record format is either ’,’(comma) or ’;’ (semicolon).
+The decimal point is denoted by ’.’ (full stop) or ’,’(comma).
+### Sorting
+The ordering of the records is of no importance. During loading, the salary system performs the sorting.
+### Data check
+Data check is carried out using the same rules that govern manual entries.
+## Loading files into Visma Løn
+The employer must have signed up for ’Service 7’ to be able to load the files into Visma Løn.How to load files into Visma Løn:1. Go to Lønadministration (Salary administration) → Overførsel (Transfer) → Decentral registrering (Decentralized recording)’
+2. Load the file, then click Indlæs (Load)
+3. Navigate to the file and click OK
+4. Then a job is started and displayed under Vis job (View job). After completion of the job, click Hent aktuelt (Get current)
+5. Then click Åbn (Open)
+6. Double click the file displayed, then click Åbn (Open)
+7. On the screen, you will see Kvittering for decentral registrering (Acknowledgement for decentralized recording). The report includes details about the number of lines which are Modtaget (Received), Indlæst (Loaded) and Afvist (Rejected), respectively.
+8. The received and loaded lines are located on the relevant screens in the salary system.
+9. The rejected lines will be displayed in the Kvittering for decentral registrering (Acknowledgement for decentralized recording) report; for the rejected lines, the report includes details regarding employee numbers and failures/causes.👩‍🏫Case:Below, you see the structure of a csv file, including all formats and the separator character is ’;’ (semicolon):18;1;MLE-05-AFDE;300;HR18;1;MLE-10-UDBE;Kbh;København18;;MLE-15-REST;1100;01082008;;;T3;;;120;6018;;MLE-15-REST;1100;01082008;;;F3;16518;;MLE-15-REST;1100;01082008;;;F4;;17518;1;MLE-25-MEDA;3;3001609992;;Jensen;Gurli;Skogen 12;SE-45678Malmø;0;;01082008;[gj@hotmail.dk](mailto:gj@hotmail.dk);SE;000100;H;0108200818;1;MLE-25-MEDA;4;2602639991;;Olsen;Thomas;Sorte vænget 22;;2750;;15082008;;;000015;B;1508200818;1;MLE-30-ANSF;3;01082008;;;;1001;HR konsulent;130.00;;F1;300;;;101024423018;1;MLE-30-ANSF;4;15082008;;;;3001;Lager;0;;T1;100;Kbh;;101024423018;1;MLE-30-ANSF;10086;01082008;;3;3108200818;1;MLE-35-REGK;3;01082009;;1234;948124718;1;MLE-35-REGK;4;15082008;;1222;318578437518;1;MLE-40-LONA;3;01082008;;9900;;;;2000018;1;MLE-40-LONA;3;01082008;;6200;;;;;5;;;10;;;;;;;200318;1;MLE-40-LONA;3;01082008;;9011;;12018;1;MLE-40-LONA;3;01082008;;1303;;5;12018;1;MLE-40-LONA;3;01082008;;3000;;;;650018;1;MLE-40-LONA;3;01082008;31122008;301018;1;MLE-40-LONA;4;15082008;;6003;;;;;3.7;;;7.4;2;;;;;;2115;;;;118;1;MLE-40-LONA;4;15082008;;6410;;;;500;;;;;;;;;2345;654453318;1;MLE-40-LONA;4;15082008;;1100;;16518;1;MLE-40-LONA;4;15082008;;9905;;;;17018;1;MLE-40-LONA;4;15082008;;9906;;;;1518;1;MLE-45-ERIN;3;01082008;1;Jubilæum 201818;1;MLE-50-ANSO;3;300;412110;;0108200818;1;MLE-50-ANSO;3;800;4;;0108200818;1;MLE-50-ANSO;3;600;99999;30.00;0108200818;1;MLE-55-FRAV;10078;12082008;13082008;40;Ferie i august;218;1;MLE-55-FRAV;987;14082008;14082008;18;Dagpenge;7.5;12518;1;MLE-55-FRAV;992;02012008;02012008;40;;;;918;1;MLE-60-EIND;3;10;0;0108200818;1;MLE-60-EIND;3;11;0;0108200818;1;MLE-60-EIND;4;66;0;15082008;;500018;1;MLE-65-GREK;1;01082008;H18;1;MLE-65-GREK;2;15082008;H
+## MLE-05-AFDE (Department)
+You can create and modify departments by using Decentralized recording.
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), and AFDELING (DEPARTMENT)
+The following fields may be modified by using Decentralized recording:
+DESCRIPTION
+👩‍🏫Case:
+18;1;MLE-05-AFDE;300;HR
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-05-AFDE |   |
+| 4 | D | Afdeling (Department) | 6 | X K |   | AFDELINGSNR (DEPARTMENT NO.) |
+| 5 | E | Description | 30 | X |   | AFDELING TEKST (DEPARTMENT TEXT)To indicate deletion of beskrivelse (description), enter ’%’ into the field. |
+## MLE-10-UDBE (Subsection)
+You can create and modify subsections by using Decentralized recording.
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), and UDBETALINGSSTED (SUBSECTION)
+The following fields can be modified by using Decentralized recording.
+DESCRIPTION
+👩‍🏫Case:
+18;1;MLE-10-UDBE;Kbh;København
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (customer relation) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER RELATION NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | EMPLOYER NO. |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-10-UDBE | Record ID |
+| 4 | D | Udbetalingssted (Subsection) | 6 | X K |   | SUBSECTION ID |
+| 5 | E | Description | 30 | X |   | For deletion of beskrivelse (description), enter ’%’ into the field. |
+## MLE-15-REST (Result steps)
+You can create and modify result steps by using Decentralized recording.
+The result table may/should be accounted for on an accruals basis by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), IDENTIFIKATION (IDENTIFICATION), RESULTATTABEL (RESULT TABLE) , FRADATO (FROM DATE), and LØNGRUPPE (SALARY GROUP)  
+ 
+You can change the following fields by using Decentralized recording:
+SATS BAGUD (RATE IN ARREAR), SATS FORUD (RATE IN ADVANCE), SATS TIMELØN (RATE – HOURLY WAGE), and SATS 14 DAGS LØN (RATE – SALARY FOR 2 WEEKS)  
+ 
+You can change the following fields by using Decentralized recording if you have a salary scale agreement: 
+RYKTYPE1, RYKTYPE2, RYKTYPE3, RYKNØGLE1, RYKNØGLE2, RYKNØGLE3  
+ 
+⚠️ OBS: If the entire result step for a salary group should be deleted, then enter ’%’ into all ratefields (fields 14-17).  
+ 
+👩‍🏫Case:
+18;;MLE-15-REST;1100;01082008;;;T3;;;120;60
+18;;MLE-15-REST;1100;01082008;;;F3;165
+18;;MLE-15-REST;1100;01082008;;;F4;;175  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2  | B | Blank field | 0 | X | Blank |   |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-15-REST | Record ID |
+| 4 | D | Resultattabel (Result table) | 6 | X K |   | The result table number e.g. 1100 |
+| 5 | E | Fradato (From date) | 8 | D K |   | RESULTATTABEL STARTDATO (RESULT TABLE START DATE). Format: DDMMYYYY |
+| 6 | F | Tildato (To date) | 8 | D |   | RESULTATTABEL SLUTDATO (RESULT TABLE END DATE). Format: DDMMYYYY |
+| 7 | G | Betegnelse (Designation) | 30 | X |   | For deletion of betegnelse (designation), enter % into the field. |
+| 8 | H | Ryktype1  | 6  | X  | Blank LØNRAM LØNTRN LØNGRP ST.KAT AFDELIUDBSTD | Usually left blank. If salary scale agreement, the field holds promotion code 1. |
+| 9 | I | Ryktype1  | 6  | X  | Blank LØNRAM LØNTRN LØNGRP ST.KAT AFDELIUDBSTD | Usually left blank. If salary scale agreement, the field holds promotion code 2. |
+| 10 | J | Ryktype1  | 6  | X  | Blank LØNRAM LØNTRN LØNGRP ST.KAT AFDELIUDBSTD | Usually left blank. If salary scale agreement, the field holds promotion code 3 |
+| 11 | K | Løngruppe(Salary group) | 6 | X M |   | E.g. F1 or TT. If salary scale agreement, the field is connected to Ryktype1. |
+| 12 | L | Ryknøgle2  | 6 | X | Blank | Usually left blank. If salary scale agreement, the field is connected to Ryktype2 |
+| 13 | M | Ryknøgle2 | 6 | X | Blank | Usually left blank. If salary scale agreement, the field is connected to Ryktype3. |
+| 14 | N | Sats bagud (Rate in arrear) | 10 | N |   | Format: -9999999.99 – 9999999.99. For deletion of ’sats bagud’ (Rate in arrear), enter % into the field. |
+| 15 | O | Sats forud (Rate in advance) | 10 | N |   | Format: -9999999.99 – 9999999.99. For deletion of ’sats forud’ (rate in advance), enter % into the field. |
+| 16 | P | Sats timeløn (Rate – hourly wage) | 10 | N |   | Format: -9999999.99 – 9999999.99. For deletion of sats timeløn (hourly wage), enter % into the field. |
+| 17 | Q | Sats 14 dags løn (Rate – salary for 2 weeks) | 10 | N |   | Format: -9999999.99 – 9999999.99. For deletion of sats 14 dags løn (rate – salary for 2 weeks), enter % into the field. |
+## MLE-25-MEDA (Employee)
+Employees may be created and modified by using Decentralized recording.The following fields are key fields:KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), and MEDARBEJDER (EMPLOYEE)You can change the following fields by using Decentralized recording:CPRNR (CIVIL REG. NO.), CVRNR (CVR NUMBER), FORNAVN (FIRST NAME), EFTERNAVN (LAST NAME), ADRESSE1 (ADDRESS1), ADRESSE2 (ADDRESS2), POSTNR (POSTAL CODE), FØRSTANSAT (FIRST TIME EMPLOYMENT), E-MAIL (E-MAIL), SKATTELANDEKODE (TAX COUNTRY CODE), ANCIENNITET (LENGTH OF EMPLOYEE’S EMPLOYMENT), SKATTELANDEKODE (TAX COUNTRY CODE), EBOKS (E-BOX), INITIALER (INITIALS), NEMKONTO, LØNANCIENNITET and TIN (Tax ID).👩‍🏫Case:18;1;MLE-25-MEDA;3;3001609992;;Jensen;Gurli;Skogen 12;;SE-45678;Malmø;01082008;[gj@hotmail.dk](mailto:gj@hotmail.dk);SE;000100;H;0108200818;1;MLE-25-MEDA;4;2602639991;;Olsen;Thomas;Sorte vænget 22;;2750;;15082008;;;000015;B;15082008Record format:| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-25-MEDA | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | CPR-nr.(Civil reg. no.) | 10 | N M | DDMMYYXXXX | A Modulus 11 check is performed on the field. Fictitious civil reg. numbers xxxxxx9991 or xxxxxx9992 are valid. If cpr.nr. is ficitionous field 19 and 21 must have ’Nej’ for No. Value x must include a valid date. Format XXXXXXXXXX |
+| 6 | F | CVR-nr.(CVR no.) | 8 | N (M) |   | A Modulus 11 check is performed on the field. The field is populated with zero if the civil reg. no. is provided. The field is only populated if the value provided for the civil reg. no. is zero. Format: XXXXXXXX |
+| 7  | G | Last name | 30 | X M |   |   |
+| 8  | H | First name | 30 | X M |   |   |
+| 9  | I | Address 1 | 30 | X M |   |   |
+| 10 | J | Address 2 | 30 | X |   | For deletion of Address 2 enter % into the field. |
+| 11 | K | Postnummer dansk eller udl. (Postal code – Danish or foreign) | 9 | X M |   | Danish postal code validation if country code is not provided or provided with DK. Otherwise no check. |
+| 12 | L | Udl. Postdistrikt (Foreign postal code) | 30 | X(M) | blank | Should be entered if the employee has a foreign address. Is deleted automatically if the country code is changed to DK. |
+| 13 | M | Først ansat (first time employment) | 8 | D M |   | Format: DDMMYYYY |
+| 14 | N | E-mail | 50 | X(M) |   | For deletion of e-mail enter % into the field.(M – if mit.dk = Nej) |
+| 15 | O | Landekode (Country code) | 2 | X M |   | If the employee has a foreign address a value should always be provided for this field. |
+| 16 | P | Anciennitet (Seniority) | 6 | N |   | Format: YYMMDD. The length of the employee’s employment in number of years months and days. For deletion of anciennitet (seniority) enter % into the field. |
+| 17 | Q | Rekvirer skattekorttype (Request tax card type) | 1 | X | H = Main taxcardB = Secondary taxcardBlank =  no card | A tax card can only be requested when creating a new employee. If an existing employee having a new salary number is created in the salary system the field must be Blank and you need to make a new tax card request. |
+| 18 | R | Request date | 8 | D |   | The effective date of the e-tax card. Format: DDMMYYYY |
+| 19 | S | mit.dk | 3 | X | Ja / Nej or Blank | Ja/Nej (yes/no) to Danish mit.dk must be indicated.Ja = Mit.dk Nej = mitBasic and additional email address must be created in column N Blank = Ja (Yes) |
+| 20  | T | Initials | 10 | X |   | Initial of employee |
+| 21 | U | Nemkonto | 3 | X | Ja or Blank | Ja (yes) or blank. Danish NemKonto |
+| 22 | V | Lønanciennitet | 8 | X |   | The employee’s Seniority date. Format: DDMMYYYY |
+| 23 | W | TIN | 27 | X | TIN can consist of letters, numbers and characters | If the employee resides abroad (including Greenland and the Faroe Islands), the TIN must be provided. The TIN must comply with a specific format.For deletion of TIN enter % into the field. |
+## MLE-27-HRME (employees with HR fields)
+For companies, that have Visma HREmployees can be created and changed via Decentral registrationThe following fields must be filled out:Customer ID, Employer, Identification, and Employee numberThe following fields can be changed via a Decentral registration:CPRNR, CVR Number, FIRSTNAME, LAST NAME, ADDRESS1, ADDRESS 2, POST NUMBER, FIRST EMPLOYED DATE, E-MAIL, TAX CODE, EBOX, INTIALS and TIN (Tax-ID).The following HR fields can be changed:EMAIL 2, BIRTHDATE, SEX (f/M), COUNTRY CODE, COUNTRY OF BIRTH CODE, DEFAULT CALANDER KODE, COMMENTS SURNAME and CPR NR. ABROAD👩‍🏫Case:18;1;MLE-27-HRME;3:3001609992;;Jensen;Gurli;Skagen 12;SE-45678;Malmø;01082008;[gi@hotmail.dk](mailto:gi@hotmail.dk);SE;000100;H;0108200818;1;MLE-27-HRME;4:2602639991;;Cisen;Thomas;Sort vænget 22;;2750;;15082008;;;000015;B;15082008| Field no. | Excel column | Name | Length | Type | Value / Format | Description |
+| 1 | A | Customer ID | 6 | Key NumericMandatory |   | Customer ID is a fixed number created by Visma Løn |
+| 2 | B | Employer | 6 | Key NumericMandatory |   |   |
+| 3 | C | Identification | 11 | Key CharactersMandatoryFixed value | MLE-27-HRME |   |
+| 4 | D | Employee | 15 | Key NumericMandatory |   | Employee number |
+| 5 | E | CPR no. | 10 | NumericMandatory | XXXXXXXXXX | A Modulus 11 check is performed on the field. Fictitious civil reg. numbers xxxxxx9991 or xxxxxx9992 are valid. If cpr.nr. is ficitionous field 19 and 21 must have ’Nej’ for No. Value x must include a valid date. Format XXXXXXXXXX |
+| 6 | F | CVR no. | 8 | Numeric(Mandatory) | XXXXXXXX | A Modulus 11 check is performed on the field. The field is left blank if the CPR no is provided. The field is only populated if the value provided for the CPR no is 0 (zero). Format: XXXXXXXX |
+| 7 | G | Last name | 30 | Characters(Mandatory) |   | Mandatory for creating a new employee |
+| 8 | H | First name | 30 | Characters(Mandatory) |   | Mandatory for creating a new employee |
+| 9 | I | Address 1 | 30 | Characters(Mandatory) |   | Mandatory for creating a new employee |
+| 10 | J | Address 2 | 30 | Characters |   | Can be deleted by entering % into the field |
+| 11 | K | Postal code | 9 | Characters(Mandatory) |   | Mandatory for creating a new employeeDanish postal code validation if country code is not provided or provided with ’DK’. Otherwise no check. |
+| 12 | L | Foreign postal district | 30 | Characters(Mandatory) |   | Mandatory if the employee has a foreign address. Otherwise left blank. Is deleted automatically if the country code is changed to ’DK’. |
+| 13 | M | First time employment | 8 | Date(Mandatory) | DDMMYYYY | Mandatory for creating a new employeeFormat: DDMMYYYY |
+| 14 | N | E-mail | 50 | Alphanumeric(Mandatory) |   | Can be deleted by entering % into the field The field is mandatory if payslip is send to mitBasic(mit.dk = Nej) |
+| 15 | O | Country code | 2 | Characters(Mandatory) |   | Mandatory for creating a new employee.If the employee has a foreign address a value should always be provided for this fieldIf left blank the code will automatic be set to DK |
+| 16 | P | Seniority | 6 | Numeric | YYMMDD | The length of the employee’s employment in number of years months and daysCan be deleted by entering % into the fieldFormat: YYMMDD |
+| 17 | Q | Request tax card type | 1 | Characters | H = Hovedkort (taxrate and deduction card)B = Bikort (secondary taxcard) | A tax card can only be requested when creating a new employee. If an existing employee having a new salary number is created the field must be left blank |
+| 18 | R | Request date | 8 | Date | DDMMYYYY | The effective date of the e-tax card.If no tax card i requested the field must be left blank |
+| 19 | S | Mit.dk | 3 | Characters(Mandatory) | Ja, Nej or blank | Ja/Nej (yes/no) or blank to Danish Mit.dk or mitBasicJa = Mit.dkNej = mitBasic and additional email address must be created in column N and VBlank = Ja (Yes) |
+| 20 | T | Initials | 10 | Characters |   |   |
+| 21 | U | NemKonto | 3 | Characters | Ja, Nej or blank | Ja (yes), Nej (No) or blank to Danish NemKonto |
+| 22 | V | E-mail (Private) | 50 | Characters(Mandatory) |   | Can be deleted by entering % into the field |
+| 23 | W | Birthdate | 8 | Date | DDMMYYYY | MEDARBEJDER.FOEDSELSDAGCan be deleted by entering % into the field |
+| 24 | X | Gender | 1 | Numeric | 0 = Female1 = Male | MEDARBEJDER.KOEN |
+| 25 | Y | Citizenship | 2 | Characters | Same as country code | STATSLANDEKODEIf left blank the code will automatic be set to DKCan be deleted by entering % into the field |
+| 26 | Z | Nationality | 2 | Characters | Same as country code | FOEDELANDEKODEIf left blank the code will automatic be set to DKCan be deleted by entering % into the field |
+| 27 | AA | Default absence calendar | 6 | Numeric |   | DEFAULTKALENDERKODECan be deleted by entering % into the field |
+| 28 | AB | Comment | 60 | Characters |   | KOMMENTARCan be deleted by entering % into the field |
+| 29 | AC | Nickname | 50 | Characters |   | KALDENAVNCan be deleted by entering % into the field |
+| 30 | AD | Foreign CPR no | 20 | Characters |   | CPRNRUDLANDCan be deleted by entering % into the field |
+| 31 | AE | Payment seniority | 8 | Date | DDMMYYYY | Date of seniority to calculate payments |
+| 32 | AF | TIN | 27 | X | TIN can consist of letters, numbers and characters | If the employee resides abroad (including Greenland and the Faroe Islands), the TIN must be provided. The TIN must comply with a specific format.For deletion of TIN enter % into the field.  |
+## MLE-30-ANSF (Conditions of employment)
+Conditions of employment can med created, modified and be accounted for on an accruals basis
+by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), and FRADATO (FROM DATE)  
+ 
+You can modify the following fields by using Decentralized recording:
+FRADATO (FROM DATE), FRATRÆDELSESDATO (RESIGNATION DATE), FRATRÆDELSESKODE (RESIGNATION CODE), AFDELINGSNR (DEPARTMENT NO., UDBETALINGSSTEDNR (PAYER NO.),LØNGRUPPENR (SALARY GROUP NO.), STILLINGSKATEGORI (POSITION CATEGORY), ANSÆTTELSESBETEGNELSE (EMPLOYMENT DESIGNATION), NORMTID (STANDARD PERIOD), AFV.FORENINGSKODE (AFV. ASSOCIATION CODE), AFV.PNR, OPTIONAL 1-6, LØNRAMME, LØNTRIN, RYKKODE1, RYKKODE2, RYKKODE3, NÆSTERYKDATO1, NÆSTERYKDATO2, NÆSTERYKDATO3. AUTORYK1,AUTORYK2, AUTORYK3, ARBEJDSDAGE PR.UGE.  
+ 
+👩‍🏫Case:
+18;1;MLE-30-ANSF;3;01082008;;;;1001;HR konsulent;130.00;;F1;300;;;1010244230
+18;1;MLE-30-ANSF;4;15082008;;;;3001;Lager;0;;T1;100;Kbh;;1010244230
+18;1;MLE-30-ANSF;10086;01082008;;3;31082008
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-30-ANSF | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5  | E | Fradato (From date) | 8 | D K |   | Format: DDMMYYYY"Fradato (From date) should NOT contain any data when only Fratrædelseskode (Resignation Code) and Fratrædelsesdato (Resignation Date) are used in the record."   |
+| 6 | F | Tiltrædelsesdato (Commencement date) | 8 | D |   | Is not applied. |
+| 7 | G | Fratrædelseskode (Resignation code) | 2 | N |   | Mandatory in case of resignation. When populating this field the  In case of reemployment enter % into the field. For deletion of ’fratrædelseskode’ (resignation code) enter % into the field. |
+| 8 | H | Fratrædelsesdato (Resignation date) | 8 | D |   | Mandatory in case of resignation. When populating this field the system. Format: DDMMYYYY  |
+| 9  | I | Stillingskategori (Position category) | 4 | N M |   | E.g. monthly or hourly paid employee. |
+| 10 | J | Ansættelsesbetegnelse (Employment designation or jobtitle) | 30 | X |   | For deletion of ansættelsesbetegnelse (employment designation) enter % into the field. |
+| 11 | K | Normtid medarbejder (Standard time per month) | 6 | N |   | Format: 999.99. For deletion of normtid medarbejder (standard time – employee) enter % into the field. |
+| 12 | L | Normtid overenskomst (Standard time - agreement) | 6 | N |   | If not 160.33 this is provided at time of creation.Format: 999.99 |
+| 13 | M | Løngruppe (Salary group) | 6 | X M |   | The letter should be with initial cap e.g. ’T1’ or ’F2’. |
+| 14 | N | Afdeling (Department) | 6 | X |   | Case sensitive. For deletion of afdeling (department) enter % into the field. |
+| 15 | O | Udbetalingssted (Subsection) | 6 | X |   | Case sensitive. For deletion of subsection enter % into the field. |
+| 16 | P | Afv. Foreningskode (Association code) | 5 | N |   | For deletion of afv. foreningskode (association code) enter % into the field. |
+| 17 | Q | Afv. Pnr. | 10 | X |   | Modulus check of field contents. For deletion of afv Pnr. enter % into the field. |
+| 18 | R | Afv. kontoplan (Chart of accounts) | 2 | X |   | Check of existence of loaded chart of accounts. For deletion of Chart of accounts enter % into the field. |
+| 19 | S | Valgfri1 (Optional1) | 10 | X |   | For deletion of Optional1 enter % into the field. |
+| 20 | T | Valgfri2 (Optional2) | 10 | X |   | For deletion of Optional2 enter % into thefield. |
+| 21 | U | Valgfri3 (Optional3) | 10 | X |   | For deletion of Optional3 enter % into the field. |
+| 22 | V | Valgfri4 (Optional4) | 10 | X |   | For deletion of Optional4 enter % into the field. |
+| 23 | W | Valgfri5 (Optional5) | 10 | X |   | For deletion of Optional5 enter % into the field. |
+| 24 | X | Valgfri6 (Optional6) | 10 | X |   | For deletion of Optional6 enter % into the field. |
+| 25  | Y  | Lønramme  | 6  | X  |   | Usually left blank. If salary scale agreement, the field may hold pay scale. |
+| 26 | Z | Løntrin | 6  | X  |   | Usually left blank. If salary scale agreement, the field may hold pay scale point. |
+| 27 | AA | Rykkode1  | 6 | X |   | Usually left blank. If salary scale agreement, the field may hold promotion code 1. |
+| 28 | AB | Rykkode2  | 6 | X |   | Usually left blank. If salary scale agreement, the field may hold promotion code 2. |
+| 29 | AC | Rykkode3 | 6 | X |   | Usually left blank. If salary scale agreement, the field may hold promotion code 3. |
+| 30 | AD | Næsterykdato1   | 8 | D | Blank DDMMYYYY | Usually left blank. If salary scale agreement, the field can  hold the date for first shift of pay scale point according to Rykkode1 |
+| 31 | AE | Næsterykdato2   | 8 | D | Blank DDMMYYYY | Usually left blank. If salary scale agreement, the field can  hold the date for first shift of pay scale point according to Rykkod2 |
+| 32 | AF | Næsterykdato13  | 8 | D | Blank DDMMYYYY | Usually left blank. If salary scale agreement, the field can  hold the date for first shift of pay scale point according to Rykkode3 |
+| 33 | AG | Autoryk1  | 1 | X |   | Usually left blank. If salary scale agreement, the field may hold Ja/Nej for automatic promotion. |
+| 34 | AH | Autoryk2 | 1 | X |   | Usually left blank. If salary scale agreement, the field may hold Ja/Nej for automatic promotion. |
+| 35 | AI | Autoryk3 | 1 | X |   | Usually left blank. If salary scale agreement, the field may hold Ja/Nej for automatic promotion. |
+| 36 | AJ | Arbejdsdage pr. uge  | 1 | N |   | Number of work days per week, maks 8Only feasible for companies in the financial trade.  |
+## MLE-32-HRAN (Current Employment relationship with HR fields)
+Current employment relationships can be created, changed and accrued via a Decentral registration
+The following fields must be filled out:
+CUSTOMER ID, EMPLOYER, IDENTIFACATION, EMPLOYEE NUMBER AND BEGINNING DATE
+The following fields can be change via a Decentral registration:
+BEGGINNING DATE, FIRST EMPLOYED DATE, DISMISSAL CODE, DEPARTMENT NUMBER, PAYMENT CENTER, PAYROLL GROUP, JOB CATEGORY, JOB TITLE, NORMAL TIME, EXPECTED ASSOSCIATIONS AND EXPECTED P NUMBER (OPTIONAL 1), OPTION 2, OPTION 3, OPTION 4, OPTION 5, OPTION 6, PAY SCALE, PAY STEP, REMINDER KODE 1, REMINDER CODE 2, REMINDER CODE 3, NEXT REMINDER DATE 01, NEXT REMINDER DATE 02, NEXT REMINDER DATE 03, AUTO REMINDER 1, AUTO REMINDER 2, AUTO REMINDER 3, WORKING DAYS PER WEEK
+The following fields can be change via a Decentral registration:
+POSITION, INTERNAL POSITION CODE, TYPE OF POSITION, CHANGE REASON CODE, INTERNAL TITLE CODE, WORK SETTLEMENT CODE, EDUCATIONAL REQUIREMENT CODE, EXTRA TERMINATION TIME PERSON, EXTRA TERMINATION TIME COMPANY, SENIORITY FOR TERMINATION, SENIORITY FOR ANNIVERSARY, CAUSE OF TERMINATION, DEPARTMENT ID, TYPE OF EMPLOYMENT
+👩‍🏫Case:
+18;1;MLE-32-HRAN;3;011082008;;;;1001;HR consultant; 130.00;;F1;300;;;1010244230
+18;1;MLE-32 HRAN;4;15082008;;;;3001;warehouse;0;;T1;100;Kbh;;;1010244230
+18;1;MLE-32-HRAN;10086;01082008;;3;31082008
+| Field no. | Excel column | Name | Length | Type | Value | Description |
+| 1 | A | Customer ID | 6 | KeyNumeric |   | Customer ID is a fixed number created by Visma Løn |
+| 2 | B | Employer | 6 | KeyNumeric |   |   |
+| 3 | C | Identification | 11 | KeyCharacters | MLE-32-HRAN |   |
+| 4 | D | Employee | 15 | KeyNumeric |   | Employee number |
+| 5 | E | From date | 8 | Date(Mandatory) | DDMMYYYY | Must be blank in case of Termination |
+| 6 | F | Commencement date | 8 | Date |   | Is not applied.  |
+| 7 | G | Termination code | 1 | Numeric(Mandatory) | 3 = Monthly paid4 = Hourly paid8 = Employee without holiday pay | Mandatory in case of Termination. When populating this field the From date field must NOT be populated. In case of reemployment enter % into the field. |
+| 8 | H | Termination date | 8 | Date(Mandatory) | DDMMYYYY | Mandatory in case of Termination. |
+| 9 | I | Position category | 4 | Numeric(Mandatory) |   | Mandatory in case of new hire |
+| 10 | J | Title | 30 | Characters |   | Can be deleted by entering % into the field |
+| 11 | K | Standard time per month | 6 | Numeric(Mandatory) | 999.99 | Mandatory in case of new hireMust be 0 (zero) in case of Hourly paid |
+| 12 | L | Standard timeCompany agreement | 6 | Numeric(Mandatory) | 999.99 | Mandatory in case of new hire |
+| 13 | M | Salary group | 6 | Characters(Mandatory) |   | Mandatory in case of new hire |
+| 14 | N | Cost Center | 6 | Characters |   | Case sensitive. Department must be created before entering on employmentCan be deleted by entering % into the field |
+| 15 | O | Subsection | 6 | Characters |   | Case sensitive. Subsection must be created before entering on employmentCan be deleted by entering % into the field |
+| 16 | P | Association code | 5 | Numeric |   | Can be deleted by entering % into the field |
+| 17 | Q | Afv. Pnr. | 10 | Numeric | XXXXXXXXXX | Modulus check of field contentsCan be deleted by entering % into the field |
+| 18 | R | Chart of accounts | 2 | Characters |   | Checks for existence of loaded chart of accountsCan be deleted by entering % into the field |
+| 19 | S | Optional 1 | 10 | Alphanumeric |   | Can be deleted by entering % into the field |
+| 20 | T | Optional 2 | 10 | Alphanumeric |   | Can be deleted by entering % into the field |
+| 21 | U | Optional 3 | 10 | Alphanumeric |   | Can be deleted by entering % into the field |
+| 22 | V | Optional 4 | 10 | Alphanumeric |   | Can be deleted by entering % into the field |
+| 23 | W | Optional 5 | 10 | Alphanumeric |   | Can be deleted by entering % into the field |
+| 24 | X | Optional 6 | 10 | Alphanumeric |   | Can be deleted by entering % into the field |
+| 25 | Y | Lønramme | 6 | Characters | Blank |   |
+| 26 | Z | Løntrin | 6 | Characters | Blank |   |
+| 27 | AA | Rykkode1 | 6 | Characters | Blank |   |
+| 28 | AB | Rykkode2 | 6 | Characters | Blank |   |
+| 29 | AC | Rykkode3 | 6 | Characters | Blank |   |
+| 30 | AD | Næsterykdato1 | 8 | Date | Blank |   |
+| 31 | AE | Næsterykdato1 | 8 | Date | Blank |   |
+| 32 | AF | Næsterykdato1 | 8 | Date | Blank |   |
+| 33 | AG | Autoryk1 | 1 | Characters | Blank |   |
+| 34 | AH | Autoryk2 | 1 | Characters | Blank |   |
+| 35 | AI | Autoryk3 | 1 | Characters | Blank |   |
+| 36 | AJ | Working days per week | 1 | Numeric | Blank | Can only be used in Visma Løn for companies in the financial trade |
+| 37 | AK | Deviation in type of payment | 12 | Characters | Bagudløn (paid in arrears)Forudløn (paid in advance) | If the employee should have another type of payment than registered on the position category  |
+| 38 | AL | No of work function | 6 | NumericMandatory |   | Number of work function set up in Visma HR table |
+| 39 | AM | Deviation in holiday type | 2 | Characters | J = Yes to deviation N = No to deviation | If the employee should have another calculation of holiday than is setup on the position category |
+| 40 | AN | Deviation in location | 1 | Numeric |   |   |
+| 41 | AO | Position | 50 | Characters |   | STILLING |
+| 42 | AP | Internal position code | 5 | Characters |   | INTERNSTILLINGSKODE |
+| 43 | AQ | Type of position | 5 | Characters |   | STILLINGSTYPEKODE |
+| 44 | AR | Change reason code | 5 | Characters |   | AENDRINGSAARSAGSKODE |
+| 45 | AS | Internal title code | 5 | Characters |   | INTERNTITELKODE |
+| 46 | AT | Work settlement code | 5 | Characters |   | ARBEJDSORDNINGKODE |
+| 47 | AU | Educational requirement code | 6 | Numeric |   | UDDANNELSESKRAVKODE |
+| 48 | AV | Extra Termination time Person | 2 | Numeric | Number of months | EKSTRAOPSIGPERSONMAANED |
+| 49 | AW | Extra Termination time Company | 2 | Numeric | Number of months | EKSTRAOPSIGFIRMAMAANED |
+| 50 | AX | Seniority for Termination | 8 | Date | DDMMYYYY | ANCIENNITET2 |
+| 51 | AY | Seniority for anniversary | 8 | Date | DDMMYYYY | JUBILAEUM2 |
+| 52 | AZ | Cause of Termination | 10 | Characters |   | FRATRAEDELSESAARSAGSKODE |
+| 53 | BA | Department ID | 9 | Numeric |   | DEPARTMENTID |
+| 54 | BB | Type of employment | 5 | Characters |   | ANSATTYPEKODE |
+## MLE-35-REGK (Registration and account numbers)
+Registration and account numbers can be created and be accounted for on an accruals basis by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), and STARTDATO (START DATE)  
+ 
+You can change the following fields by using Decentralized recording:
+KONTONUMMER (ACCOUNT NUMBER), REGISTRERINGSNUMMER (REGISTRATION NUMBER), STARTDATO (START DATE) and SLUTDATO (END DATE)  
+ 
+👩‍🏫Case:
+18;1;MLE-35-REGK;3;01082009;;1234;9481247
+18;1;MLE-35-REGK;4;15082008;;1222;3185784375  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-35-REGK | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5  | E | Startdato(Start date) | 8 | D K |   | Format: DDMMYYYY |
+| 6  | F | Slutdato (End date) | 8 | D |   | Format: DDMMYYYY |
+| 7 | G | Registreringsnr. (Registration number) | 4 | N M |   |   |
+| 8 | H | Kontonummer (Accountnumber) | 10 | X M |   |   |
+## MLE-40-LONA (Individual rates, fixed salary types and variable salary types)
+Fixed salary types can be created by using Decentralized recording.
+Fixed salary types can be created, modified and be accounted for on an accruals basis by using Decentralized recording.
+Individual rates can be created, modified and be accounted for on an accruals basis by using Decentralized recording.
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), LØNARTNR (SALARY TYPE NUMBER), and STARTDATO (START DATE)
+You can modify the following fields by using Decentralized recording:
+TILDATO (TO DATE) (End date), BETEGNELSE (DESIGNATION), ENHEDER (UNITS), SATS (RATE); BELØB (AMOUNT), PCT. (PERCENT), PENS.FIRMABELØB (COMPANY CONTRIBUTION AMOUNT FOR PENSION), PENS.FIRMA % (COMPANY CONTRIBUTION PENSION %), PENSIONSGRUNDLAG (PENSION BASE), KONTONUMMER (ACCOUNT NUMBER), REGISTRERINGSNUMMER (REGISTRATION NUMBER), MODTAGERSAFDELING (RECIPIENT DEPARTMENT), MODTAGERSAFTALENR (RECIPIENT AGREEMENT NUMBER), AFSENDERKUNDENR (SENDER CUSTOMER NO.), AFREGNINGSTYPENR (PAYMENT TYPE NO.), OVERENSKOMSTKODE (AGREEMENT CODE), KONTOPLANFELT  1-6 (CHART OF ACCOUNTS FIELD1-6), AFREGNES VIA, FREKVENS, NÆSTE GANG, SLETTEMARKERING
+In the document ’Lønarts felt beskrivelse til decentral registrering’ (Salary type description for decentralised recording), you can see the fields to be populated in connection with each salary type.
+⚠️ OBS: Using decentralised loading, the following salary types must be replaced by new salary types: (se table below) 400, 401, 600, 605, 606, 865, 4280, 4410, and 4412.
+⚠️ OBS: Decentralised loading is NOT possible when using the following salary types: 450, 7802, 8392, 8725, and 8755.
+👩‍🏫Case:
+18;1;MLE-40-LONA;3;01082008;;9900;;;;20000
+18;1;MLE-40-LONA;3;01082008;;6200;;;;;5;;;10;;;;;;;2003
+18;1;MLE-40-LONA;3;01082008;;9011;;120
+18;1;MLE-40-LONA;3;01082008;;1303;;5;120
+18;1;MLE-40-LONA;3;01082008;;3000;;;;6500
+18;1;MLE-40-LONA;3;01082008;31122008;3010
+18;1;MLE-40-LONA;4;15082008;;6003;;;;;3.7;;;7.4;2;;;;;;2115;;;;1
+18;1;MLE-40-LONA;4;15082008;;6410;;;;500;;;;;;;;;2345;6544533
+18;1;MLE-40-LONA;4;15082008;;1100;;165
+18;1;MLE-40-LONA;4;15082008;;9905;;;;170
+18;1;MLE-40-LONA;4;15082008;;9906;;;;15
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-40-LONA | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | Fradato (From date) | 8 | D K |   | Format: DDMMYYYY |
+| 6  | F | Tildato (To date) | 8 | D |   | Format: DDMMYYYY |
+| 7 | G | Lønart (Salary type) | 6 | N K |   |   |
+| 8 | H | Betegnelse (Designation) | 30 | X |   |   |
+| 9 | I | Enheder (Units) | 11 | N |   | Unit types: Hours, days, km. Format: -9999999.99 – 9999999.99 |
+| 10 | J | Sats (Rate) | 11 | N |   | Format: -9999999.99 – 9999999.99 |
+| 11 | K | Beløb (Amount) | 11 | N |   | Format: -9999999.99 – 9999999.99 |
+| 12 | L | Pct. (Percent) | 11 | N |   | Pension egen % (Own pension contribution). Format: -9999999.99 – 9999999.99 |
+| 13 | M | Reducer ej (Do not reduce) | 1 | N | 1 eller 2 | Default is blank = 0 |
+| 14 | N | Pens. Firmabeløb (Company pension contribution) | 11 | N |   | Format: -9999999.99 – 9999999.99 |
+| 15 | O | Pens. firma % (Company pension contribution %) | 11 | N |   | Format: -9999999.99 – 9999999.99 |
+| 16 | P | Pensionsgrundlag (Pension base) | 1 | N | 1/2/3/4/5/6/10/11 | Refer to description in the salary type catalogue |
+| 17 | Q | Saldo (Balance) | 11 | N |   | Format: -9999999.99 – 9999999.99 |
+| 18  | R | Årstal (Year) | 4 | Å |   | Format: YYYY |
+| 19 | S | Inputværdi(Input value) | 10 | X |   | The value should equal the look up step. Refer to Guide til Værdi bestemt løn (Guide to value induced salary). |
+| 20  | T | Reg.nr. (Reg. no.) | 4 | N |   | Applied in case of pensions |
+| 21 | U | Kontonummer (Account number) | 10 | X |   | Applied in case of pensions |
+| 22 | V | Afregningstype (Transaction code) | 6 | N |   | Applied in case of pensions |
+| 23 | W | Modtagersafdeling (Recipient department) | 5 | X |   | Applied in case of pensions |
+| 24 | X | Modtagersaftalenr (Recipient agreement no.) | 8 | X |   | Applied in case of pensions |
+| 25 | Y | Afsenderkundenr (Sender customer no.) | 15 | X |   | Applied in case of pensions |
+| 26 | Z | Overenskomstkode (Agreement code) | 5 | X |   | Applied in case of pensions |
+| 27 | AA | Kontoplanfelt1 (Chart of accounts field) | 20 | X | *See OBS | Applied for input allocation |
+| 28 | AB | Kontoplanfelt2 (Chart of accounts field) | 20 | X | *See OBS | Applied for input allocation |
+| 29 | AC | Kontoplanfelt3 (Chart of accounts field) | 20 | X | *See OBS | Applied for input allocation |
+| 30 | AD | Kontoplanfelt4 (Chart of accounts field) | 20 | X | *See OBS | Applied for input allocation |
+| 31 | AE | Kontoplanfelt5 (Chart of accounts field) | 20 | X | *See OBS | Applied for input allocation |
+| 32 | AF | Kontoplanfelt6 (Chart of accounts field) | 20 | X | *See OBS | Applied for input allocation |
+| 33 | AG | Afregnes via | 2 | X | Default Blank or the value BC   | Usually left blank. Only feasible for companies in the financial trade.  |
+| 34 | AH | Frekvens (Frequency) | 2 | N |   | Usually left blank. Only feasible for companies in the financial trade.Applies only to fixed salary types. |
+| 35 | AI | Næste gang(Next payment/ withdrawal) | 8 | D | Blank DDMMYYYY | Usually left blank. Only feasible for companies in the financial trade.Applies only to fixed salary types. |
+| 36 | AJ | Sletmarkering | 1 | N | 9 = Delete fixed salary type | Startdate must correspond to the startdate for the fixed salary type. |
+
+*Input allocation can be used for the following chart of accounts fields:
+* Afdeling (Department) No. of characters = 6
+* Udbetalingssted (Subsection) No. of characters = 6
+* Kontonummer (Account number) No. of characters = 20
+* Valgfri1 (Optional1) No. of characters = 10
+* Valgfri2 (Optional2) No. of characters = 10
+* Valgfri3 (Optional3) No. of characters = 10
+* Valgfri4 (Optional4) No. of characters = 10
+* Valgfri 5 (Optional5) No. of characters = 10
+* Valgfri6 (Optional 6) No. of characters = 10
+In addition to the chart of accounts fields above, the sorting code may have additional fields, however, not all of them will be included in the sequence in terms of  decentralized recording.
+If your sorting code includes the following chart of accounts fields:
+1. Aflønning (Form of renumeration)
+2. Afdeling (Department)
+3. Kontonummer (Account no.
+then, the following should be used in decentralised recording:
+Column 27 / AA: Afdeling (Department) – this is the first chart of accounts field available for input allocation
+Column 28 / AB: Kontonr. (Account no.) - this is the second chart of accounts field available for input allocation
+Form of renumeration is not applicable in this context, as input allocation is not available for this sorting.
+⚠️ OBS: Decentralized loading of the following salary types is not possible but may be replaced by other salary types.
+However, salary types 4410 and 4412 should have both salary types 4410 and 4412 plus salary
+types 3800, 3801, or 3804. Other salary types will be replaced completely by other salary types.
+See additional descriptions in ’Lønarter, decentral registrering’.
+| Current salary type | Salary type text | Salary type for decentralized recording |
+| 400 | Overfører feriefri år-1 dage (Transferring holiday free, year -1, days) | 310 |
+| 400 | Overfører feriefri år-1 timer (Transferring holiday free, year -1, hours) | 311 |
+| 400 | Overfører feriefri år-1 beløb (Transferring holiday free, year – 1, amount) | 312 |
+| 400 | Overfører afspadsering, år-1 timer(Transferring time off, year -1, hours) | 313 |
+| 401 | Overfører omsorgdage år-1 (Tranferring days of compassionate leave, year –1) | 314 |
+| 401 | Overfører omsorgtimer år-1 (Transferring hours of compassionate leave, year –1) | 315 |
+| 401 | Overfører aftalefridage år-1 (Transferring appointment free days, year –1) | 316 |
+| 401 | Overfører aftalefritimer år-1(Transferring appointment free hours, year –1) | 317 |
+| 865 | Overfør ikke afholdt ferie dage (Do no transfer used holiday – days) | 318 |
+| 865 | Overfør ikke afholdt ferie timer(Do not transfer used holiday – hours) | 319 |
+| 4280 | Overfør ikke afholdt ferie dage(Do no transfer used holiday – days) | 4278 |
+| 4280 | Overfør ikke afholdt ferie timer(Do not transfer used holiday – hours) | 4279 |
+| 4410 | Feriefri til Fritvalgskonto – henterPer9905/Res100 (Holiday free for Options account – gets Per9905/Res100) | 4410 – number of hours |
+| 4410 | Korrektion af feriefridage (Correction of supplementary holiday - days) | 3800 |
+| 4410 | Korrektion af feriefritimer (Correction of supplementary holiday - hours) | 3801 |
+| 4410 | Korrektion af feriefribeløb (Correction of supplementary holiday – amount) | 3804 |
+| 4412 | Feriefri til Fritvalgskonto – timer * sats (Holiday free for Options account – hours * rate) | 4412 - Number of hours and rate |
+| 4412 | Saldokorrektion af feriefridage (Balance correction  supplementary holiday – days) | 3800 |
+| 4412 | Saldokorrektion af feriefritimer (Balance correction of supplementary holiday – hours) | 3801 |
+| 4412 | Saldokorrektion af feriefribeløb (Balance correction supplementary holiday – amount) | 3804 |
+| 600 | Saldokorrektion feriedage/kr.(Balance correction holiday/DKK) | 510 – provide year |
+| 600 | Saldokorrektion feriedage/kr.(Balance correction holiday/DKK) | 511 - current year |
+| 605 | Saldokorrektion ferietimer/kr. (Balance correction holiday hours/DKK) | 512 – provide year |
+| 605 | Saldokorrektion ferietimer/kr.(Balance correction holiday hours/DKK) | 513 – current year |
+| 606 | Saldokorrektion feriedage optjent i år (Balance account – number of days of holiday accumulated this year) | 514 |
+| 606 | Saldokorrektion feriedage/saldo i år (Balance correction – days of holiday/balance this year) | 515 |
+| 606 | Saldokorrektion ferietimer optjent i år (Balance correction – hours of holiday accumulated this year) | 516 |
+## MLE-45-ERIN (Reminder)
+You can create and modify reminder by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), and DATO (DATE)  
+ 
+You can change the following fields by using Decentralized recording:
+ERINDRINGSTEKST (REMINDER TEXT)  
+ 
+👩‍🏫Case:
+18;1;MLE-45-ERIN;3;01082008;1;Jubilæum 2018  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-45-ERIN | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5  | E | Dato (Date) | 8 | D K |   | Format: DDMMYYYY |
+| 6 | F | Modtager (Recipient) | 1 | N K | 0=Kundeforhold (Customer ID) 1=Arbejdsgiver (Employer) | Only use 1 = Arbejdsgiver (Employer) |
+| 7 | G | Erindringstekst (Reminder text) | 30 | X |   | For deletion of ’erindringstekst’ (reminder text), enter ’%’ into the field. |
+## MLE-50-ANSO (Employment information for statistics)
+Employment information can be created, modified and be accounted for an accruals basis by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), IP TYPE, IP CODE and STARTDATO (START DATE).  
+ 
+You can change the following fields by using Decentralized recording:
+IP-TYPE (IP TYPE), IP-KODE (IP CODE), SLUTDATO (END DATE), VÆRDI (VALUE)  
+ 
+👩‍🏫Case:
+18;1;MLE-50-ANSO;3;300;412110;;01082008
+18;1;MLE-50-ANSO;3;800;4;;01082008
+18;1;MLE-50-ANSO;3;600;99999;30.00;01082008  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-50-ANSO | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | IP-type(IP type) | 6 | N K |   |   |
+| 6 | F | IP-kode(IP code) | 6 | N K |   | Populated with 99999 if IP type 600, 610,  620. |
+| 7 | G | Value | 9 | N | Blank, 0 or positive | Can only be populated with IP-type 600, 610, 620. Format: 999999.99 |
+| 8 | H | Startdato(Start date) | 8 | D K |   | Format: DDMMYYYY |
+| 9 | I | Slutdato(End date) | 8 | D |   | Format: DDMMYYYY |
+## MLE-55-FRAV (Absence registrations)
+You can create, modify and delete recoding of absence by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), STARTDATO (START DATE), and FRAVÆRSKODE (ABSENCE CODE)  
+ 
+You can change the following fields by using Decentralized recording:
+SLUTDATO (END DATE), BETEGNELSE (DESIGNATION), VARIGHED (DURATION), and SATS (RATE)  
+ 
+On deletion, the following fields should always be provided:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), STARTDATO (START DATE), SLUTDATO (END DATE), and FRAVÆRSKODE (ABSENCE CODE)  
+ 
+👩‍🏫Case:
+18;1;MLE-55-FRAV;10078;12082008;13082008;40;Ferie i august;2
+18;1;MLE-55-FRAV;987;14082008;14082008;18;Dagpenge;7.5;125
+18;1;MLE-55-FRAV;992;02012008;02012008;40;;;;9  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-55-FRAV | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | Startdato(Start date) | 8 | D K |   | Format: DDMMYYYY |
+| 6 | F | Slutdato(End date) | 8 | D M |   | Format: DDMMYYYY |
+| 7 | G | Fraværskode (Absence code) | 4 | N K |   |   |
+| 8 | H | Betegnelse (Designation) | 30 | X |   |   |
+| 9 | I | Varighed (Duration) | 10 | N | Blank, 0 or positive | Format: 0-9999999.99 |
+| 10 | J | Sats (Rate) | 10 | N | Blank, 0 or positive | Format: 0-9999999.99 |
+| 11 | K | Sletmarkering (delete selection) | 1 | N | Blank, or 9 = delete absence |   |
+## MLE-60-EIND (eIncome – Danish public authority)
+eIncome fields may be created, modified or be accounted for on an accruals basis by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), RUBRIK (HEADER), KODE (CODE), and STARTDATO (START DATE)  
+ 
+👩‍🏫Case:
+18;1;MLE-60-EIND;3;10;0;01082008
+18;1;MLE-60-EIND;3;11;0;01082008
+18;1;MLE-60-EIND;4;66;0;15082008;;5000  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-60-EIND | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5  | E | Rubrik (Header) | 4 | N K |   |   |
+| 6  | F | Kode (Code) | 6 | N K |   |   |
+| 7 | G | Startdato (Start date) | 8 | D K |   | Format: DDMMYYYY |
+| 8 | H | Slutdato(End date) | 8 | D |   | Format: DDMMYYYY |
+| 9 | I | Værdi (Value) | 11 | N | Blank, 0 or positive | Format: 0-9999999.99 |
+| 10  | J | Tekst (Text) | 58 | X |   |   |
+## MLE-65-GREK (Re-ordering of ’eSkattekort’)
+You can create a new request for eTaxcard by using Decentralized recording.  
+ 
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), STARTDATO (START DATE), and SKATTEKORTTYPE (TAX CARD TYPE)  
+ 
+👩‍🏫Case:
+18;1;MLE-65-GREK;1;01082008;H
+18;1;MLE-65-GREK;2;15082008;H  
+ 
+Record format:
+| Field No. | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identification) | 11 | X K | MLE-65-GREK | Record ID |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | Startdato(Start date) | 8 | D K |   | Format: DDMMYYYY |
+| 6 | F | Skattekorttype (Tax card type) | 1 | X K | H or B | H = Hovedkort(Tax rate and deduction card) B = Bikort (Secondary card) |
+## MLE-70-SKAT
+You can create a taxcard by using Decentralized recording, but subscription for e-taxcard has to be requested with record MLE-65-GREK. 
+The following fields are key fields: KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), SKATTEKORTTYPE (TAX CARD TYPE), TRAEKPROCENT (TAX PERCENTAGE), STARTDATO (START DATE) and SLUTDATO (END DATE)
+👩‍🏫 Case
+18;1;MLE-70-SKAT;1;H;4753;;40;01082017;31122017;3
+Record format:
+| Field No.  | Excel column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kunderforhold (Customer ID)  | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMOLOYEE NUMBER) |
+| 3 | C | Identifikation (identification) | 11 | X K | MLE-70-SKAT | Record ID |
+| 4 | D | Medarbejder (employee)  | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | Skattekorttype (Taxcard type)  | 1 | X K | H, K, F or B | H for hovedkort (main)K for BruttokortF for Frikort B for Bikort |
+| 6 | F | Amount | 9 | N |   | FRADRAGMÅNED (DEDUCTION PR. MONTH) |
+| 7 | G | Frikort amount  | 9 | N |   | FRIKORTBELØB (AMOUNT IN TOTAL) |
+| 8 | H | Percentage | 3 | N K |   | TRAEKPROCENT (PERCEMTAGE) |
+| 9 | I | Start date  | 8 | D K |   | Format: DDMMÅÅÅÅ |
+| 10 | J | End date  | 8 | D K |   | Format: DDMMÅÅÅÅ |
+| 11 | K | Ekstratraek | 2 | N |   | EKSTRATRAEK (PERCENTAGE) |
+## MLE-80-TLF
+This record creates phone number for employees.
+The following fields are key fields:
+KUNDEFORHOLD (CUSTOMER ID), ARBEJDSGIVER (EMPLOYER), IDENTIFIKATION (IDENTIFICATION), MEDARBEJDER (EMPLOYEE), TELEFONNR. (PHONE), LOKALNR. (LOCAL), TEKST (TEXT)
+👩‍🏫 Case
+18;1;MLE-80-TLF;1;12345678;;Mobiltelefon
+Record format:
+| Field No.  | Excel Column | Name | No. of characters | Type | Value | Description |
+| 1 | A | Kundeforhold (Customer ID) | 6 | N K |   | KUNDEFORHOLDSNUMMER (CUSTOMER ID NUMBER) |
+| 2 | B | Arbejdsgiver (Employer) | 6 | N K |   | ARBEJDSGIVERNUMMER (EMPLOYER NUMBER) |
+| 3 | C | Identifikation (Identifacation) | 11 | X K | MLE-80-TLF | Record ID  |
+| 4 | D | Medarbejder (Employee) | 15 | N K |   | MEDARBEJDERNUMMER (EMPLOYEE NUMBER) |
+| 5 | E | Phone number | 20 | X |   | Phone number |
+| 6 | F | Local  | 4 | X |   | Local number  |
+| 7 | G | Text  | 10 | X |   | Name |
