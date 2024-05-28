@@ -1,5 +1,6 @@
 import streamlit as st
 
+from helper_functions import *
 
 # Streamlit config
 st.set_page_config(page_title= "guide buddy",
@@ -21,11 +22,9 @@ def fill_paycode_form():
     pass
 
 
-def pick_random_paycode():
-    st.write("Picking a random paycode")
 
-
-def submit_paycode():
+def submit_paycode(paycode):
+    move_paycode_from_source_to_target(source_bucket="paycodehelper-processing", target_bucket="paycodehelper-documented", paycode=paycode)
     st.write("Submitting paycode")
     st.success("Thank you!")
     update_leaderboard()
@@ -37,7 +36,10 @@ def main():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.button("Pick Random Paycode", on_click=pick_random_paycode)
+        pick_random = st.button("Pick Random Paycode")
+
+        if pick_random:
+            paycode = get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
         
         st.header("Data Entry Form")
         
