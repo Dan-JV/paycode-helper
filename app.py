@@ -1,5 +1,6 @@
 import streamlit as st
 
+from helper_functions import *
 
 # Streamlit config
 st.set_page_config(page_title= "guide buddy",
@@ -21,13 +22,9 @@ def fill_paycode_form():
     pass
 
 
-<<<<<<< HEAD
 def submit_paycode():
-=======
-
 def submit_paycode(paycode):
     move_paycode_from_source_to_target(source_bucket="paycodehelper-processing", target_bucket="paycodehelper-documented", paycode=paycode)
->>>>>>> b9c5e2515c77382d7621ded7cba26fb823e73835
     st.write("Submitting paycode")
     st.success("Thank you!")
     update_leaderboard()
