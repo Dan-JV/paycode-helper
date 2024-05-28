@@ -21,10 +21,6 @@ def fill_paycode_form():
     pass
 
 
-def pick_random_paycode():
-    st.write("Picking a random paycode")
-
-
 def submit_paycode():
     st.write("Submitting paycode")
     st.success("Thank you!")
@@ -53,6 +49,9 @@ def main():
             use_story = st.text_area("How this paycode is commonly used")
             critical_information = st.text_area("Any critical information that needs to be known when using the paycode")
             extra_notes = st.text_area("Extra information that might be useful to know when using the paycode")
+
+            # TODO: for the multi selectionbox for the input field we sohuld use 9-18 in from this link https://help.vismaenterprise.dk/vismaloen-standard/decantral-registrering/00086-decentral-registrering
+            # st.selectbox
             
             # Calculations booleans
             st.subheader("Calculations")
