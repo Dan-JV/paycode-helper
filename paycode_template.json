@@ -6,7 +6,6 @@
         "type": null
     },
     "bools": {
-            "calculations": {
             "Løndel/-felt standardnavn": null,
             "AM-bidrag": null,
             "A-indk. og A-skat": null,
@@ -20,7 +19,6 @@
             "Autoløn": null,
             "Egen teksttekst 9) ikke saldo-tekst": null,
             "Bruttoløn (0010)": null
-        }
     },
     "text_fields": {
         "Feltnummer i eindkomst 8)": "",

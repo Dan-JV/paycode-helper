@@ -1,18 +1,29 @@
 import streamlit as st
+import json
 
 from helper_functions import *
 
+@st.cache_data
+def load_streamlit_template():
+    with open ("paycode_input_template.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    return data
+
+streamlit_input_template = load_streamlit_template()
+    
+
 # Streamlit config
-st.set_page_config(page_title= "guide buddy",
-                   page_icon=None, 
-                   layout="wide", 
-                   initial_sidebar_state="collapsed", 
-                #    menu_items={
-                #         'Get Help': 'https://www.extremelycoolapp.com/help',
-                #         'Report a bug': "https://www.extremelycoolapp.com/bug",
-                #         'About': "# This is a header. This is an *extremely* cool app!"
-                #     }
-                    )
+# st.set_page_config(page_title= "guide buddy",
+#                    page_icon=None, 
+#                    layout="wide", 
+#                    initial_sidebar_state="collapsed", 
+#                 #    menu_items={
+#                 #         'Get Help': 'https://www.extremelycoolapp.com/help',
+#                 #         'Report a bug': "https://www.extremelycoolapp.com/bug",
+#                 #         'About': "# This is a header. This is an *extremely* cool app!"
+#                 #     }
+#                     )
 
 
 def update_leaderboard():
@@ -20,7 +31,6 @@ def update_leaderboard():
 
 def fill_paycode_form():
     pass
-
 
 def submit_paycode(paycode):
     move_paycode_from_source_to_target(source_bucket="paycodehelper-processing", target_bucket="paycodehelper-documented", paycode=paycode)
@@ -47,16 +57,14 @@ def main():
         
         # User input form based on the provided JSON structure
         with st.form(key='data_form'):
-            name = st.text_input("Lønart name", placeholder="Name of the paycode")
-            print_sequence = st.text_input("Print sequence number", placeholder="What is this used for?")
-            type_ = st.selectbox("Type", ["fast", "variable", "STILLINGSKATEGORI", "VARIABELEFTREG" , "FRAVÆR"])
-            input_ = st.text_input("Input", placeholder="What type of input the lønart uses")
+            # TODO add prefilled fields box
+
 
             # Information entry
             st.subheader("Information")
-            use_story = st.text_area("How this paycode is commonly used")
-            critical_information = st.text_area("Any critical information that needs to be known when using the paycode")
-            extra_notes = st.text_area("Extra information that might be useful to know when using the paycode")
+            for key in streamlit_input_template["text_area"]:
+                st.text_area(key, help=streamlit_input_template["text_area"][key]["help"])
+            
 
             # TODO: for the multi selectionbox for the input field we sohuld use 9-18 in from this link https://help.vismaenterprise.dk/vismaloen-standard/decantral-registrering/00086-decentral-registrering
             # st.selectbox
