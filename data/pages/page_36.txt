@@ -1,0 +1,109 @@
+https://help.vismaenterprise.dk/vismaloen-standard/tillaeg/90-opsaetning-af-ny-lonart
+
+# Opsætning af ny lønart
+
+Skal du anvende en lønart for første gang i Visma. Så er der her nogle ting du skal være opmærksom på for at lønarten kommer til at virke optimalt i både Visma Løn, Visma HR og My Visma.
+Når du i et release-dokument eller i lønartskataloget har fundet den rigtige lønart kan du gøre følgende.
+
+## Ændre tekst på lønart i Visma Løn
+Du kan ændre teksten på lønarten, så det er den tekst der kommer ud på lønsedlen eller så du ved hvad du bruger lønarten til:
+1. Gå til Opsætning → Lønartsopsætning
+2. Angiv lønarten
+3. Klik Find
+4. Klik Ny
+5. Udfyld med 
+’Startdato’
+6. Vis lønart = Ja
+7. Brugertekst
+8. Udskrifttekst (den tekst du ønsker vist på lønsedlen)
+
+Klik Gem
+
+## Tilpasning af resultattabel
+Din nye lønart, har måske en sats i en resultattabel, så skal du lige huske at tilføje satsen her:
+1. Gå til Opsætning → Resultattabel
+2. Angiv resultattabel. Typisk er det samme nr. som lønarten (se lønartskatalog)
+3. Klik Find
+4. Vælg Resultattrin i højremenuen
+5. Klik Ny
+6. Angiv løngruppe og værdi for den gældende aflønningsform
+7. Klik Gem
+
+## Tilpasning af kontoplan
+Det sidste du skal gøre er at oprette lønarten i din kontoplan, så lønarten bogføres på en finanskonto, samt at den vises i rapporterne ’Bogføringsbilag’ og ’Bogføringsbilag med spec.’ 
+Du kan enten oprette lønarten fra bunden eller du kan kopiere en eksisterende lønart:
+Oprettelse af ny lønart i din kontoplan
+1. Gå til Opsætning → Kontoplan → Kontoplan
+2. Angiv kontoplan
+3. Vælg Kontoplanlinie i højremenuen
+4. Klik Ny
+5. Udfyld felterne med kontonr, tekst, afdeling mm.
+6. Klik Gem
+Kopiering af eksisterende lønart til ny lønart i din kontoplan
+1. Gå til Opsætning → Kontoplan → Kontoplan
+2. Angiv kontoplan
+3. Vælg Kontoplanlinie i højremenuen
+4. Dobbeltklik på den lønart, du ønsker at kopiere fra
+5. Klik Kopier
+6. Ret i feltet lønarten til den nye lønart
+7. Klik Gem
+
+### Omkørsel af bogføringsbilag
+Har du allerede anvendt lønarten i en lønkørsel og du har glemt at oprette lønarten i din kontoplan, kan du køre en omkørsel, så du kan få lønarten med ud i dit bogføringabilag. Tilpas din kontoplan med lønarten og foretag en omkørsel.
+1. Gå til Opsætning → Opsætningsrapporter
+2. Vælg Omkørsel af bogføring i højremenuen
+3. Angiv kørselsordre
+4. Klik Gem
+Når det job er færdig, kan du udskrive nye bogføringsbilag
+1. Gå til Rapporter → Rapporter
+2. Vælg Bogføringsbilag eller Bogføringsbilag med spec. i højremenuen
+3. Angiv kørselsordre
+4. Klik Gem
+
+## Opsætning af ny lønart i Visma HR og My Visma
+Når lønarten er oprettet i Visma Løn, skal du huske at tilpasse den i Visma HR/My Visma, hvis du skal kunne bruge den her eller hvis dine medarbejdere skal kunne anvende den online eller i App’en.
+
+## Tilpasning af Løndele/Fraværskoder
+Første step i Visma HR er at tilføje nye løndele og fraværskoder her:
+1. Gå til Indstillinger → Løndele/Fraværskoder
+2. Vælg den fane, hvor lønarten skal vises
+3. Klik Nyt felt
+4. Vælg fra dropdown-listen lønarten
+5. Klik på det “grønne” flueben for at gemme
+
+## Ændre tekst på lønart eller fraværskode i Visma HR
+Hvis lønarten skal have en anden tekst i Visma HR kan teksten ændres i en opslagstabel.
+1. Gå til Indstillinger → Opslagskoder
+2. Vælg den opslagstabel lønarten hører til i en af følgende grupper:
+Opslagstabel 318 – Løn
+3. Opslagstabel 319 – Pension
+4. Opslagstabel 320 – Personalegoder
+5. Opslagstabel 317 – Lønfradrag
+6. Opslagstabel 324 – Variabel lønregistrering
+7. Opslagstabel 322 – Fraværstyper
+
+Klik på den lønart der skal have ændret tekst og ret teksten i feltet Dansk og evt. Engelsk tekst
+Klik Gem
+
+## Opsætning af stillingskategori, koder
+Virksomheder, der har Self-service eller Leder-medarbejdermodul, kan her styre hvilke lønarter, der skal være tilgængelige på de enkelte stillingskategorier.
+Du tilføjer nye koder til en stillingskategori således:
+1. Gå til Indstilling → Stillingskategori, koder
+2. Klik på stillingskategorien, så den bliver blå
+3. Åbn underpunkterne ved at klikke på +
+4. Find relevant lønart i øverste del af skærmbilledet 
+5. Klik på koden, og den er nu tilføjet stillingskategorien
+6. På tilsvarende vis fjernes en kode ved at klikke på den under stillingskategorien.
+7. Klik Gem
+⚠️ OBS: Klik ikke på ’Fjern alle’ – så mister du hele opsætningen.
+
+## Opsætning af begrænset adgang
+I menupunktet ’Opsætning af koder’ kan du begrænse adgang til at registrere på de en-kelte løndele. Her er det muligt at angive, om en lønart:
+* Kræver godkendelse af leder eller administrator
+* Vises i Visma HR for medarbejderne
+* Vises i Visma HR for medarbejderne efter lønkørsel
+Gå til Indstilling → Opsætning af koder
+Sæt et flueben ud for lønarten med den tilladelse, som lønarten skal have. Se beskrivelse af kolonnerne:
+1. Kræver godkendelseI denne kolonne markerer du, om registreringer på en lønarten skal godkendes, inden de tages med i en lønkørsel.
+2. Kode vises i Visma HRHer kan du opsætte, om en lønregistreringskode skal være synlig i Visma HR eller ej. Den opsætning, du foretager her, kan overstyres i opsætning af roller. Du kan f.eks. give medarbejderrollen adgang til kun at kunne registrere på 1100 – time-løn, mens du selv som administrator har adgang til alle lønkoder.
+3. Vises når lønbehandletDenne opsætning skal du primært bruge til lønregistreringer, hvor informationen først må komme til medarbejderens kendskab efter en lønkørsel. Et eksempel kan være en bonus, som lederen gerne vil informere medarbejderen om. Her skal op-lysningen ikke være synlig for medarbejderen, i det øjeblik registreringen er lagt ind i lønsystemet.Det er værd at bemærke, at medarbejderen kan se registreringen, allerede når en lønkørsel bliver kørt frem!

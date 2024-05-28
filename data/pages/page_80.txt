@@ -1,0 +1,70 @@
+https://help.vismaenterprise.dk/vismaloen-standard/tillaeg/143-saerlig-lontillaeg-horesta
+
+# Særlig løntillæg HORESTA
+
+## Optjening af særlig løntillæg
+Stillingskategorilønart 4040 og resultattabel 4040 sørger for optjeningen af det særlige løntillæg, som bliver beskattet i lønkørslen og gemt indtil det skal udbetales.
+Det særlige løntillæg optjenes med en procent af den ferieberettigede løn. Den gældende procentsats skal findes i HORESTAs overenskomst.
+Oprettelse af stillingskategorilønart
+1. Gå til Opsætning → Stillingskategori
+2. Vælg stillingskategori
+3. Klik på Find
+4. Vælg Lønoplysninger i højremenuen
+5. Klik på Ny
+6. Udfyld startdato og lønart 4040
+7. Klik på OK
+Oprettelse af sats i resultattabel
+1. Gå til Opsætning → Resultattabel
+2. Angiv resultattabel 4040
+3. Klik på Find
+4. Klik på Ny periode
+5. Angiv dato i ’Gyldig’
+6. Klik på OK
+7. Vælg Resultattrin i højremenuen
+8. Skriv løngruppe eller anden ryktype og angiv procent under aflønningsform
+9. Klik på OK
+## Udbetaling af særlig løntillæg
+- **Variabel lønart 4042** - Udbetal Horesta tillæg
+Tømmer saldoen i førstkommende lønkørsel.
+- **Stillingskategorilønart 4043** - Udbetal Horesta tillæg
+Lønarten oprettes på medarbejdernes stillingskategori.
+Ikrafttrædelseskode H på kørselsordren vil udbetale det opsparede nettobeløb.
+Det særlige løntillæg skal udbetales to gange årligt i juni og december lønkørsel.
+Oprettelse af stillingskategorilønart
+1. Gå til Opsætning → Stillingskategori
+2. Vælg stillingskategori
+3. Klik på Find
+4. Vælg Lønoplysninger i højremenuen
+5. Klik på Ny
+6. Udfyld startdato og lønart 4043
+7. Klik på OK
+Oprettelse af Ikrafttrædelseskode på lønkørsel i juni og december
+1. Gå til Lønadministration → Kørselsselektion
+2. Find den relevante kørselsordre samt selektionsnummer for de medarbejdere, som skal have udbetalt det særlige løntilllæg.
+3. Vælg Ikrafttrædelseskode i højremenuen
+4. Klik på Ny
+5. Vælg ’H’ Horesta Særligt tillæg, i feltet Ikrafttrædelseskode
+6. Klik på OK
+
+## Løbende udbetaling af særlig løntillæg
+- **Fast lønart 1166** - Horesta tillæg Brutto (lokalaftale)
+Er det kun udvalgte medarbejdere der skal have det særlige løntillæg eller er der indgået en lokalaftale om lb. udbetaling, kan denne faste lønart oprettes på medarbejderne. Lønarten udbetaler opsparingen løbende, som et brutto beløb, der bliver beskattet og udbetalt.
+Procenten for optjening oprettes på resultattabel 4040.
+
+## Udbetaling af særlig løntillæg ved fratrædelse
+- **Stillingskategorilønarten 4044** - Udbetal Horesta tillæg, fratr.
+Tømmer saldoen ved fratrædelse.
+Oprettelse af stillingskategorilønart:
+1. Gå til Opsætning → Stillingskategori
+2. Vælg stillingskategori
+3. Klik på Find
+4. Vælg Lønoplysninger i højremenuen
+5. Klik på Ny
+6. Udfyld startdato og lønart 4044
+7. Klik på OK
+
+## Bogføring af særlig løntillæg
+Husk at oprette ovenstående lønarter i din kontoplan. De skal oprettes som en debet kontering.
+## Rapporter
+- **Lønartstype 1369** - Særlig løntillæg (Horesta)
+Rapporten Afstemningsliste lønperiode, viser medarbejdernes tilgodehavende saldo på det særlige løntillæg.

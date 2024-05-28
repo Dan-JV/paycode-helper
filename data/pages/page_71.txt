@@ -1,0 +1,75 @@
+https://help.vismaenterprise.dk/vismaloen-standard/personalegoder/14-fratraedelsesgodtgorelse
+
+# Fratrædelsesgodtgørelse
+
+## Fratrædelsesgodtgørelse og jubilæumsgratiale
+Fratrædelsesgodtgørelser og jubilæumsgratialer kan udbetales med et særligt fradrag på kr. 8.000,- årligt, hvis de er omfattet af lovgivningens definition af begreberne. 
+Der er flere måder at yde en fratrædelsesgodtgørelse eller et jubilæumsgratiale til en ansat: 
+* Fratrædelsesgodtgørelse og jubilæumsgratiale udbetales fuldt ud til lønmodtageren
+* Arbejdsgiveren indbetaler hele den skattepligtige del af fratrædelsesgodtgørelsen eller jubilæumsgratialet på en pensionsordning
+* Arbejdsgiveren indbetaler en del af den skattepligtige del af fratrædelsesgodtgørelsen eller jubilæumsgratialet på en pensionsordning.
+* Arbejdsgiveren yder en tingsgave som fratrædelsesgodtgørelse eller jubilæumsgratiale, evt. i kombination med et af ovenstående punkter.
+
+## Fratrædelsesgodtgørelse eller jubilæumsgratiale til udbetaling
+- **Lønart 5500** - Jubilæumsgratiale
+- **Lønart 5501** - Fratrædelsesgodtgørelse
+1. Gå til Medarbejder → Variable lønoplysninger
+2. Klik på Ny
+3. Udfyld Dato 
+4. Vælg Medarbejder
+5. Indsæt lønart
+6. Der skal ikke indsættes værdi i felterne. Inputværdi, afdeling og kontonr
+7. Klik på OKSåfremt beløbet skal betales fuldt ud til lønmodtageren, kan en af følgende lønarter anvendes: * Lønart 5500 - Jubilæumsgratiale
+* Lønart 5501 - FratrædelsesgodtgørelseOvenstående lønarter vil på lønseddelen hedde 8620👩‍🏫 Eksempel: Registrering af Jubilæumsgratiale/fratrædelsesgodtgørelse:|   | Input lønart | Lønart på lønseddel |
+| Beløb til afregning | kr. | 100.000 | 5500/5501 | 8620 |Vises på lønseddel i Visma Løn:LA 5500:LA 5501:
+
+## Skattepligtig del til pensionsordning
+Såfremt den skattepligtige del af beløbet skal til en pensionsordning kan følgende lønarter anvendes:
+* Lønart 5550 - Jubilæumsgratiale pension PI
+* Lønart 5551 - Fratrædelsesgodtg. pension PI
+* Lønart 5560 - Jubilæumsgratiale  pension INFO.
+* Lønart 5565 - Fratrædelsesgodtg. pension INFO
+Registrering af Jubilæumsgratiale/fratrædelsesgodtgørelse:
+|   | Input lønart | Lønart på lønseddel |
+| Beløb til afregning | kr. | 100.000 | 5550/55605551/5565 | 8620 |
+| Indbetaling til pensionsordning | kr. | 92.000 |   |   |
+| Beløb til udbetaling | kr. | 8.000 |   |   |
+
+  
+  
+Vises på lønseddel i Visma Løn:
+LA 5550
+
+La 5551
+
+⚠️ OBS: Samme eksempler på LA 5560/5565
+
+## Delvis indbetaling til pensionsordning
+Samlet udbetaling på kr. 100.000, hvoraf kr. 40.000 indbetales til en pensionsordning. Beløbet skal i dette tilfælde deles i to indrapporteringer. Den del af godtgørelsen som skal indbetales på en pensionsordning skal indrapporteres på lønart:* Lønart 5520 - Jubilæumsgratiale pension Info
+* Lønart 5521 - Fratrædelsesgodtg. pension Info
+* Lønart 5530 - Jubilæumsgratiale pension PI
+* Lønart 5531 - Fratrædelsesgodtg. pension Info
+* Lønart 5540 - Jubilæumsgratiale AM-pension.
+* Lønart 5541 - Fratrædelsesgodtg AM-pensionDe kr. 40.000 indrapporteres på lønart 5520/5521/5530/5531/5540/5541De resterende kr. 60.000 indrapporteres på lønart* Lønart 5500 - Jubilæumsgratiale
+* Lønart 5501 - FratrædelsesgodtgRegistrering af Jubilæumsgratiale/fratrædelsesgodtgørelse:|   | Input lønart | Lønart på lønseddel |
+| Beløb til afregning | kr.  | 60.000 | 5500/5501 |   |
+| Indbetalt til pension | kr.  | 40.000 | 5520/5521/5530/5531/5540/5541 | 8620 |
+| Fratrædelsesgodtgørelse i alt | kr.  | 100.000 |   |   |Vises på lønseddel i Visma Løn:LA 5501 / 5521
+
+## Udbetaling som tinggave
+Samlet udbetaling på kr. 25.000, hvoraf kr. 5.000 udgør værdien af en tingsgave. Beløbet skal i dette tilfælde deles i to indrapporteringer. 
+Den del af beløbet der ydes som gave skal indrapporteres på lønart:
+* Lønart 5510 - Tinggave ved jubilæum
+* Lønart 5511 - Tinggave ved fratrædelse
+De resterende kr. 20.000 indrapporteres på lønart
+* Lønart 5500 - Jubilæumsgratiale
+* Lønart 5501 - Fratrædelsesgodtg.
+Registrering af fratrædelsesgodtgørelse og tinggave:
+|   | Input lønart | Lønart på lønseddel |
+| Fratrædelsesgodtgørelse til udb. | kr. | 20.000 | 5500/5501 | 8620 |
+| Tinggave | kr.  | 5.000 | 5510/5511 | 8620 |
+| Samlet fratrædelsesgodtgørelse | kr. | 25.000 |   |   |
+
+Ved registrering af tingsgaver skal der ikke betales AM-bidrag, kun A-skat.
+Vises på lønseddel i Visma Løn:
+LA 5501 / 5511

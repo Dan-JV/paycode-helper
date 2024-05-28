@@ -1,0 +1,142 @@
+https://help.vismaenterprise.dk/vismaloen-standard/lonkorsel/12-lonkorsel
+
+# Lønkørsel
+
+Guide til LønkørselInden du starter din lønkørsel, er det en god idé at tjekke de lønoplysninger, der er indtastet til lønkørslen samt se, om der er noget, som skal efterreguleres.
+
+## Guide til Lønkørsel
+Inden du starter din lønkørsel, er det en god idé at tjekke de lønoplysninger, der er indtastet til lønkørslen samt se, om der er noget, som skal efterreguleres.
+## Fremtidig lønseddel
+Har du enkelte medarbejdere, hvor resultatet af lønkørslen ønskes kontrolleret inden lønkørslen sættes i gang, kan der køres en fremtidig lønseddel. 
+Dette gøres på følgende måde:
+1. Gå til menuen Medarbejder → Ansættelsesforhold
+2. Angiv evt. arbejdsgiver og medarbejder
+3. Klik på Find
+4. Vælge Fremtidig lønseddel i højremenuen
+5. Angiv kørselsordre
+6. Klik på OK
+
+## Registrerede lønoplysninger
+Du kan danne en rapport for at se de registrerede lønoplysninger. Rapporten indeholder de faste og variable lønoplysninger, som er aktuelle for hver medarbejder, samt hvad der er aktuelt i personlige satser.
+Rapporten dannes ved at gå i menuen:
+1. Gå til  Rapporter → Rapporter
+2. Vælg Reg. lønoplysninge i højremenuen
+3. Angiv evt. medarbejder interval, lønarts interval eller datoen for gyldig pr.
+4. Klik på OK
+
+## Registrerede fraværsoplysninger
+Du kan danne en rapport for at se de registrerede fraværsoplysninger. Rapporten indeholder fraværsoplysninger, som er aktuelle for hver medarbejder, men kan også bestilles for fravær, der har været med i en tidligere lønkørsel.
+Rapporten dannes ved at gå i menuen
+1. Gå til Rapporter → Rapporter
+2. Vælg Reg. Fraværsoplysninger i højremenuen 
+3. Angiv evt. medarbejder interval, fraværskode interval eller inkludér anvendt fravær.
+4. Klik på OK
+
+## Kvittering på indlæste eSkattekort
+Du kan danne en rapport for at se om cpr.nr. er validt på de oprettede medarbejdere du har foretaget til denne lønkørsel:
+1. Gå til Rapporter → Rapporter
+2. Vælg Kvitt. på indlæste eSkattekort i højremenuen
+3. Angiv i periode et dato interval.
+4. Klik på OK
+Er cpr.nr. ikke validt vil der på rapporten stå en fejl meddelelse. Ret cpr.nr. og foretag en genrekvirering af skattekortet.
+1. Gå til Medarbejder → Medarbejder stamopl.
+2. Angiv evt. arbejdsgiver og medarbejder.
+3. Klik på Find
+4. Vælg Genrekvirer eSkattekort i højremenuen
+5. Angiv Type, hovedkort eller bikort samt en startdato
+6. Klik på OK
+
+## Efterregulering
+Det er muligt at få efterreguleret løn og fravær i lønsystemet, såfremt der er ændret på oplysninger tilbage i tiden. Du kan også se i vejledningen ”Efterregulering”. 
+⚠️ OBS: Efterregulering kan kun foretages såfremt der har været godkendt en lønkørsel i Visma Løn.  
+Efterregulering startes ved at vælge menuen
+1. Gå til Lønadministration → Efterregulering → Start efterregulering 
+2. Klik på OK
+ 
+Herefter starter et job. Når jobbet er kørt, vil rapporten, som hedder
+* Efterreguleringsspec.
+ 
+kunne ses i skærmbilledet Rapporter → Vis job. 
+Denne rapport skal åbnes og kontrolleres for indhold. Det er meget vigtigt, at denne rapport gennemgås nøje, da det ikke er muligt at fortryde, hvis efterreguleringen er godkendt.  
+1. Når efterreguleringsspecifikationen er gennemgået 
+2. Gå til Lønadministration → Efterregulering → Godkend/slet/annuller Vælg enten annullere eller godkende efterreguleringen. Godkendes efterreguleringen vil reguleringen komme med i næst kommende lønkørsel.   
+Sletning af efterregulering  Såfremt efterreguleringsspecifikationen ikke er i orden, kan den slettes. Ved en sletning fjerner du alle linjerne på efterreguleringsspecifikationen, men du sletter ikke permanent. Det betyder, at såfremt der bliver sat en dato på en af medarbejderne igen, vil det ‘gamle’ - som tidligere blev slettet - komme med igen.
+
+## Dispositionsdato
+Det er muligt at ændre i dispositionsdatoen i kørselsselektionen, hvis den fraviger disp.dato fra stillingskategorien.
+1. Gå til Lønadministration → Kørselsselektion
+2. Angiv den ønskede kørselsordre
+3. Klik på Find 
+4. Find den kørselsselektion, det vedrører
+5. I feltet ’Disp.dato’ angives dispositionsdato på lønsedlen
+HUSK! at ændre for alle aflønningsformer (selektionsnummer).
+
+## Kør lønkørsel
+En lønkørsel startes ved at vælge menuen
+1. Gå til Lønadministration → Lønkørsel
+2. Vælg enten Start lønkørsel (med rapporter) eller Start lønkørsel (kun lønsedler) i højremenuen 
+3. Angiv kørselsordre
+4. Klik på OK
+Det er nu muligt at gennemgå alle lønsedlerne, inden lønkørslen godkendes. Vælger du at afvikle lønkørslen uden rapporter, er det stadig muligt at se resultatet af udvalgte rapporter via menupunktet Rapporter → Rapporter på den aktuelle lønkørsel, hvis du får behov for det.
+
+## Afvis enkelte medarbejdere
+Såfremt det registrerede løn på den enkelte medarbejdere, ikke er korrekt, er det muligt at tilbageføre løn på udvalgte medarbejdere.
+1. Gå til Lønadministration → Tilbagefør/godkend (OBS! Der kan kun være en bruger på dette skærmbillede adgangen. Såfremt du logger ud af VIsma Løn, vil skærmbillede være låst i 10 min. før anden bruger kan tilgå skærmbillede).
+2. Klik på Vis alle 
+3. Marker medarbejderen, som skal afvises
+4. Klik på Skift status medarbejder
+5. Gentag punkt 3 og 4, hvis flere medarbejdere skal afvises
+6. Klik på OK
+7. Klik på OK til den dialogboks, som popper op.
+Når en medarbejder er afvist, er det muligt at 
+1. Rette data i skærmbilledet Medarbejder → Medarbejder stamopl.
+2. Rette data i skærmbilledet Medarbejder → Ansættelsesforhold, herunder fratræde en medarbejder
+3. Oprette eller slette variable lønarter
+4. Oprette eller stoppe faste lønarter
+5. Oprette eller slette fravær
+Efter du har rettet medarbejderens løn, starter du en omkørsel
+1. Gå til Lønadministration → Lønkørsel
+2. I højremenuen vælges start omkørsel
+3. Klik på OK
+⚠️ OBS: Det er ikke muligt at køre efterregulering, fremtidig lønseddel eller rette i resultattabeller, når en medarbejder eller arbejdsgiver er afvist.
+En omkørsel er kun kørsel af lønsedler. Ønsker du at kontrollere en rapport, kan du selv danne rapporten: 
+1. Gå til Rapporter → Rapporter
+2. Vælg den ønskede rapport i højremenuen
+3. Angive kørselsnummer
+4. Klik på OK
+⚠️ OBS: Afregningslisten kan ikke trækkes ad hoc med rettede data, men dannes, når lønkørslen godkendes.
+
+## Tilbageførsel af hele lønkørslen
+1. Gå til Lønadministration → Tilbagefør/godkend (OBS! Der kan kun være en bruger på dette skærmbillede adgangen. Såfremt du logger ud af VIsma Løn, vil skærmbillede være låst i 10 min. før anden bruger kan tilgå skærmbillede).
+2. Klik på Vis alle
+3. Klik på Afvis alle
+4. Klik på OK
+5. Klik på OK til den dialogboks, som popper op.
+
+## Kontrol af lønkørsel før godkendelse
+Du kan sammenligne indeværende periodes lønkørsel med sidste periodes lønkørsel på både Bruttoløn og Nettoløn:
+1. Gå til Lønadministration → Overførsel → Afvigelsesliste løn
+2. Angiv kørselsordre
+3. Angiv evt. en bestemt Arbejdsgiver
+4. I feltet ’Datafil output’ kan vælge Ja, for at se rapporten i Excel
+5. Klik på OK
+
+## Godkend lønkørsel
+Såfremt lønsedlerne kan godkendes. De kan herefter IKKE tilbageføres/annulleres:
+1. Gå til Lønadministration → Tilbagefør/godkend (OBS! Der kan kun være en bruger på dette skærmbillede adgangen. Såfremt du logger ud af VIsma Løn, vil skærmbillede være låst i 10 min. før anden bruger kan tilgå skærmbillede).
+2. Klik på Vis alle
+3. Klik på Godkend alle
+4. Klik på OK
+5. Klik på OK til den dialogboks som popper op.
+
+## Godkend afregning
+Når en lønkørsel er godkendt, skal overførsel af løn godkendes. Dette gøres ved at godkende afregning.1. Gå til Lønadministration → Overførsel → Godkend afregning
+2. Marker den kørsel, som skal godkendes
+3. Klik på GodkendEr det valgt, at der skal være 2 godkendere til lønkørslen, skal 2. godkender igennem samme procedure.Husk! Der skal, i ’Godkend afregning’ være tidsstemplet i alle 3 kolonner – afregningen skal være stemplet:* inden kl. 13:00, ved anvendelse af Reg./Kontonr. 
+* inden kl. 10.00 ved anvendelse af NemKonto, hvis lønnen skal være til disposition den efterfølgende bankdag.⚠️ OBS: hvis lønnen godkendes (’Godkend afregning’) mere end 5 dage før dispositionsdato til NemKonto, bliver udtræks kolonnen ikke udfyldt, og det er OKLønsedler sendes til mit.dk dagen før dispositionsdatoen. Uanset hvornår lønnen er godkendt. Godkendes lønnen dagen før dispositionsdatoen, er lønsedlerne først i mit.dk på selve dispositionsdatoen.
+
+## TeleService Internet (Nets)
+Når afregningen er godkendt, kan du logge på TSI hos Mastercard (tidl. Nets) og se at overførslen er modtaget samt at medarbejderens bankoplysninger er korrekte.Log på via dette link med jeres virksomheds NemID: https://ft.pbs.dk
+
+## eIndkomst kvitteringsliste
+Visma Løn indberetter automatisk til eIndkomst hver aften kl. 22.30 efter lønkørsel.Efter klokken 23.50 kommer en kvitteringsliste retur fra SKAT, som kan ses under ’Rapporter’/’Vis job’.Såfremt der på rapporten er bemærkninger, skal ændringer tilpasninger foretages hos eIndkomst ([www.Skat.dk](http://www.Skat.dk)).
