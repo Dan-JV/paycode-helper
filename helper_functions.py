@@ -3,6 +3,7 @@ import random
 import datetime
 import streamlit as st
 import json
+import streamlit as st
 
 # S3 config
 s3 = boto3.client('s3')
@@ -37,7 +38,31 @@ def move_paycode_from_source_to_target(source_bucket: str, target_bucket: str, p
 
 
 
-def get_random_paycode(source_bucket:str,target_bucket:str) -> dict:
+def add_to_streamlit_session_state(name: str):
+    def wrapper(func, *args, **kwargs):
+        result = func(*args, **kwargs)
+        st.session_state[name] = result
+        return result
+    return wrapper
+
+
+def pick_random_paycode_click():
+    result = get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
+    st.session_state.paycode = result
+
+
+def add_to_streamlit_session_state(name: str):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            st.session_state[name] = result
+            return result
+        return wrapper
+    return decorator
+
+
+@add_to_streamlit_session_state(name="paycode")
+def get_random_paycode(source_bucket:str, target_bucket:str) -> dict:
     """Retrieves a random paycode json file from the source bucket and the moves it to processing bucket. Fianlly it deleted the file from the source bucket."""
     available_paycodes = list_available_paycodes(bucket=source_bucket)
     if not available_paycodes:
@@ -49,7 +74,7 @@ def get_random_paycode(source_bucket:str,target_bucket:str) -> dict:
 
     # Get the paycode json file from the processing bucket and load it as a dictionary
     paycode_json_string = s3.get_object(Bucket=target_bucket, Key=paycode)
-    paycode_json = json.loads(paycode_json_string)
+    paycode_json = json.loads(paycode_json_string.get("Body").read().decode("utf-8"))
 
     # Delete the paycode from the source bucket
     s3.delete_object(Bucket=source_bucket, Key=paycode)
