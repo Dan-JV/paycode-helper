@@ -29,6 +29,8 @@ def create_json_objects_and_upload_to_s3(paycodes, bucket_name, json_template, p
             json_object["prefilled"]['print_sequence'] = paycode_data['Udskrivnings sekvens'][0]
             json_object["text_fields"]['input'] = paycode_data['Input'][0]
 
+            # TODO: fill the bools by default from katalog
+
         except Exception as e:
             print(f"Paycode {paycode} had error {e}")
             continue

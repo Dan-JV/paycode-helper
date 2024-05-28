@@ -65,40 +65,21 @@ def main():
             for key in streamlit_input_template["text_area"]:
                 st.text_area(key, help=streamlit_input_template["text_area"][key]["help"])
             
+            
+
 
             # TODO: for the multi selectionbox for the input field we sohuld use 9-18 in from this link https://help.vismaenterprise.dk/vismaloen-standard/decantral-registrering/00086-decentral-registrering
-            # st.selectbox
+            # input entry
+            st.subheader("Lønart input")
+            st.multiselect("test", options=streamlit_input_template["input"], help="test help")
             
-            # Calculations booleans
-            st.subheader("Calculations")
-            calculations = {
-                "Løndel/-felt standardnavn": st.toggle(label="Løndel/-felt standardnavn", value=False),
-                "AM-bidrag": st.toggle(label="AM-bidrag", value=False),
-                "A-indk. og A-skat": st.toggle(label="A-indk. og A-skat", value=False),
-                "Feriepenge, SH opsp. og fritvalgs (0013)": st.toggle(label="Feriepenge, SH opsp. og fritvalgs (0013)", value=False),
-                "Feriefridags opsp.": st.toggle(label="Feriefridags opsp.", value=False),
-                "St. Bededagstillæg": st.toggle(label="St. Bededagstillæg", value=False),
-                "Pension PO1 PO2 FO2 GRL 7)": st.toggle(label="Pension PO1 PO2 FO2 GRL 7)", value=False),
-                "Arbejdsmarkeds pension 5)": st.toggle(label="Arbejdsmarkeds pension 5)", value=False),
-                "ATP-bidrag": st.toggle(label="ATP-bidrag", value=False),
-            }
-            
-            st.subheader("Used With")
-            used_with = {
-                "Negativt fortegn 4)": st.toggle(label="Negativt fortegn 4)", value=False),
-                "Autoløn": st.toggle(label="Autoløn", value=False),
-                "Egen teksttekst 9) ikke saldo-tekst": st.toggle(label="Egen teksttekst 9) ikke saldo-tekst", value=False),
-            }
-            
-            feltnummer_i_ejndkomst = st.text_input("Feltnummer i ejndkomst 8)")
+            # TODO: Bools should be static information displayted in the middle column
+            st.subheader("lønbehandlingskategorier")
+            for key in streamlit_input_template["bools"]:
+                st.toggle(key, 
+                            help=streamlit_input_template["bools"][key]["help"],
+                            value=streamlit_input_template["bools"][key]["default"])
 
-            st.subheader("Opsamling til lønstatistik IL-typer")
-            opsamling_til_lonstatistik = {
-                "Bruttoløn": st.toggle(label="Bruttoløn (0010)", value=False),
-                "Fastlønnede": st.text_input("Fastlønnede"),
-                "Timelønnede": st.text_input("Timelønnede"),
-                "Akkord og tidlønnsarbejde": st.text_input("Akkord og tidlønnsarbejde"),
-            }
 
             submit_button = st.form_submit_button(label='Submit')
 
