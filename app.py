@@ -101,6 +101,13 @@ def main():
                     key, help=streamlit_input_template["text_area"][key]["help"]
                 )
 
+            # Lønart input field
+            st.multiselect(
+                "Lønart input",
+                options=streamlit_input_template["input"],
+                help="Help us fill these",
+            )
+
             st_tags(
                 label="Enter Keywords",
                 suggestions=streamlit_input_template["input"],
@@ -110,10 +117,7 @@ def main():
 
         with col2:
 
-            st.subheader("Lønart input")
-            st.multiselect(
-                "test", options=streamlit_input_template["input"], help="test help"
-            )
+            st.header("Lønart information")
 
             # TODO: Bools should be static information displayted in the middle column
             st.subheader("lønbehandlingskategorier")
