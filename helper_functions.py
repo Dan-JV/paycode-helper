@@ -14,7 +14,7 @@ documented_bucket = "paycodehelper-documented"
 lock_timeout = datetime.timedelta(minutes=30)
 
 extras_bucket = "paycodehelper-extras"
-leaderboard_file = "leaderboard.csv"
+leaderboard_file = "leaderboard.json"
 
 
 @st.cache_data
@@ -116,29 +116,46 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     return paycode_json
 
 
-@st.cache_data
 def read_leaderboard():
     try:
         obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
-        df = pl.read_csv(BytesIO(obj["Body"].read()))
+        leaderboard = json.loads(obj["Body"].read().decode("utf-8"))
     except s3.exceptions.NoSuchKey:
-        df = pl.DataFrame(columns=["name", "score"])
-    return df
+        leaderboard = {}
+    return leaderboard
+
+    # try:
+    #     obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
+    #     df = pl.read_csv(BytesIO(obj["Body"].read()))
+    # except s3.exceptions.NoSuchKey:
+    #     df = pl.DataFrame(columns=["name", "score"])
+    # return df
 
 
-def write_leaderboard(df):
-    csv_buffer = BytesIO()
-    df.to_csv(csv_buffer, index=False)
+def write_leaderboard(leaderboard):
+    json_buffer = BytesIO(json.dumps(leaderboard).encode("utf-8"))
     s3.put_object(
-        Bucket=extras_bucket, Key=leaderboard_file, Body=csv_buffer.getvalue()
+        Bucket=extras_bucket, Key=leaderboard_file, Body=json_buffer.getvalue()
     )
+
+    # csv_buffer = BytesIO()
+    # df.to_csv(csv_buffer, index=False)
+    # s3.put_object(
+    #     Bucket=extras_bucket, Key=leaderboard_file, Body=csv_buffer.getvalue()
+    # )
 
 
 def update_leaderboard(user_name):
-    df = read_leaderboard()
-    if user_name in df["name"].values:
-        df.loc[df["name"] == user_name, "score"] += 1
-    else:
-        df = df.append({"name": user_name, "score": 1}, ignore_index=True)
-    df = df.sort_values(by="score", ascending=False).reset_index(drop=True)
-    write_leaderboard(df)
+    json_file = read_leaderboard()
+    leaderboard = json_file["leaderboard"]
+    user_found = False
+    for entry in leaderboard:
+        if entry["name"] == user_name:
+            entry["score"] += 1
+            user_found = True
+            break
+    if not user_found:
+        leaderboard.append({"namne": user_name, "score": 1})
+    leaderboard = sorted(leaderboard, key=lambda x: x["score"], reverse=True)
+    json_file["leaderboard"] = leaderboard
+    write_leaderboard(json_file)

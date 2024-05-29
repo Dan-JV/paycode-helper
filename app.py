@@ -21,10 +21,6 @@ from helper_functions import (
 st.title("Paycode Helper")
 
 
-def update_leaderboard():
-    pass
-
-
 def fill_paycode_form():
     pass
 
@@ -37,15 +33,16 @@ def submit_paycode(paycode):
     )
     st.write("Submitting paycode")
     st.success("Thank you!")
-    update_leaderboard()
 
 
 # Leaderboard function
 def display_leaderboard():
-    df = read_leaderboard()
+    leaderboard_json = read_leaderboard()
+    leaderboard = leaderboard_json["leaderboard"]
+
     st.markdown("## Leaderboard")
 
-    for i, row in enumerate(df.iter_rows()):
+    for i, entry in enumerate(leaderboard):
         if i == 0:
             medal = "🥇"
         elif i == 1:
@@ -55,13 +52,12 @@ def display_leaderboard():
         else:
             medal = ""
 
-        st.write(f"{medal} {row[0]}: {row[1]} score")
+        st.write(f"{medal} {entry['name']}: {entry['score']} documents")
 
 
 def main():
     # Set up the layout with three columns
     streamlit_input_template = load_streamlit_template()
-
 
     col1, col2, col3, col4 = st.columns(4)
 
@@ -69,7 +65,7 @@ def main():
     with st.form(key="data_form"):
         with col1:
             st.subheader("Data Entry Form")
-    
+
             st.button(
                 "Pick Random Paycode",
                 on_click=get_random_paycode,
@@ -110,9 +106,7 @@ def main():
                 suggestions=streamlit_input_template["input"],
                 text="Press enter to add more",
                 maxtags=100,
-            ) 
-            
-
+            )
 
         with col2:
 
@@ -133,8 +127,10 @@ def main():
 
         submit_button = st.form_submit_button(label="Submit")
 
-        if submit_button:
-            submit_paycode()
+        if user_name and submit_button:
+            update_leaderboard(user_name)
+            # submit_paycode()
+            st.success(f"Document submitted by {user_name}!")
 
     with col3:
         st.header("AI Summary")
