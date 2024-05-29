@@ -44,7 +44,7 @@ def display_leaderboard():
     df = read_leaderboard()
     st.markdown("## Leaderboard")
 
-    for i, row in df.head(10).iterrows():
+    for i, row in enumerate(df.iter_rows()):
         if i == 0:
             medal = "🥇"
         elif i == 1:
@@ -54,7 +54,7 @@ def display_leaderboard():
         else:
             medal = ""
 
-        st.write(f"{medal} {row['Name']}: {row['Documents']} documents")
+        st.write(f"{medal} {row[0]}: {row[1]} score")
 
 
 def main():
@@ -66,6 +66,8 @@ def main():
         on_click=get_random_paycode,
         args=("paycodehelper-templates", "paycodehelper-processing"),
     )
+
+    user_name = st.text_input("Enter your name:")
 
     st.header("Data Entry Form")
 
