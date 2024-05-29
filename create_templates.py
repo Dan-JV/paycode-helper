@@ -19,55 +19,63 @@ def create_json_objects_and_upload_to_s3(
     s3 = boto3.client("s3")
 
     for paycode in paycodes:
-        json_object = json_template
-
-        # Get the paycode data from the DataFrame
-        paycode_data = paycode_df.filter(pl.col("Lønartnr") == paycode).to_dict()
+        json_object = json_template.copy()
 
         try:
-            json_object["prefilled"]["paycode"] = paycode
-            json_object["prefilled"]["name"] = paycode_data["Navn"][0]
-            json_object["prefilled"]["type"] = paycode_data["Type"][0]
-            json_object["prefilled"]["print_sequence"] = paycode_data[
-                "Udskrivnings sekvens"
-            ][0]
-            json_object["prefilled"]["kommentar"] = paycode_data["Kommentar"][0]
-            json_object["text_fields"]["input"] = paycode_data["Input"][0]
+            # Get the paycode data from the DataFrame
+            paycode_data = paycode_df.filter(pl.col("Lønartnr") == paycode).to_dict()
 
-            json_object["IL-typer"] = paycode_data["IL-typer"][0]
-            # TODO: if type=FAST, input=SATS, ATP-timer=blank -> IL-typer="indeholdt i normtid" -> see rules in notion
+            catalog = json_object["catalog"]
+            user_input = json_object["user_input"]
+            ai_generated = json_object["ai_generated"]
+
+            catalog["paycode"] = paycode
+            catalog["name"] = paycode_data["Navn"][0]
+            catalog["type"] = paycode_data["Type"][0]
+            catalog["kommentar"] = paycode_data["Kommentar"][0]
 
 
-            bools = json_object["bools"]
+            catalog["E-indkomst"] = True if paycode_data.get("E-indkomst timer", None)[0] else False
+            catalog["Ferieberettiget"] = True if paycode_data.get("Ferieberretiget", None)[0] else False
+            catalog["Pensionsgrundlag"] = True if paycode_data.get("Pensionsgrundlag", None)[0] else False
+            catalog["ATP-timer"] = True if paycode_data.get("ATP-Timer", None)[0] else False
             
-            # e-indkomst
-            bools["E-indkomst"] = True if paycode_data.get("E-indkomst timer", None)[0] else False
+            # TODO: For IL-typer, if type=FAST, input=SATS, ATP-timer=blank -> IL-typer="indeholdt i normtid" -> see rules in notion
+            catalog["IL-typer"] = paycode_data["IL-typer"][0] if paycode_data["IL-typer"][0] else None
+            catalog["input"] = paycode_data["Input"][0]
 
-            # ferie
-            bools["St. Bededagstillæg"] = True if paycode_data.get("Ferieberretiget", None)[0] else False
-            bools["Feriepenge, SH opsp. og fritvalgs (0013)"] = True if paycode_data.get("Ferieberretiget", None)[0] else False
-            bools["Feriefridags opsp."] = True if paycode_data.get("Ferieberretiget", None)[0] else False
+            user_input["text_fields"]["Fastlønnede"] = ""
+            user_input["text_fields"]["Timelønnede"] = ""
+            user_input["text_fields"]["input"] = ""
+            user_input["text_fields"]["general_description"] = ""
+            user_input["text_fields"]["critical_information"] = ""
+            user_input["text_fields"]["use_case_1"] = ""
+            user_input["text_fields"]["use_case_2"] = ""
+            user_input["text_fields"]["use_case_3"] = ""
+            user_input["text_fields"]["tags"] = []
 
-            bools["ATP-timer"] = True if paycode_data.get("ATP-timer", None)[0] else False
+            user_input["bools"]["AM-bidrag"] = ""
 
-            # Pensionsgrundlag
-            bools["Pension PO1 PO2 FO2 GRL 7"] = paycode_data.get("Pensionsgrundlag")
-
+            ai_generated["user_input_summary"] = ""
+            guide_summary = ""
+            guides = []
 
         except Exception as e:
             print(f"Paycode {paycode} had error {e}")
             continue
 
-        # Convert the JSON object to a string
-        json_data = json.dumps(json_object, ensure_ascii=False)
+
+        try:
+            json_data = json.dumps(json_object, ensure_ascii=False)
+        except Exception as e:
+            print(f"Paycode {paycode} had error {e}")
+            continue
 
         # Generate a unique key for each JSON object
         key = f"paycode_{paycode}.json"
 
         # Upload the JSON object to S3
         s3.put_object(Body=json_data, Bucket=bucket_name, Key=key)
-
-        json_data = json.dumps(json_object, ensure_ascii=False)
 
         # Generate a unique key for each JSON object
         key = f"paycode_{paycode}.json"

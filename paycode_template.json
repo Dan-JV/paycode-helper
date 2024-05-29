@@ -4,7 +4,7 @@
             "name": null,
             "type": null,
             "kommentar": null,
-            "AM-bidrag": null,
+            "input": null,
             "E-indkomst": null,
             "Ferieberettiget": null,
             "Pensionsgrundlag": null,
@@ -27,7 +27,7 @@
             "AM-bidrag": null
         }
     },
-    "AI_generated": {
+    "ai_generated": {
         "user_input_summary": "",
         "guide_summary": "",
         "guides" : []
