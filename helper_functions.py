@@ -3,7 +3,8 @@ import random
 import datetime
 import streamlit as st
 import json
-import streamlit as st
+from io import BytesIO
+import polars as pl
 
 # S3 config
 s3 = boto3.client("s3")
@@ -11,6 +12,9 @@ template_bucket = "paycodehelper-templates"
 processing_bucket = "paycodehelper-processing"
 documented_bucket = "paycodehelper-documented"
 lock_timeout = datetime.timedelta(minutes=30)
+
+extras_bucket = "paycodehelper-extras"
+leaderboard_file = "leaderboard.csv"
 
 
 @st.cache_data
@@ -106,7 +110,35 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     paycode_json = json.loads(paycode_json_string.get("Body").read().decode("utf-8"))
 
     # Delete the paycode from the source bucket
-    #s3.delete_object(Bucket=source_bucket, Key=paycode)
+    # s3.delete_object(Bucket=source_bucket, Key=paycode)
 
     # return the paycode json file
     return paycode_json
+
+
+@st.cache_data
+def read_leaderboard():
+    try:
+        obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
+        df = pl.read_csv(BytesIO(obj["Body"].read()))
+    except s3.exceptions.NoSuchKey:
+        df = pl.DataFrame(columns=["name", "score"])
+    return df
+
+
+def write_leaderboard(df):
+    csv_buffer = BytesIO()
+    df.to_csv(csv_buffer, index=False)
+    s3.put_object(
+        Bucket=extras_bucket, Key=leaderboard_file, Body=csv_buffer.getvalue()
+    )
+
+
+def update_leaderboard(user_name):
+    df = read_leaderboard()
+    if user_name in df["name"].values:
+        df.loc[df["name"] == user_name, "score"] += 1
+    else:
+        df = df.append({"name": user_name, "score": 1}, ignore_index=True)
+    df = df.sort_values(by="score", ascending=False).reset_index(drop=True)
+    write_leaderboard(df)
