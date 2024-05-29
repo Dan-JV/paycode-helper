@@ -51,19 +51,37 @@ def main():
     # User input form based on the provided JSON structure
     with st.form(key="data_form"):
         with col1:
-                st.subheader("Prefilled fields")
 
                 if "paycode" in st.session_state:
                     prefilled_fields = st.session_state["paycode"]["prefilled"]
-                    for key in prefilled_fields:
-                        st.text_input(label=key, value=prefilled_fields[key], disabled=True)
-                else:
-                    st.text_input(label="Paycode", value="", disabled=True)
-                    st.text_input(label="name", value="", disabled=True)
-                    st.text_input(label="print_sequence", value="", disabled=True)
-                    st.text_input(label="type", value="", disabled=True)
 
-                # Information entry
+                    st.markdown("#### Paycode: ")
+                    st.info(f'{prefilled_fields["paycode"]}')
+                    st.markdown("#### Name: ")
+                    st.info(f'{prefilled_fields["name"]}')
+                    st.markdown("#### Print Sequence: ")
+                    st.info(f'{prefilled_fields["print_sequence"]}')
+                    st.markdown("#### Type: ")
+                    st.info(f'{prefilled_fields["type"]}')
+                    st.markdown("#### Kommentar: ")
+                    st.info(f'{prefilled_fields["kommentar"]}')
+
+                else:
+                    st.info("No paycode selected", icon="ℹ")
+                    st.markdown("#### Paycode Name: ")
+                    st.info("")
+                    st.markdown("#### Print Sequence: ")
+                    st.info("")
+                    st.markdown("#### Type: ")
+                    st.info("")
+                    st.markdown("#### Kommentar: ")
+                    st.info("")
+
+
+                    
+
+
+
                 st.subheader("Information")
                 for key in streamlit_input_template["text_area"]:
                     st.text_area(
@@ -71,9 +89,6 @@ def main():
                     )
         with col2:
 
-            # TODO: for the multi selectionbox for the input field we sohuld use 9-18 in from this link https://help.vismaenterprise.dk/vismaloen-standard/decantral-registrering/00086-decentral-registrering
-            # TODO: talk about what data this is ?
-            # input entry
             st.subheader("Lønart input")
             st.multiselect(
                 "test", options=streamlit_input_template["input"], help="test help"
