@@ -20,10 +20,6 @@ from helper_functions import (
 st.title("Paycode Helper")
 
 
-def update_leaderboard():
-    pass
-
-
 def fill_paycode_form():
     pass
 
@@ -41,10 +37,12 @@ def submit_paycode(paycode):
 
 # Leaderboard function
 def display_leaderboard():
-    df = read_leaderboard()
+    leaderboard_json = read_leaderboard()
+    leaderboard = leaderboard_json["leaderboard"]
+
     st.markdown("## Leaderboard")
 
-    for i, row in enumerate(df.iter_rows()):
+    for i, entry in enumerate(leaderboard):
         if i == 0:
             medal = "🥇"
         elif i == 1:
@@ -54,7 +52,7 @@ def display_leaderboard():
         else:
             medal = ""
 
-        st.write(f"{medal} {row[0]}: {row[1]} score")
+        st.write(f"{medal} {entry['name']}: {entry['score']} documents")
 
 
 def main():
@@ -126,8 +124,10 @@ def main():
 
         submit_button = st.form_submit_button(label="Submit")
 
-        if submit_button:
+        if user_name and submit_button:
+            update_leaderboard(user_name)
             submit_paycode()
+            st.success(f"Document submitted by {user_name}!")
 
     with col3:
         st.header("AI Summary")
