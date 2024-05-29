@@ -60,14 +60,13 @@ def main():
     # Set up the layout with three columns
     streamlit_input_template = load_streamlit_template()
 
-
     col1, col2, col3, col4 = st.columns(4)
 
     # User input form based on the provided JSON structure
     with st.form(key="data_form"):
         with col1:
             st.subheader("Data Entry Form")
-    
+
             st.button(
                 "Pick Random Paycode",
                 on_click=get_random_paycode,
@@ -107,9 +106,7 @@ def main():
                 suggestions=streamlit_input_template["input"],
                 text="Press enter to add more",
                 maxtags=100,
-            ) 
-            
-
+            )
 
         with col2:
 

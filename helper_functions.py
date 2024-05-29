@@ -148,9 +148,9 @@ def write_leaderboard(leaderboard):
 
 def update_leaderboard(user_name):
     json_file = read_leaderboard()
-    leaderboard = json_file["Leaderboard"]
+    leaderboard = json_file["leaderboard"]
     user_found = False
-    for entry in leaderboard["Leaderboard"]:
+    for entry in leaderboard["leaderboard"]:
         if entry["name"] == user_name:
             entry["score"] += 1
             user_found = True
