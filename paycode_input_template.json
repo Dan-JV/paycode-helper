@@ -1,18 +1,7 @@
 {   
     "input": ["Enheder", "Sats ", "Beløb", "Procent", "Reducer ej", "Pens. firmabeløb", "Pens. firma %", "Pensionsgrundlag", "Saldo", "Årstal"],
     "bools": {
-            "Løndel/-felt standardnavn": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "AM-bidrag":{"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "A-indk. og A-skat": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Ferieberretiget": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Pension PO1 PO2 FO2 GRL 7)": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Arbejdsmarkeds pension 5)": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "ATP-bidrag": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Negativt fortegn 4)": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Autoløn": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Egen teksttekst 9) ikke saldo-tekst": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Bruttoløn": {"help": "Help us fill this", "possible_values": [0,1],"default":0},
-            "Akkord og tidlønnsarbejde": {"help": "Help us fill this", "possible_values": [2010,2020],"default":0}
+        "AM-bidrag": {"help": "Help us fill this", "possible_values": [0,1],"default":0}
     },
     "text_area": {
         "General beskrivelse": {"help": "Help us fill this"},
@@ -23,6 +12,5 @@
         "Fastlønnede": {"help": "Help us fill this"},
         "Timelønnede": {"help": "Help us fill this"}
     },
-    "vejledniger" : [],
     "tags" : []
-  }
+}

@@ -99,6 +99,7 @@ def main():
                 st.info("")
 
             st.subheader("Information")
+            st.toggle("AM-bidrag", value=False)
             for key in streamlit_input_template["text_area"]:
                 st.text_area(
                     key, help=streamlit_input_template["text_area"][key]["help"]

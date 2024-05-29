@@ -1,38 +1,35 @@
 {   
-    "prefilled": {
-        "paycode": null,
-        "name": null,
-        "print_sequence": null,
-        "type": null,
-        "kommentar": null
-    },
-    "bools": {
-            "Løndel/-felt standardnavn": null,
+    "catalog": {
+            "paycode": null,
+            "name": null,
+            "type": null,
+            "kommentar": null,
             "AM-bidrag": null,
-            "A-indk. og A-skat": null,
-            "Feriepenge, SH opsp. og fritvalgs (0013)": null,
-            "Feriefridags opsp.": null,
-            "St. Bededagstillæg": null,
-            "Pension PO1 PO2 FO2 GRL 7)": null,
-            "Arbejdsmarkeds pension 5)": null,
-            "ATP-bidrag": null,
-            "Negativt fortegn 4)": null,
-            "Autoløn": null,
-            "Egen teksttekst 9) ikke saldo-tekst": null,
-            "Bruttoløn (0010)": null
+            "E-indkomst": null,
+            "Ferieberettiget": null,
+            "Pensionsgrundlag": null,
+            "ATP-timer": null,
+            "IL-typer": null
     },
-    "text_fields": {
-        "Feltnummer i eindkomst 8)": "",
-        "Fastlønnede": "",
-        "Timelønnede": "",
-        "Akkord og tidlønnsarbejde": "",
-        "input": "",
-        "general_description": "",
-        "critical_information": "",
-        "use_case_1": "",
-        "use_case_2": "",
-        "use_case_3": ""
+    "user_input": {
+        "text_fields": {
+            "Fastlønnede": "",
+            "Timelnnede": "",
+            "input": "",
+            "general_description": "",
+            "critical_information": "",
+            "use_case_1": "",
+            "use_case_2": "",
+            "use_case_3": "",
+            "tags" : []
+        },
+        "bools":{
+            "AM-bidrag": null
+        }
     },
-    "guides" : [],
-    "tags" : []
-  }
+    "AI_generated": {
+        "user_input_summary": "",
+        "guide_summary": "",
+        "guides" : []
+    }
+}
