@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_tags import st_tags
 
 # must be the first line called to avoid it being called twice
 st.set_page_config(
@@ -61,21 +62,20 @@ def main():
     # Set up the layout with three columns
     streamlit_input_template = load_streamlit_template()
 
-    st.button(
-        "Pick Random Paycode",
-        on_click=get_random_paycode,
-        args=("paycodehelper-templates", "paycodehelper-processing"),
-    )
-
-    user_name = st.text_input("Enter your name:")
-
-    st.header("Data Entry Form")
 
     col1, col2, col3, col4 = st.columns(4)
 
     # User input form based on the provided JSON structure
     with st.form(key="data_form"):
         with col1:
+            st.subheader("Data Entry Form")
+    
+            st.button(
+                "Pick Random Paycode",
+                on_click=get_random_paycode,
+                args=("paycodehelper-templates", "paycodehelper-processing"),
+            )
+            user_name = st.text_input("Enter your name: ")
 
             if "paycode" in st.session_state:
                 prefilled_fields = st.session_state["paycode"]["prefilled"]
@@ -84,8 +84,6 @@ def main():
                 st.info(f'{prefilled_fields["paycode"]}')
                 st.markdown("#### Name: ")
                 st.info(f'{prefilled_fields["name"]}')
-                st.markdown("#### Print Sequence: ")
-                st.info(f'{prefilled_fields["print_sequence"]}')
                 st.markdown("#### Type: ")
                 st.info(f'{prefilled_fields["type"]}')
                 st.markdown("#### Kommentar: ")
@@ -94,8 +92,6 @@ def main():
             else:
                 st.info("No paycode selected", icon="ℹ")
                 st.markdown("#### Paycode Name: ")
-                st.info("")
-                st.markdown("#### Print Sequence: ")
                 st.info("")
                 st.markdown("#### Type: ")
                 st.info("")
@@ -107,6 +103,16 @@ def main():
                 st.text_area(
                     key, help=streamlit_input_template["text_area"][key]["help"]
                 )
+
+            st_tags(
+                label="Enter Keywords",
+                suggestions=streamlit_input_template["input"],
+                text="Press enter to add more",
+                maxtags=100,
+            ) 
+            
+
+
         with col2:
 
             st.subheader("Lønart input")
