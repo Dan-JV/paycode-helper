@@ -50,98 +50,103 @@ def main():
 
     choice = sidebar_navigation()
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4, col5 = st.columns(5)
 
-    # User input form based on the provided JSON structure
-    with st.form(key="data_form"):
-        with col1:
-            st.button(
-                "Pick Random Paycode",
-                on_click=get_random_paycode,
-                args=("paycodehelper-templates", "paycodehelper-processing"),
-            )
-            st.header("Data Entry Form")
+    with col1:
+        st.button(
+            "Pick Random Paycode",
+            on_click=get_random_paycode,
+            args=("paycodehelper-templates", "paycodehelper-processing"),
+        )
+    with col2:
+        generate_ai_summary = st.button("Generate AI Summary")
 
-            st.toggle("AM-bidrag", value=False)
-            for key in streamlit_input_template["text_area"]:
-                st.text_area(
-                    label=key, help=streamlit_input_template['text_area'][key]['help']
+    if "paycode" in st.session_state:
+        with st.form(key="data_form"):
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                st.header("Data Entry Form")
+
+                st.session_state["paycode"]["user_input"]["bools"] = st.toggle("AM-bidrag", value=False)
+                for key in streamlit_input_template["text_area"]:
+                    st.session_state["paycode"]["user_input"]["text_fields"][key] = st.text_area(
+                        label=key, help=streamlit_input_template['text_area'][key]['help']
+                    )
+
+                # Lønart input field
+                st.session_state["paycode"]["user_input"]["input"] = st.multiselect(
+                    "Lønart input",
+                    options=streamlit_input_template["input"],
+                    help="Help us fill these",
                 )
 
-            # Lønart input field
-            st.multiselect(
-                "Lønart input",
-                options=streamlit_input_template["input"],
-                help="Help us fill these",
-            )
-
-            st_tags(
-                label="Enter Keywords",
-                suggestions=streamlit_input_template["input"],
-                text="Press enter to add more",
-                maxtags=100,
-            )
-
-        with col2:
-
-            st.header("Lønart Information")
-
-            user_name = st.text_input("Enter your name: ")
-
-            if "paycode" in st.session_state:
-                catalog_fields = st.session_state["paycode"]["catalog"]
-                st.text_input(
-                    label="Paycode", value=catalog_fields["paycode"], disabled=True,
+                st.session_state["paycode"]["user_input"]["tags"] = st_tags(
+                    label="Enter Keywords",
+                    suggestions=streamlit_input_template["input"],
+                    text="Press enter to add more",
+                    maxtags=100,
                 )
+
+            with col2:
+                st.header("Lønart Information")
+
+                user_name = st.text_input("Enter your name: ")
+
+                catalog= st.session_state["paycode"]["catalog"]
                 st.text_input(
-                    label="Name", value=catalog_fields["name"], disabled=True,
-                )
-                st.text_input(
-                    label="Type", value=catalog_fields["type"], disabled=True
+                    label="Paycode", value=catalog["paycode"], disabled=True,
                 )
                 st.text_input(
-                    label="Kommentar", value=catalog_fields["kommentar"], disabled=True
+                    label="Name", value=catalog["name"], disabled=True,
                 )
-
-            else:
-                st.info("No paycode selected", icon="ℹ")
-
-            if "paycode" in st.session_state:
-                catalog = st.session_state["paycode"]["catalog"]
+                st.text_input(
+                    label="Type", value=catalog["type"], disabled=True
+                )
+                st.text_input(
+                    label="Kommentar", value=catalog["kommentar"], disabled=True
+                )
                 st.toggle("Pensionsgrundlag", value=catalog["Pensionsgrundlag"])
                 st.toggle("E-indkomst", value=catalog["E-indkomst"])
                 st.toggle("Ferieberettiget", value=catalog["Ferieberettiget"])
                 st.toggle("ATP-timer", value=catalog["ATP-timer"])
                 st.info(f"IL-typer: {catalog['IL-typer']}")
 
-        submit_button = st.form_submit_button(label="Submit")
+            with col3:
+                st.header("User Input Summary")
 
-        if user_name and submit_button:
-            # TODO: add all inputs to paycode (update json)
-            update_leaderboard(user_name)
-            submit_paycode(st.session_state.paycode)
-            st.success(f"Document submitted by {user_name}!")
+                if generate_ai_summary:
+                    print()
 
-    with col3:
-        st.header("User Input Summary")
-        st.write(
-            "AI Summary"
-        )
-        st.header("AI Summary")
+                st.header("AI Summary of Guides")
 
-        # Update placeholders
-        st.write(
-            "AI Summary"
-        )
+                # Update placeholders
+                st.write(
+                    "AI Summary"
+                )
 
-        st.header("Sources")
-        st.write(
-            """
-        1. Source one: https://example.com/source1
-        2. Source two: https://example.com/source2
-        3. Source three: https://example.com/source3
-        """
-        )
+                st.header("Sources")
+                st.write(
+                    """
+                1. Source one: https://example.com/source1
+                2. Source two: https://example.com/source2
+                3. Source three: https://example.com/source3
+                """
+                )
+            submit_button = st.form_submit_button(label="Submit")
+
+            if user_name and submit_button:
+                # TODO: add all inputs to paycode (update json)
+                update_leaderboard(user_name)
+                submit_paycode(st.session_state.paycode)
+                st.success(f"Document submitted by {user_name}!")
+
+    else:
+        st.info("No paycode selected", icon="ℹ")
+
+
+
+
 
 
 if __name__ == "__main__":
