@@ -65,11 +65,11 @@ def cleanup_inprocessing_bucket():
 
 
 def move_paycode_from_source_to_target(
-    source_bucket: str, target_bucket: str, paycode: str
+    source_bucket: str, target_bucket: str, paycode: str, key: str
 ):
     s3.copy_object(
         Bucket=target_bucket,
-        CopySource={"Bucket": source_bucket, "Key": paycode},
+        CopySource={"Bucket": source_bucket, "Key": key},
         Key=paycode,
     )
-    s3.delete_object(Bucket=source_bucket, Key=paycode)
+    #s3.delete_object(Bucket=source_bucket, Key=paycode)

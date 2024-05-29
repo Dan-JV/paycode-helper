@@ -1,3 +1,5 @@
+import boto3
+import json
 import streamlit as st
 from streamlit_tags import st_tags
 
@@ -11,12 +13,7 @@ st.set_page_config(
 
 st.title("Data Entry Form")
 
-from aws_helper_functions import (
-    move_paycode_from_source_to_target,
-)
-
 from streamlit_utils import load_streamlit_template
-
 
 from helper_functions import (
     get_random_paycode,
@@ -34,12 +31,11 @@ def fill_paycode_form():
     pass
 
 
-def submit_paycode(paycode):
-    move_paycode_from_source_to_target(
-        source_bucket="paycodehelper-processing",
-        target_bucket="paycodehelper-documented",
-        paycode=paycode,
-    )
+s3 = boto3.client('s3')
+
+def submit_paycode(paycode, key):
+    s3.put_object(Body=paycode, Bucket="paycodehelper-documented", Key=key)
+    s3.delete_object(Bucket="paycodehelper-processing", Key=key)
     st.write("Submitting paycode")
     st.success("Thank you!")
 
@@ -55,7 +51,7 @@ def main():
     with col1:
         st.button(
             "Pick Random Paycode",
-            on_click=get_random_paycode,
+            on_click=get_random_paycode, # TODO: if you have already submitted a paycode, the input form should be cleaned of previous user input
             args=("paycodehelper-templates", "paycodehelper-processing"),
         )
     with col2:
@@ -133,13 +129,15 @@ def main():
                 3. Source three: https://example.com/source3
                 """
                 )
-            submit_button = st.form_submit_button(label="Submit")
+            # TODO: Potential problem: if the user presses "enter" after filling out a field, the form will be submitted!
+            st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
-            if user_name and submit_button:
-                # TODO: add all inputs to paycode (update json)
-                update_leaderboard(user_name)
-                submit_paycode(st.session_state.paycode)
-                st.success(f"Document submitted by {user_name}!")
+            if user_name:
+                if st.session_state["submit_button"]:
+                    update_leaderboard(user_name)
+                    key = f"paycode_{st.session_state['paycode']['catalog']['paycode']}.json"
+                    submit_paycode(json.dumps(st.session_state.paycode, ensure_ascii=False), key)
+                    st.success(f"Document submitted by {user_name}!")
 
     else:
         st.info("No paycode selected", icon="ℹ")
