@@ -33,7 +33,6 @@ def submit_paycode(paycode):
     )
     st.write("Submitting paycode")
     st.success("Thank you!")
-    update_leaderboard()
 
 
 # Leaderboard function
@@ -129,7 +128,7 @@ def main():
 
         if user_name and submit_button:
             update_leaderboard(user_name)
-            submit_paycode()
+            # submit_paycode()
             st.success(f"Document submitted by {user_name}!")
 
     with col3:

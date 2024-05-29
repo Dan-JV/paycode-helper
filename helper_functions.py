@@ -116,7 +116,6 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     return paycode_json
 
 
-@st.cache_data
 def read_leaderboard():
     try:
         obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
@@ -150,12 +149,13 @@ def update_leaderboard(user_name):
     json_file = read_leaderboard()
     leaderboard = json_file["leaderboard"]
     user_found = False
-    for entry in leaderboard["leaderboard"]:
+    for entry in leaderboard:
         if entry["name"] == user_name:
             entry["score"] += 1
             user_found = True
             break
     if not user_found:
         leaderboard.append({"namne": user_name, "score": 1})
-    leaderboard = sorted(leaderboard, key=lambda x: x["score"], ascending=False)
-    write_leaderboard(leaderboard)
+    leaderboard = sorted(leaderboard, key=lambda x: x["score"], reverse=True)
+    json_file["leaderboard"] = leaderboard
+    write_leaderboard(json_file)
