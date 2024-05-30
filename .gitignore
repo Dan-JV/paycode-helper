@@ -5,3 +5,4 @@ testing
 __pycache__
 outputs
 test
+secrets.toml
