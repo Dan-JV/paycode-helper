@@ -15,17 +15,10 @@ st.set_page_config(
 st.title("Data Entry Form")
 
 from streamlit_utils import load_streamlit_template, sidebar_navigation
-
-from helper_functions import (
-    get_random_paycode,
-)
-
+from helper_functions import get_random_paycode
 from aws_helper_functions import upload_feedback
-
 from leaderboard_utils import update_leaderboard
-
 from ai_summary import ai_summary
-
 
 s3 = boto3.client("s3")
 
@@ -38,6 +31,7 @@ def submit_paycode(paycode, key):
 
 
 def main():
+
     streamlit_input_template = load_streamlit_template()
 
     sidebar_navigation()
@@ -60,7 +54,7 @@ def main():
             )
 
         with col3:
-            with st.popover("Feedback"):
+            with st.popover("😡Feedback😡"):
                 with st.form(key="feedback_form", clear_on_submit=True):
                     name = st.text_input("Name")
                     email = st.text_input("Email")
@@ -97,7 +91,7 @@ def main():
 
                 # Lønart input field
                 st.session_state["paycode"]["user_input"]["input"] = st.multiselect(
-                    "Lønart input",
+                    "Lønart input(s)",
                     options=streamlit_input_template["input"],
                     help="Help us fill these",
                 )
@@ -111,8 +105,6 @@ def main():
 
             with col2:
                 st.header("Lønart Information")
-
-                user_name = st.text_input("Enter your name: ")
 
                 catalog = st.session_state["paycode"]["catalog"]
                 st.text_input(
@@ -138,10 +130,9 @@ def main():
                     checked = catalog[key]
                     st.session_state["paycode"]["catalog"][key] = checked
 
-                    checked = '✅' if catalog[key] == "Ja" else '❌'
+                    checked = "✅" if catalog[key] == "Ja" else "❌"
 
                     st.write(f"{key}: {checked}")
-
 
                 st.info(f"IL-typer: {catalog['IL-typer']}")
 
@@ -167,14 +158,14 @@ def main():
             # TODO: Potential problem: if the user presses "enter" after filling out a field, the form will be submitted!
             st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
-            if user_name:
+            if st.session_state.user_name:
                 if st.session_state["submit_button"]:
-                    update_leaderboard(user_name)
+                    update_leaderboard(st.session_state.user_name)
                     key = f"paycode_{st.session_state['paycode']['catalog']['paycode']}.json"
                     submit_paycode(
                         json.dumps(st.session_state.paycode, ensure_ascii=False), key
                     )
-                    st.success(f"Document submitted by {user_name}!")
+                    st.success(f"Document submitted by {st.session_state.user_name}!")
 
                     st.session_state.paycode = None
 
@@ -183,4 +174,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "user_name" not in st.session_state:
+        with st.form(key="name_form"):
+            st.session_state.user_name = st.text_input("Enter your name")
+            submitted = st.form_submit_button("Submit")
+            if submitted and st.session_state.user_name:
+                st.experimental_rerun()
+    else:
+        main()
