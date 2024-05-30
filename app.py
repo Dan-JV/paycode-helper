@@ -147,8 +147,8 @@ def main():
             with col3:
                 st.header("User Input Summary")
 
-                if generate_ai_summary:
-                    print()
+                # if generate_ai_summary:
+                #     print()
 
                 st.header("AI Summary of Guides")
 
