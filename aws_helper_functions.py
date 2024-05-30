@@ -58,23 +58,22 @@ def cleanup_inprocessing_bucket():
     # move objects to other bucket and delete the bucket
     available_paycodes = list_available_paycodes(bucket="paycodehelper-processing")
     for paycode in available_paycodes:
-        s3.copy_object(
-            Bucket="paycodehelper-templates",
-            CopySource={"Bucket": "paycodehelper-processing", "Key": paycode},
-            Key=paycode,
+        move_paycode_from_source_to_target(
+            source_bucket="paycodehelper-processing",
+            target_bucket="paycodehelper-templates",
+            src_key=paycode,
+            target_key=paycode,
         )
-        s3.delete_object(Bucket="paycodehelper-processing", Key=paycode)
-
 
 def move_paycode_from_source_to_target(
-    source_bucket: str, target_bucket: str, paycode: str, key: str
+    source_bucket: str, target_bucket: str, src_key: str, target_key: str
 ):
     s3.copy_object(
         Bucket=target_bucket,
-        CopySource={"Bucket": source_bucket, "Key": key},
-        Key=paycode,
+        CopySource={"Bucket": source_bucket, "Key": src_key},
+        Key=target_key,
     )
-    # s3.delete_object(Bucket=source_bucket, Key=paycode)
+    s3.delete_object(Bucket=source_bucket, Key=src_key)
 
 
 def upload_feedback(feedback: dict, key: str):
