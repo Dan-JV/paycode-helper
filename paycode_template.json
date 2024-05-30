@@ -1,38 +1,36 @@
 {   
-    "prefilled": {
-        "paycode": null,
-        "name": null,
-        "print_sequence": null,
-        "type": null,
-        "kommentar": null
+    "catalog": {
+            "paycode": null,
+            "name": null,
+            "alternative_names": null,
+            "type": null,
+            "kommentar": null,
+            "input": null,
+            "E-indkomst": null,
+            "Før/efter skat" : null,
+            "Tillæg/fradrag" : null, 
+            "Ferieberettiget": null,
+            "Pensionsgrundlag": null,
+            "ATP-timer": null,
+            "IL-typer": null
     },
-    "bools": {
-            "Løndel/-felt standardnavn": null,
-            "AM-bidrag": null,
-            "A-indk. og A-skat": null,
-            "Feriepenge, SH opsp. og fritvalgs (0013)": null,
-            "Feriefridags opsp.": null,
-            "St. Bededagstillæg": null,
-            "Pension PO1 PO2 FO2 GRL 7)": null,
-            "Arbejdsmarkeds pension 5)": null,
-            "ATP-bidrag": null,
-            "Negativt fortegn 4)": null,
-            "Autoløn": null,
-            "Egen teksttekst 9) ikke saldo-tekst": null,
-            "Bruttoløn (0010)": null
+    "user_input": {
+        "text_fields": {
+            "input": "",
+            "general_description": "",
+            "critical_information": "",
+            "use_case_1": "",
+            "use_case_2": "",
+            "use_case_3": "",
+            "tags" : []
+        },
+        "bools":{
+            "AM-bidrag": null
+        }
     },
-    "text_fields": {
-        "Feltnummer i eindkomst 8)": "",
-        "Fastlønnede": "",
-        "Timelønnede": "",
-        "Akkord og tidlønnsarbejde": "",
-        "input": "",
-        "general_description": "",
-        "critical_information": "",
-        "use_case_1": "",
-        "use_case_2": "",
-        "use_case_3": ""
-    },
-    "guides" : [],
-    "tags" : []
-  }
+    "ai_generated": {
+        "user_input_summary": "",
+        "guide_summary": "",
+        "guides" : []
+    }
+}

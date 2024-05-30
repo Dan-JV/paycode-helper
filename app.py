@@ -1,156 +1,184 @@
+import boto3
+import json
 import streamlit as st
 from streamlit_tags import st_tags
 
 # must be the first line called to avoid it being called twice
 st.set_page_config(
-    page_title="guide buddy",
+    page_title="Data Entry Form",
     page_icon=None,
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
+
+st.title("Data Entry Form")
+
+from streamlit_utils import load_streamlit_template, sidebar_navigation
 
 from helper_functions import (
-    move_paycode_from_source_to_target,
     get_random_paycode,
-    load_streamlit_template,
-    read_leaderboard,
-    write_leaderboard,
-    update_leaderboard,
 )
 
-st.title("Paycode Helper")
+from aws_helper_functions import upload_feedback
+
+from leaderboard_utils import update_leaderboard
+
+from ai_summary import ai_summary
 
 
-def fill_paycode_form():
-    pass
+s3 = boto3.client("s3")
 
 
-def submit_paycode(paycode):
-    move_paycode_from_source_to_target(
-        source_bucket="paycodehelper-processing",
-        target_bucket="paycodehelper-documented",
-        paycode=paycode,
-    )
+def submit_paycode(paycode, key):
+    s3.put_object(Body=paycode, Bucket="paycodehelper-documented", Key=key)
+    s3.delete_object(Bucket="paycodehelper-processing", Key=key)
     st.write("Submitting paycode")
     st.success("Thank you!")
-    update_leaderboard()
-
-
-# Leaderboard function
-def display_leaderboard():
-    leaderboard_json = read_leaderboard()
-    leaderboard = leaderboard_json["leaderboard"]
-
-    st.markdown("## Leaderboard")
-
-    for i, entry in enumerate(leaderboard):
-        if i == 0:
-            medal = "🥇"
-        elif i == 1:
-            medal = "🥈"
-        elif i == 2:
-            medal = "🥉"
-        else:
-            medal = ""
-
-        st.write(f"{medal} {entry['name']}: {entry['score']} documents")
 
 
 def main():
-    # Set up the layout with three columns
     streamlit_input_template = load_streamlit_template()
 
-    col1, col2, col3, col4 = st.columns(4)
+    sidebar_navigation()
 
-    # User input form based on the provided JSON structure
-    with st.form(key="data_form"):
-        with col1:
-            st.subheader("Data Entry Form")
+    col1, col2, col3, col4, col5 = st.columns(5)
 
-            st.button(
-                "Pick Random Paycode",
-                on_click=get_random_paycode,
-                args=("paycodehelper-templates", "paycodehelper-processing"),
-            )
-            user_name = st.text_input("Enter your name: ")
+    with col1:
+        st.button(
+            "🎲Pick Random Paycode🎲",
+            on_click=get_random_paycode,  # TODO: if you have already submitted a paycode, the input form should be cleaned of previous user input
+            args=("paycodehelper-templates", "paycodehelper-processing"),
+        )
+    with col2:
+        generate_ai_summary = st.button("🤖Generate AI Summary🤖", on_click=ai_summary)
 
-            if "paycode" in st.session_state:
-                prefilled_fields = st.session_state["paycode"]["prefilled"]
+    if "paycode" in st.session_state:
 
-                st.markdown("#### Paycode: ")
-                st.info(f'{prefilled_fields["paycode"]}')
-                st.markdown("#### Name: ")
-                st.info(f'{prefilled_fields["name"]}')
-                st.markdown("#### Type: ")
-                st.info(f'{prefilled_fields["type"]}')
-                st.markdown("#### Kommentar: ")
-                st.info(f'{prefilled_fields["kommentar"]}')
+        with col3:
+            with st.popover("Feedback"):
+                with st.form(key="feedback_form", clear_on_submit=True):
+                    name = st.text_input("Name")
+                    email = st.text_input("Email")
+                    feedback = st.text_area("Feedback")
 
-            else:
-                st.info("No paycode selected", icon="ℹ")
-                st.markdown("#### Paycode Name: ")
-                st.info("")
-                st.markdown("#### Type: ")
-                st.info("")
-                st.markdown("#### Kommentar: ")
-                st.info("")
+                    feedback_dict = {"name": name, "email": email, "feedback": feedback}
 
-            st.subheader("Information")
-            for key in streamlit_input_template["text_area"]:
-                st.text_area(
-                    key, help=streamlit_input_template["text_area"][key]["help"]
+                    # Format filename
+                    key = f"paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json"
+
+                    submitted = st.form_submit_button("Submit")
+                    if submitted:
+
+                        upload_feedback(feedback_dict, key=key)
+
+                        st.success("Thank you for your feedback!")
+
+        with st.form(key="data_form", clear_on_submit=True):
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                st.header("Data Entry Form")
+
+                st.session_state["paycode"]["user_input"]["bools"] = st.toggle(
+                    "AM-bidrag", value=False
+                )
+                for key in streamlit_input_template["text_area"]:
+                    st.session_state["paycode"]["user_input"]["text_fields"][key] = (
+                        st.text_area(
+                            label=key,
+                            help=streamlit_input_template["text_area"][key]["help"],
+                        )
+                    )
+
+                # Lønart input field
+                st.session_state["paycode"]["user_input"]["input"] = st.multiselect(
+                    "Lønart input",
+                    options=streamlit_input_template["input"],
+                    help="Help us fill these",
                 )
 
-            st_tags(
-                label="Enter Keywords",
-                suggestions=streamlit_input_template["input"],
-                text="Press enter to add more",
-                maxtags=100,
-            )
+                tags = st_tags(
+                    label="Enter Keywords",
+                    text="Press enter to add more",
+                    value=[],
+                    maxtags=100,
+                )
 
-        with col2:
+            with col2:
+                st.header("Lønart Information")
 
-            st.subheader("Lønart input")
-            st.multiselect(
-                "test", options=streamlit_input_template["input"], help="test help"
-            )
+                user_name = st.text_input("Enter your name: ")
 
-            # TODO: Bools should be static information displayted in the middle column
-            st.subheader("lønbehandlingskategorier")
-            for key in streamlit_input_template["bools"]:
-                st.toggle(
-                    key,
-                    help=streamlit_input_template["bools"][key]["help"],
-                    value=streamlit_input_template["bools"][key]["default"],
+                catalog = st.session_state["paycode"]["catalog"]
+                st.text_input(
+                    label="Paycode",
+                    value=catalog["paycode"],
                     disabled=True,
                 )
+                st.text_input(
+                    label="Name",
+                    value=catalog["name"],
+                    disabled=True,
+                )
+                st.text_input(label="Type", value=catalog["type"], disabled=True)
+                st.text_input(
+                    label="Kommentar", value=catalog["kommentar"], disabled=True
+                )
+                st.info(f"Pensionsgrundlag: {catalog['Pensionsgrundlag']}")
+                st.info(f"E-indkomst: {catalog['E-indkomst']}")
 
-        submit_button = st.form_submit_button(label="Submit")
+                for key in ["Ferieberettiget", "ATP-timer"]:
+                    checkbox_container = st.container()
+                    checked = catalog[key]
 
-        if user_name and submit_button:
-            update_leaderboard(user_name)
-            submit_paycode()
-            st.success(f"Document submitted by {user_name}!")
+                    with checkbox_container:
+                        st.markdown(
+                            f"""
+                            <label>
+                                <input type="checkbox" {'checked' if checked else ''} disabled>
+                                {key} 
+                            </label>
+                            """,
+                            unsafe_allow_html=True,
+                        )
 
-    with col3:
-        st.header("AI Summary")
+                st.info(f"IL-typer: {catalog['IL-typer']}")
 
-        # Update placeholders
-        st.write(
-            """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie erat tortor, at mollis lorem iaculis ut. Aliquam erat volutpat. Sed mauris metus, congue ac quam ac, tincidunt sodales nulla. Nunc fermentum fringilla augue, sit amet mattis dolor finibus at. Etiam id feugiat diam, non imperdiet nisi. Cras vulputate suscipit tortor, a malesuada neque tristique id. Aliquam egestas, est eget pulvinar lacinia, tortor purus semper tortor, nec lacinia dolor sem a nisi. Vestibulum tincidunt quam magna, eu cursus justo ultrices quis. Vestibulum aliquet, eros in mollis sollicitudin, arcu odio finibus ante, vitae convallis lorem orci vitae orci."""
-        )
+            with col3:
+                st.header("User Input Summary")
 
-        st.header("Sources")
-        st.write(
-            """
-        1. Source one: https://example.com/source1
-        2. Source two: https://example.com/source2
-        3. Source three: https://example.com/source3
-        """
-        )
+                if generate_ai_summary:
+                    print()
 
-    with col4:
-        display_leaderboard()
+                st.header("AI Summary of Guides")
+
+                # Update placeholders
+                st.write("AI Summary")
+
+                st.header("Sources")
+                st.write(
+                    """
+                1. Source one: https://example.com/source1
+                2. Source two: https://example.com/source2
+                3. Source three: https://example.com/source3
+                """
+                )
+            # TODO: Potential problem: if the user presses "enter" after filling out a field, the form will be submitted!
+            st.session_state["submit_button"] = st.form_submit_button(label="Submit")
+
+            if user_name:
+                if st.session_state["submit_button"]:
+                    update_leaderboard(user_name)
+                    key = f"paycode_{st.session_state['paycode']['catalog']['paycode']}.json"
+                    submit_paycode(
+                        json.dumps(st.session_state.paycode, ensure_ascii=False), key
+                    )
+                    st.success(f"Document submitted by {user_name}!")
+
+                    st.session_state.paycode = None
+
+    else:
+        st.info("No paycode selected", icon="ℹ")
 
 
 if __name__ == "__main__":
