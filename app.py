@@ -21,6 +21,8 @@ from helper_functions import (
 
 from leaderboard_utils import update_leaderboard
 
+from feedback_utils import feedbackform
+
 from ai_summary import ai_summary
 
 
@@ -56,7 +58,7 @@ def main():
             st.button(
                 "😡Lønart Feeback😡",
                 on_click=feedbackform,
-                args=(f"{st.session_state.paycode["catalog"]["paycode"]}",),
+                args=(f"{st.session_state['paycode']['catalog']['paycode']}",),
             )
 
         with st.form(key="data_form", clear_on_submit=True):
