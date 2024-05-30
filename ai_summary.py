@@ -1,36 +1,36 @@
 
 
-
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import PromptTemplate
-from langchain.chains.llm import LLMChain
-from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain.docstore.document import Document
-
-
-summary_prompt = PromptTemplate(
-    input_variables=["text"],
-    template="{text}"
+from langchain.chat_models import ChatOpenAI
+from langchain.schema import (
+    HumanMessage
 )
 
-summary_variable_name = "data"
+from streamlit_utils import add_to_streamlit_session_state
 
-llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-1106")
-prompt = PromptTemplate.from_template(
-    "Summarize this content: {data}"
-)
-llm_chain = LLMChain(llm=llm, prompt=prompt)
-chain = StuffDocumentsChain(
-    llm_chain=llm_chain,
-    document_prompt=summary_prompt,
-    document_variable_name=summary_variable_name
-)
+# load the model
+chat = ChatOpenAI(model_name="gpt-4", temperature=0)
+
+template = """You are an advanced AI assistant that summarizes info about paycodes.
+You do not comment on the language, provide any translation, or comment on the paycode.
+You only summarize the paycode.
+You do not provide any thoughts on the paycode.
+
+Provide a summary that is no longer than the actual paycode information itself.
+
+Here's information on a paycode you want to summarize.
+
+==================
+Paycode: {paycode_text}
+==================
+"""
 
 
+@add_to_streamlit_session_state(name="ai_summary")
 def ai_summary(paycode):
-    doc = [Document(page_content=paycode, metadata={"text": f"{paycode}"})]
-    print(chain.run(doc))
+    # format prompt
+    prompt = template.format(paycode_text=paycode)
+    # generate summary
+    summary = chat([HumanMessage(content=prompt)])
+    return summary.content
 
 
-
-ai_summary("Mit navn er Johan")
