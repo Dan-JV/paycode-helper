@@ -20,7 +20,8 @@ from helper_functions import (
 )
 
 from leaderboard_utils import update_leaderboard
-from feedback_utils import feedbackform
+
+from ai_summary import ai_summary
 
 
 s3 = boto3.client("s3")
@@ -47,7 +48,7 @@ def main():
             args=("paycodehelper-templates", "paycodehelper-processing"),
         )
     with col2:
-        generate_ai_summary = st.button("🤖Generate AI Summary🤖")
+        generate_ai_summary = st.button("🤖Generate AI Summary🤖", on_click=ai_summary)
 
     if "paycode" in st.session_state:
 
