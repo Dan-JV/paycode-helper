@@ -10,6 +10,7 @@ def load_streamlit_template():
 
     return data
 
+
 def add_to_streamlit_session_state(name: str):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -20,3 +21,9 @@ def add_to_streamlit_session_state(name: str):
         return wrapper
 
     return decorator
+
+
+def sidebar_navigation():
+    with st.sidebar:
+        st.page_link("app.py", label="Home", icon="🏠")
+        st.page_link("pages/1_leaderboard.py", label="Leaderboard", icon="🎖️")

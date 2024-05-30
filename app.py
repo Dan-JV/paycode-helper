@@ -13,19 +13,13 @@ st.set_page_config(
 
 st.title("Data Entry Form")
 
-from streamlit_utils import load_streamlit_template
+from streamlit_utils import load_streamlit_template, sidebar_navigation
 
 from helper_functions import (
     get_random_paycode,
 )
 
 from leaderboard_utils import update_leaderboard
-
-
-def sidebar_navigation():
-    st.sidebar.title("Navigation")
-    options = st.sidebar.radio("Go to", ["Home", "Leaderboard"])
-    return options
 
 
 def fill_paycode_form():
@@ -45,7 +39,7 @@ def submit_paycode(paycode, key):
 def main():
     streamlit_input_template = load_streamlit_template()
 
-    choice = sidebar_navigation()
+    sidebar_navigation()
 
     col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -59,7 +53,7 @@ def main():
         generate_ai_summary = st.button("Generate AI Summary")
 
     if "paycode" in st.session_state:
-        with st.form(key="data_form"):
+        with st.form(key="data_form", clear_on_submit=True):
             col1, col2, col3 = st.columns(3)
 
             with col1:
@@ -146,6 +140,8 @@ def main():
                         json.dumps(st.session_state.paycode, ensure_ascii=False), key
                     )
                     st.success(f"Document submitted by {user_name}!")
+
+                    st.session_state.paycode = None
 
     else:
         st.info("No paycode selected", icon="ℹ")

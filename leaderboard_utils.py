@@ -8,6 +8,7 @@ s3 = boto3.client("s3")
 extras_bucket = "paycodehelper-extras"
 leaderboard_file = "leaderboard.json"
 
+
 def read_leaderboard():
     try:
         obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
@@ -52,12 +53,11 @@ def update_leaderboard(user_name):
     json_file["leaderboard"] = leaderboard
     write_leaderboard(json_file)
 
+
 # Leaderboard function
 def display_leaderboard():
     leaderboard_json = read_leaderboard()
     leaderboard = leaderboard_json["leaderboard"]
-
-    st.markdown("## Leaderboard")
 
     for i, entry in enumerate(leaderboard):
         if i == 0:
@@ -69,4 +69,4 @@ def display_leaderboard():
         else:
             medal = ""
 
-        st.write(f"{medal} {entry['name']}: {entry['score']} documents")
+        st.write(f"{i+1} - {medal} {entry['name']}: {entry['score']} documents")
