@@ -48,7 +48,7 @@ def update_leaderboard(user_name):
             user_found = True
             break
     if not user_found:
-        leaderboard.append({"namne": user_name, "score": 1})
+        leaderboard.append({"name": user_name, "score": 1})
     leaderboard = sorted(leaderboard, key=lambda x: x["score"], reverse=True)
     json_file["leaderboard"] = leaderboard
     write_leaderboard(json_file)
