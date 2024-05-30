@@ -133,20 +133,14 @@ def main():
 
                 for key in ["Ferieberettiget", "ATP-timer"]:
                     checkbox_container = st.container()
+
                     checked = catalog[key]
-                    
                     st.session_state["paycode"]["catalog"][key] = checked
 
-                    with checkbox_container:
-                        st.markdown(
-                            f"""
-                            <label>
-                                <input type="checkbox" {'checked' if 'Ja' else ''} disabled>
-                                {key} 
-                            </label>
-                            """,
-                            unsafe_allow_html=True,
-                        )
+                    checked = '✅' if catalog[key] == "Ja" else '❌'
+
+                    st.write(f"{key}: {checked}")
+
 
                 st.info(f"IL-typer: {catalog['IL-typer']}")
 
