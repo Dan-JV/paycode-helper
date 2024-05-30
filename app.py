@@ -19,9 +19,9 @@ from helper_functions import (
     get_random_paycode,
 )
 
-from leaderboard_utils import update_leaderboard
+from aws_helper_functions import upload_feedback
 
-from feedback_utils import feedbackform
+from leaderboard_utils import update_leaderboard
 
 from ai_summary import ai_summary
 
@@ -55,11 +55,23 @@ def main():
     if "paycode" in st.session_state:
 
         with col3:
-            st.button(
-                "😡Lønart Feeback😡",
-                on_click=feedbackform,
-                args=(f"{st.session_state['paycode']['catalog']['paycode']}",),
-            )
+            with st.popover("Feedback"):
+                with st.form(key="feedback_form", clear_on_submit=True):
+                    name = st.text_input("Name")
+                    email = st.text_input("Email")
+                    feedback = st.text_area("Feedback")
+
+                    feedback_dict = {"name": name, "email": email, "feedback": feedback}
+
+                    # Format filename
+                    key = f"paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json"
+
+                    submitted = st.form_submit_button("Submit")
+                    if submitted:
+
+                        upload_feedback(feedback_dict, key=key)
+
+                        st.success("Thank you for your feedback!")
 
         with st.form(key="data_form", clear_on_submit=True):
             col1, col2, col3 = st.columns(3)
