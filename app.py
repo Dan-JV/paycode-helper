@@ -2,6 +2,7 @@ import boto3
 import json
 import streamlit as st
 from streamlit_tags import st_tags
+from datetime import datetime
 
 # must be the first line called to avoid it being called twice
 st.set_page_config(
@@ -64,7 +65,7 @@ def main():
                     feedback_dict = {"name": name, "email": email, "feedback": feedback}
 
                     # Format filename
-                    key = f'paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json'
+                    key = f'{name}_{datetime.now().strftime("%Y-%m-%d-%H:%M:%S")}_paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json'
 
                     submitted = st.form_submit_button("Submit")
                     if submitted:
