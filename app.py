@@ -174,11 +174,14 @@ def main():
 
 
 if __name__ == "__main__":
-    if "user_name" not in st.session_state:
+    if "user_name" not in st.session_state or not st.session_state.user_name:
         with st.form(key="name_form"):
-            st.session_state.user_name = st.text_input("Enter your name")
+            user_name = st.text_input("Enter your name")
             submitted = st.form_submit_button("Submit")
-            if submitted and st.session_state.user_name:
+            if submitted and user_name:
+                st.session_state.user_name = user_name
                 st.experimental_rerun()
+            elif submitted and not user_name:
+                st.warning("Name cannot be empty. Please enter your name.")
     else:
         main()
