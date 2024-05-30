@@ -2,10 +2,13 @@
     "catalog": {
             "paycode": null,
             "name": null,
+            "alternative_names": null,
             "type": null,
             "kommentar": null,
             "input": null,
             "E-indkomst": null,
+            "Før/efter skat" : null,
+            "Tillæg/fradrag" : null, 
             "Ferieberettiget": null,
             "Pensionsgrundlag": null,
             "ATP-timer": null,
@@ -13,8 +16,6 @@
     },
     "user_input": {
         "text_fields": {
-            "Fastlønnede": "",
-            "Timelønnede": "",
             "input": "",
             "general_description": "",
             "critical_information": "",

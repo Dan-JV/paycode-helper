@@ -21,6 +21,7 @@ from helper_functions import (
 
 from leaderboard_utils import update_leaderboard
 
+
 def sidebar_navigation():
     st.sidebar.title("Navigation")
     options = st.sidebar.radio("Go to", ["Home", "Leaderboard"])
@@ -31,14 +32,14 @@ def fill_paycode_form():
     pass
 
 
-s3 = boto3.client('s3')
+s3 = boto3.client("s3")
+
 
 def submit_paycode(paycode, key):
     s3.put_object(Body=paycode, Bucket="paycodehelper-documented", Key=key)
     s3.delete_object(Bucket="paycodehelper-processing", Key=key)
     st.write("Submitting paycode")
     st.success("Thank you!")
-
 
 
 def main():
@@ -51,7 +52,7 @@ def main():
     with col1:
         st.button(
             "Pick Random Paycode",
-            on_click=get_random_paycode, # TODO: if you have already submitted a paycode, the input form should be cleaned of previous user input
+            on_click=get_random_paycode,  # TODO: if you have already submitted a paycode, the input form should be cleaned of previous user input
             args=("paycodehelper-templates", "paycodehelper-processing"),
         )
     with col2:
@@ -64,10 +65,15 @@ def main():
             with col1:
                 st.header("Data Entry Form")
 
-                st.session_state["paycode"]["user_input"]["bools"] = st.toggle("AM-bidrag", value=False)
+                st.session_state["paycode"]["user_input"]["bools"] = st.toggle(
+                    "AM-bidrag", value=False
+                )
                 for key in streamlit_input_template["text_area"]:
-                    st.session_state["paycode"]["user_input"]["text_fields"][key] = st.text_area(
-                        label=key, help=streamlit_input_template['text_area'][key]['help']
+                    st.session_state["paycode"]["user_input"]["text_fields"][key] = (
+                        st.text_area(
+                            label=key,
+                            help=streamlit_input_template["text_area"][key]["help"],
+                        )
                     )
 
                 # Lønart input field
@@ -89,16 +95,18 @@ def main():
 
                 user_name = st.text_input("Enter your name: ")
 
-                catalog= st.session_state["paycode"]["catalog"]
+                catalog = st.session_state["paycode"]["catalog"]
                 st.text_input(
-                    label="Paycode", value=catalog["paycode"], disabled=True,
+                    label="Paycode",
+                    value=catalog["paycode"],
+                    disabled=True,
                 )
                 st.text_input(
-                    label="Name", value=catalog["name"], disabled=True,
+                    label="Name",
+                    value=catalog["name"],
+                    disabled=True,
                 )
-                st.text_input(
-                    label="Type", value=catalog["type"], disabled=True
-                )
+                st.text_input(label="Type", value=catalog["type"], disabled=True)
                 st.text_input(
                     label="Kommentar", value=catalog["kommentar"], disabled=True
                 )
@@ -117,9 +125,7 @@ def main():
                 st.header("AI Summary of Guides")
 
                 # Update placeholders
-                st.write(
-                    "AI Summary"
-                )
+                st.write("AI Summary")
 
                 st.header("Sources")
                 st.write(
@@ -136,15 +142,13 @@ def main():
                 if st.session_state["submit_button"]:
                     update_leaderboard(user_name)
                     key = f"paycode_{st.session_state['paycode']['catalog']['paycode']}.json"
-                    submit_paycode(json.dumps(st.session_state.paycode, ensure_ascii=False), key)
+                    submit_paycode(
+                        json.dumps(st.session_state.paycode, ensure_ascii=False), key
+                    )
                     st.success(f"Document submitted by {user_name}!")
 
     else:
         st.info("No paycode selected", icon="ℹ")
-
-
-
-
 
 
 if __name__ == "__main__":
