@@ -18,8 +18,6 @@ sidebar_navigation()
 
 st.markdown(
     """
-# Guide to Payroll Types
-
 ## Lønart: 1181
 
 ### General
