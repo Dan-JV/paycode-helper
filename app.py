@@ -79,8 +79,8 @@ def main():
 
                 tags = st_tags(
                     label="Enter Keywords",
-                    suggestions=streamlit_input_template["input"],
                     text="Press enter to add more",
+                    value=[],
                     maxtags=100,
                 )
 
