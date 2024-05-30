@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.title("Data Entry Form")
+st.title("Future Paycodes🙏")
 
 from streamlit_utils import load_streamlit_template, sidebar_navigation
 from helper_functions import get_random_paycode
@@ -40,7 +40,7 @@ def main():
 
     with col1:
         st.button(
-            "🎲Pick Random Paycode🎲",
+            "Pick Random Paycode🎲",
             on_click=get_random_paycode,  # TODO: if you have already submitted a paycode, the input form should be cleaned of previous user input
             args=("paycodehelper-templates", "paycodehelper-processing"),
         )
@@ -48,13 +48,13 @@ def main():
     if "paycode" in st.session_state:
         with col2:
             st.button(
-                "🤖Generate AI Summary🤖",
+                "Generate AI Summary🤖",
                 on_click=ai_summary,
                 args=(st.session_state["paycode"],),
             )
 
         with col3:
-            with st.popover("😡Feedback😡"):
+            with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
                     name = st.text_input("Name")
                     email = st.text_input("Email")
