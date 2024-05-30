@@ -34,7 +34,7 @@ def create_json_objects_and_upload_to_s3(
             catalog["kommentar"] = paycode_data["Kommentar"][0]
 
 
-            catalog["E-indkomst"] = paycode_data.get("E-indkomst timer", None)[0]
+            catalog["E-indkomst"] = paycode_data.get("E-indkomst", None)[0]
             catalog["Ferieberettiget"] = paycode_data.get("Ferieberretiget", None)[0]
             catalog["Pensionsgrundlag"] = paycode_data.get("Pensionsgrundlag", None)[0]
             catalog["ATP-timer"] = paycode_data.get("ATP-Timer", None)[0]

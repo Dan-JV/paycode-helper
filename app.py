@@ -2,6 +2,7 @@ import boto3
 import json
 import streamlit as st
 from streamlit_tags import st_tags
+from datetime import datetime
 
 # must be the first line called to avoid it being called twice
 st.set_page_config(
@@ -23,7 +24,7 @@ from aws_helper_functions import upload_feedback
 
 from leaderboard_utils import update_leaderboard
 
-# from ai_summary import ai_summary
+from ai_summary import ai_summary
 
 
 s3 = boto3.client("s3")
@@ -49,10 +50,14 @@ def main():
             on_click=get_random_paycode,  # TODO: if you have already submitted a paycode, the input form should be cleaned of previous user input
             args=("paycodehelper-templates", "paycodehelper-processing"),
         )
-    # with col2:
-    #     generate_ai_summary = st.button("🤖Generate AI Summary🤖", on_click=ai_summary)
 
     if "paycode" in st.session_state:
+        with col2:
+            st.button(
+                "🤖Generate AI Summary🤖",
+                on_click=ai_summary,
+                args=(st.session_state["paycode"],),
+            )
 
         with col3:
             with st.popover("Feedback"):
@@ -64,7 +69,7 @@ def main():
                     feedback_dict = {"name": name, "email": email, "feedback": feedback}
 
                     # Format filename
-                    key = f'paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json'
+                    key = f'{name}_{datetime.now().strftime("%Y-%m-%d-%H:%M:%S")}_paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json'
 
                     submitted = st.form_submit_button("Submit")
                     if submitted:
@@ -129,26 +134,22 @@ def main():
 
                 for key in ["Ferieberettiget", "ATP-timer"]:
                     checkbox_container = st.container()
-                    checked = catalog[key]
 
-                    with checkbox_container:
-                        st.markdown(
-                            f"""
-                            <label>
-                                <input type="checkbox" {'checked' if checked else ''} disabled>
-                                {key} 
-                            </label>
-                            """,
-                            unsafe_allow_html=True,
-                        )
+                    checked = catalog[key]
+                    st.session_state["paycode"]["catalog"][key] = checked
+
+                    checked = '✅' if catalog[key] == "Ja" else '❌'
+
+                    st.write(f"{key}: {checked}")
+
 
                 st.info(f"IL-typer: {catalog['IL-typer']}")
 
             with col3:
                 st.header("User Input Summary")
 
-                # if generate_ai_summary:
-                #     print()
+                if "ai_summary" in st.session_state:
+                    st.write(st.session_state["ai_summary"])
 
                 st.header("AI Summary of Guides")
 

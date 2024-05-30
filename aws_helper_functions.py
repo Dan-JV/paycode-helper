@@ -2,6 +2,7 @@ import boto3
 import datetime
 import json
 import random
+import re
 
 from streamlit_utils import add_to_streamlit_session_state
 
@@ -65,6 +66,7 @@ def cleanup_inprocessing_bucket():
             target_key=paycode,
         )
 
+
 def move_paycode_from_source_to_target(
     source_bucket: str, target_bucket: str, src_key: str, target_key: str
 ):
@@ -79,3 +81,18 @@ def move_paycode_from_source_to_target(
 def upload_feedback(feedback: dict, key: str):
     feedback_json = json.dumps(feedback, ensure_ascii=False)
     s3.put_object(Body=feedback_json, Bucket=feedback_bucket, Key=key)
+
+
+def read_feedback():
+    files = list_available_paycodes(bucket=feedback_bucket)
+    feedback_data = {}
+    for file in files:
+        file_content = s3.get_object(Bucket=feedback_bucket, Key=file)
+        feedback_json = json.loads(file_content.get("Body").read().decode("utf-8"))
+        split_file_name = re.split("_|\.", file)
+        file_name = f"{split_file_name[2]}_{split_file_name[3]}"
+        if file_name not in feedback_data:
+            feedback_data[file_name] = []
+        feedback_data[file_name].append(feedback_json)
+
+    return feedback_data
