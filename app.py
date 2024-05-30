@@ -13,17 +13,14 @@ st.set_page_config(
 
 st.title("Data Entry Form")
 
-from streamlit_utils import load_streamlit_template, sidebar_navigation, feedbackform
+from streamlit_utils import load_streamlit_template, sidebar_navigation
 
 from helper_functions import (
     get_random_paycode,
 )
 
 from leaderboard_utils import update_leaderboard
-
-
-def fill_paycode_form():
-    pass
+from feedback_utils import feedbackform
 
 
 s3 = boto3.client("s3")
@@ -55,7 +52,11 @@ def main():
     if "paycode" in st.session_state:
 
         with col3:
-            st.button("😡Lønart Feeback😡", on_click=feedbackform)
+            st.button(
+                "😡Lønart Feeback😡",
+                on_click=feedbackform,
+                args=(f"{st.session_state.paycode["catalog"]["paycode"]}",),
+            )
 
         with st.form(key="data_form", clear_on_submit=True):
             col1, col2, col3 = st.columns(3)
@@ -123,7 +124,7 @@ def main():
                                 {key} 
                             </label>
                             """,
-                            unsafe_allow_html=True
+                            unsafe_allow_html=True,
                         )
 
                 st.info(f"IL-typer: {catalog['IL-typer']}")

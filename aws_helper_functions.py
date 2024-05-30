@@ -11,8 +11,8 @@ s3 = boto3.client("s3")
 template_bucket = "paycodehelper-templates"
 processing_bucket = "paycodehelper-processing"
 documented_bucket = "paycodehelper-documented"
+feedback_bucket = "paycodehelper-feedback"
 lock_timeout = datetime.timedelta(minutes=30)
-
 
 
 def list_available_paycodes(bucket: str) -> list:
@@ -26,6 +26,7 @@ def list_available_paycodes(bucket: str) -> list:
             for object in page["Contents"]:
                 available_paycodes.append(object["Key"])
     return available_paycodes
+
 
 @add_to_streamlit_session_state(name="paycode")
 def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
@@ -52,6 +53,7 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     # return the paycode json file
     return paycode_json
 
+
 def cleanup_inprocessing_bucket():
     # move objects to other bucket and delete the bucket
     available_paycodes = list_available_paycodes(bucket="paycodehelper-processing")
@@ -72,4 +74,9 @@ def move_paycode_from_source_to_target(
         CopySource={"Bucket": source_bucket, "Key": key},
         Key=paycode,
     )
-    #s3.delete_object(Bucket=source_bucket, Key=paycode)
+    # s3.delete_object(Bucket=source_bucket, Key=paycode)
+
+
+def upload_feedback(feedback: dict, key: str):
+    feedback_json = json.dumps(feedback, ensure_ascii=False)
+    s3.put_object(Body=feedback_json, Bucket=feedback_bucket, Key=key)
