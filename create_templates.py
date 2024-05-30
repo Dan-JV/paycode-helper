@@ -10,8 +10,7 @@ with open("paycode_template.json", "r", encoding="utf-8") as file:
 
 bucket_name = "paycodehelper-templates"
 
-paycode_df = pl.read_excel("data/Paycodes Standard.xlsx", sheet_name="Lønartskatalog")
-
+paycode_df = pl.read_excel("data/paycode_jens_cleaned.xlsx", sheet_name="Sheet1", infer_schema_length=int(1e10))
 
 def create_json_objects_and_upload_to_s3(
     paycodes, bucket_name, json_template, paycode_df
@@ -35,17 +34,15 @@ def create_json_objects_and_upload_to_s3(
             catalog["kommentar"] = paycode_data["Kommentar"][0]
 
 
-            catalog["E-indkomst"] = True if paycode_data.get("E-indkomst timer", None)[0] else False
-            catalog["Ferieberettiget"] = True if paycode_data.get("Ferieberretiget", None)[0] else False
-            catalog["Pensionsgrundlag"] = True if paycode_data.get("Pensionsgrundlag", None)[0] else False
-            catalog["ATP-timer"] = True if paycode_data.get("ATP-Timer", None)[0] else False
+            catalog["E-indkomst"] = paycode_data.get("E-indkomst timer", None)[0]
+            catalog["Ferieberettiget"] = paycode_data.get("Ferieberretiget", None)[0]
+            catalog["Pensionsgrundlag"] = paycode_data.get("Pensionsgrundlag", None)[0]
+            catalog["ATP-timer"] = paycode_data.get("ATP-Timer", None)[0]
             
             # TODO: For IL-typer, if type=FAST, input=SATS, ATP-timer=blank -> IL-typer="indeholdt i normtid" -> see rules in notion
-            catalog["IL-typer"] = paycode_data["IL-typer"][0] if paycode_data["IL-typer"][0] else None
+            catalog["IL-typer"] = paycode_data["IL-typer"][0]
             catalog["input"] = paycode_data["Input"][0]
 
-            user_input["text_fields"]["Fastlønnede"] = ""
-            user_input["text_fields"]["Timelønnede"] = ""
             user_input["text_fields"]["input"] = ""
             user_input["text_fields"]["general_description"] = ""
             user_input["text_fields"]["critical_information"] = ""

@@ -77,7 +77,7 @@ def main():
                     help="Help us fill these",
                 )
 
-                st.session_state["paycode"]["user_input"]["tags"] = st_tags(
+                tags = st_tags(
                     label="Enter Keywords",
                     suggestions=streamlit_input_template["input"],
                     text="Press enter to add more",
@@ -104,10 +104,24 @@ def main():
                 st.text_input(
                     label="Kommentar", value=catalog["kommentar"], disabled=True
                 )
-                st.toggle("Pensionsgrundlag", value=catalog["Pensionsgrundlag"])
-                st.toggle("E-indkomst", value=catalog["E-indkomst"])
-                st.toggle("Ferieberettiget", value=catalog["Ferieberettiget"])
-                st.toggle("ATP-timer", value=catalog["ATP-timer"])
+                st.info(f"Pensionsgrundlag: {catalog['Pensionsgrundlag']}")
+                st.info(f"E-indkomst: {catalog['E-indkomst']}")
+
+                for key in ["Ferieberettiget", "ATP-timer"]:
+                    checkbox_container = st.container()
+                    checked = catalog[key]
+
+                    with checkbox_container:
+                        st.markdown(
+                            f"""
+                            <label>
+                                <input type="checkbox" {'checked' if checked else ''} disabled>
+                                {key} 
+                            </label>
+                            """,
+                            unsafe_allow_html=True
+                        )
+
                 st.info(f"IL-typer: {catalog['IL-typer']}")
 
             with col3:
