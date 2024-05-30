@@ -55,6 +55,22 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     return paycode_json
 
 
+@add_to_streamlit_session_state(name="paycode")
+def get_paycode(bucket: str, key: str) -> dict:
+    """Retrieves a specific paycode json from the bucket given a filename key"""
+    try:
+        paycode_json_string = s3.get_object(Bucket=bucket, Key=key)
+        paycode_json = json.loads(
+            paycode_json_string.get("Body").read().decode("utf-8")
+        )
+
+    except Exception as e:
+        print(e)
+        paycode_json = None
+
+    return paycode_json
+
+
 def cleanup_inprocessing_bucket():
     # move objects to other bucket and delete the bucket
     available_paycodes = list_available_paycodes(bucket="paycodehelper-processing")
