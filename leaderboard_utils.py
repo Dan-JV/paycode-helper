@@ -69,4 +69,4 @@ def display_leaderboard():
         else:
             medal = ""
 
-        st.write(f"{i+1} - {medal} {entry['name']}: {entry['score']} documents")
+        st.write(f"{i+1} - {medal} {entry['name']}: {entry['score']} paycodes")

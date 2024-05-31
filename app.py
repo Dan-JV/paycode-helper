@@ -6,12 +6,14 @@ from datetime import datetime
 
 # must be the first line called to avoid it being called twice
 st.set_page_config(
-    page_title="Data Entry Form",
-    page_icon=None,
+    page_title="Future Paycodes",
+    page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
+
+st.image("imgs/visma_enterprise.png")
 st.title("Future Paycodes🙏")
 
 from streamlit_utils import load_streamlit_template, sidebar_navigation
@@ -28,6 +30,11 @@ def submit_paycode(paycode, key):
     s3.delete_object(Bucket="paycodehelper-processing", Key=key)
     st.write("Submitting paycode")
     st.success("Thank you!")
+
+
+def set_session_state(paycode, user_input):
+    st.session_state["paycode"] = paycode
+    st.session_state["user_input"] = user_input
 
 
 def main():
@@ -57,14 +64,10 @@ def main():
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
-                    paycode_name = st.text_input(
-                        label="Paycode Name",
-                        value=st.session_state["paycode"]["catalog"]["paycode"],
-                        disabled=True,
-                    )
-                    name = st.text_input("Name")
-                    email = st.text_input("Email")
-                    feedback = st.text_area("Feedback")
+                    paycode_name = st.text_input(label="Paycode Number", value=st.session_state["paycode"]["catalog"]["paycode"], disabled=True)
+                    name = st.text_input("Name", placeholder="Your Name")
+                    email = st.text_input("Email", placeholder="Your Email")
+                    feedback = st.text_area("Feedback", placeholder="Your Feedback")
 
                     feedback_dict = {
                         "paycode_name": paycode_name,
@@ -93,12 +96,13 @@ def main():
                     "AM-bidrag", value=False
                 )
                 for key in streamlit_input_template["text_area"]:
-                    st.session_state["paycode"]["user_input"]["text_fields"][key] = (
-                        st.text_area(
+                    st.text_area(
                             label=key,
+                            key=key,
+                            value=st.session_state["paycode"]["user_input"]["text_fields"].get(key, ""),
                             help=streamlit_input_template["text_area"][key]["help"],
-                        )
                     )
+                    
 
                 # Lønart input field
                 st.session_state["paycode"]["user_input"]["input"] = st.multiselect(
@@ -180,8 +184,6 @@ def main():
                     )
                     st.success(f"Document submitted by {st.session_state.user_name}!")
 
-                    st.session_state.paycode = None
-
     else:
         st.info("No paycode selected", icon="ℹ")
 
@@ -189,7 +191,7 @@ def main():
 if __name__ == "__main__":
     if "user_name" not in st.session_state or not st.session_state.user_name:
         with st.form(key="name_form"):
-            user_name = st.text_input("Enter your name")
+            user_name = st.text_input("Enter your name", placeholder="Your Name")
             submitted = st.form_submit_button("Submit")
             if submitted and user_name:
                 st.session_state.user_name = user_name
