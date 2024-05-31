@@ -32,7 +32,7 @@ def submit_paycode(paycode, key):
 
 def main():
 
-    st.title("Guide📖")
+    st.title("Lønarter📂")
 
     sidebar_navigation()
 
