@@ -32,6 +32,7 @@ def submit_paycode(paycode, key):
 
 def main():
 
+    # TODO convert to cashed function since its used in mutiple places and save as session state
     streamlit_input_template = load_streamlit_template()
 
     sidebar_navigation()
@@ -56,12 +57,21 @@ def main():
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
-                    paycode_name = st.text_input(label="Paycode Name", value=st.session_state["paycode"]["catalog"]["paycode"], disabled=True)
+                    paycode_name = st.text_input(
+                        label="Paycode Name",
+                        value=st.session_state["paycode"]["catalog"]["paycode"],
+                        disabled=True,
+                    )
                     name = st.text_input("Name")
                     email = st.text_input("Email")
                     feedback = st.text_area("Feedback")
 
-                    feedback_dict = {"paycode_name": paycode_name, "name": name, "email": email, "feedback": feedback}
+                    feedback_dict = {
+                        "paycode_name": paycode_name,
+                        "name": name,
+                        "email": email,
+                        "feedback": feedback,
+                    }
 
                     # Format filename
                     key = f'{name}_{datetime.now().strftime("%Y-%m-%d-%H:%M:%S")}_paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json'
@@ -97,11 +107,13 @@ def main():
                     help="Help us fill these",
                 )
 
-                tags = st_tags(
-                    label="Enter Keywords",
-                    text="Press enter to add more",
-                    value=[],
-                    maxtags=100,
+                st.session_state["paycode"]["user_input"]["text_fields"]["tags"] = (
+                    st_tags(
+                        label="Enter Keywords",
+                        text="Press enter to add more",
+                        value=[],
+                        maxtags=100,
+                    )
                 )
 
             with col2:
@@ -181,7 +193,7 @@ if __name__ == "__main__":
             submitted = st.form_submit_button("Submit")
             if submitted and user_name:
                 st.session_state.user_name = user_name
-                st.experimental_rerun()
+                st.rerun()
             elif submitted and not user_name:
                 st.warning("Name cannot be empty. Please enter your name.")
     else:
