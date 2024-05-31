@@ -8,3 +8,6 @@ font="serif"
 
 [client]
 showSidebarNavigation = false
+
+[server]
+headless = true
