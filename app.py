@@ -56,11 +56,12 @@ def main():
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
+                    paycode_name = st.text_input(label="Paycode Name", value=st.session_state["paycode"]["catalog"]["paycode"], disabled=True)
                     name = st.text_input("Name")
                     email = st.text_input("Email")
                     feedback = st.text_area("Feedback")
 
-                    feedback_dict = {"name": name, "email": email, "feedback": feedback}
+                    feedback_dict = {"paycode_name": paycode_name, "name": name, "email": email, "feedback": feedback}
 
                     # Format filename
                     key = f'{name}_{datetime.now().strftime("%Y-%m-%d-%H:%M:%S")}_paycode_{st.session_state["paycode"]["catalog"]["paycode"]}.json'
