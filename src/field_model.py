@@ -9,14 +9,20 @@ class FieldModel(BaseModel):
     name: str
     front_end_name: str
     type: Literal[
-        "text_input", "selectbox", "text_area", "multiselect", "tags", "write", "toggle"
-    ] 
+        "text_input",
+        "selectbox",
+        "text_area",
+        "multiselect",
+        "tags",
+        "write",
+        "toggle",
+        "markdown",
+    ]
     placeholder: Optional[str] = None
     help: Optional[str] = None
     input: Optional[str] = None
     options: Optional[List[str]] = None
     catalog_name: Optional[str] = None
-
 
 
 class FormTemplate(BaseModel):
@@ -46,6 +52,7 @@ class FeedbackTemplateModel(BaseModel):
 class TemplateModel(BaseModel):
     form_template: FormTemplateModel
     feedback_template: FeedbackTemplateModel
+
 
 def load_template(file_path: str) -> TemplateModel:
     with open(file_path, "r") as f:

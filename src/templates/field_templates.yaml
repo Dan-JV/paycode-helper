@@ -168,7 +168,7 @@ form_template:
           input: null
         - name: guides
           front_end_name: Guides
-          type: text_area
+          type: markdown
           placeholder: Enter guides
           help: "Help us fill this"
           input: null
