@@ -62,21 +62,27 @@ for paycode in paycodes:
         )
 
         # Parse out the urls from the chain response
-        guide_links = list(set([i.metadata["url"] for i in chain_response["context"]]))
-        guide_titels = list(
-            set([i.metadata["Header 1"] for i in chain_response["context"]])
-        )
-        guide_markdown = [
-            f"- [{guide_titels[i]}]({url})" for i, url in enumerate(guide_links)
-        ]
-        guide_markdown = "\n".join(guide_markdown)
-        guide_markdown = "#### Guides:\n" + guide_markdown
+        try:
+            guide_links = list(
+                set([i.metadata["url"] for i in chain_response["context"]])
+            )
+            guide_titels = list(
+                set([i.metadata["Header 1"] for i in chain_response["context"]])
+            )
+            guide_markdown = [
+                f"- [{guide_titels[i]}]({url})" for i, url in enumerate(guide_links)
+            ]
+            guide_markdown = "\n".join(guide_markdown)
+            guide_markdown = "#### Guides:\n" + guide_markdown
 
-        # Add the AI guide summary to the yaml object
-        yaml_object["areas"][2]["fields"][1]["input"] = chain_response["answer"]
+            # Add the AI guide summary to the yaml object
+            yaml_object["areas"][2]["fields"][1]["input"] = chain_response["answer"]
 
-        # Add the guides to the yaml object
-        yaml_object["areas"][2]["fields"][2]["input"] = guide_markdown
+            # Add the guides to the yaml object
+            yaml_object["areas"][2]["fields"][2]["input"] = guide_markdown
+
+        except Exception as e:
+            print(f"AI guide could not be generated for paycode {paycode} - {e}")
 
         yaml_string = yaml.dump(
             yaml_object, allow_unicode=True
