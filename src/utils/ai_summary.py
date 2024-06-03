@@ -25,21 +25,22 @@ Paycode: {paycode_text}
 
 def format_paycode_for_ai(paycode: dict) -> str:
     """
-    This function takes a paycode (dict) and returns a string that can be used to generate a summary.
-    """
-    """
-    name: value
-    
-    
+    Extracts name and input for fields in the paycode and returns a string that can be used to generate a summary.
     """
 
-    return paycode
+    paycode_description_string = ""
+
+    for area in paycode["areas"]:
+        for field in area["fields"]:
+            paycode_description_string += field["name"] + ": " + str(field["input"]) + "\n"
+        paycode_description_string += "\n\n"
+
+    return paycode_description_string
 
 
 @add_to_streamlit_session_state(name="ai_summary")
 def ai_summary(paycode):
-    # format prompt
-    prompt = template.format(paycode_text=paycode)
-    # generate summary
+    paycode_text = format_paycode_for_ai(paycode)
+    prompt = template.format(paycode_text=paycode_text)
     summary = chat([HumanMessage(content=prompt)])
     return summary.content
