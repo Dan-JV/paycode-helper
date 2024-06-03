@@ -1,8 +1,8 @@
 [theme]
 base="light"
-primaryColor="#FF4B4B" # used by certain widgets
+primaryColor="#96bfff" # used by certain widgets
 backgroundColor="#FFFFFF" # used by the main app background
-secondaryBackgroundColor="#F0F2F6" # used by the sidebar background and for most interactive widgets
+secondaryBackgroundColor="#d9e6fa" # used by the sidebar background and for most interactive widgets
 textColor="#31333F" # used by the main text color
 font="serif"
 
