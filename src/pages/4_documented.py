@@ -4,7 +4,6 @@ import boto3
 from src.field_model import load_template
 
 
-
 st.set_page_config(
     page_title="Documented📂",
     page_icon=None,
@@ -34,7 +33,7 @@ def submit_paycode(paycode, key):
 
 
 def main():
-    st.title("Lønarter📂")
+    st.title("Paycodes📂")
 
     sidebar_navigation()
 
@@ -44,15 +43,15 @@ def main():
         "Select a paycode",
         paycode_list,
     )
-    paycodenr = paycode
+    paycodenr = paycode.split("_")[1].split(".")[0]
     st.session_state["paycodenr"] = paycodenr
 
     # returns the paycode as a dictionary and a session state
     # TODO: make this paycode in session_state different from the one on the main page
-    paycode = get_paycode(bucket="paycodehelper-documented", key=paycodenr)
+    paycode = get_paycode(bucket="paycodehelper-documented", key=paycode)
     st.session_state["paycode"] = paycode
 
-    #st.json(st.session_state["paycode"], expanded=False)
+    # st.json(st.session_state["paycode"], expanded=False)
 
     file_path = "src/templates/field_templates.yaml"
     template = load_template(file_path).model_dump()
@@ -88,7 +87,6 @@ def main():
                         disabled = False
 
                     create_field(field, disabled)
-                        
 
                 paycodenr = st.session_state.get("paycodenr", "")
                 user_name = st.session_state.get("user_name", "")
@@ -108,7 +106,7 @@ def main():
                     upload_feedback(feedback_dict, key=key)
                     st.success("Thank you for your feedback!")
 
-    create_paycode_form(form_template) 
+    create_paycode_form(form_template)
 
 
 if __name__ == "__main__":  #

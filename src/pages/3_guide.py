@@ -17,7 +17,7 @@ sidebar_navigation()
 
 st.markdown(
     """
-## Lønart: 1181
+## Paycode: 1181
 
 ### General
 Lønart 1181, er en variabel lønart som ikke er ferieberettiget og kun går i pensionsgrundlag 6. Det eneste input der skal gives er et beløb.
@@ -37,7 +37,7 @@ st.divider()
 
 st.markdown(
     """
-## Lønart: 4760
+## Paycode: 4760
 
 ### General
 Lønart 4760 (udbetaling feriedage, primo), er en variabel lønart som bruges til at udbetale restferiedage, i henhold til ny ferielov. Det eneste input der skal gives er antal dage der ønskes udbetalt.
