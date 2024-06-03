@@ -9,8 +9,8 @@ st.set_page_config(
 )
 
 
-from leaderboard_utils import display_leaderboard
-from streamlit_utils import sidebar_navigation
+from src.utils.leaderboard_utils import display_leaderboard
+from src.pages.utils import sidebar_navigation
 
 
 st.title("Lønart Leaderboard")

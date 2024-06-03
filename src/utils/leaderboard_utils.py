@@ -17,25 +17,12 @@ def read_leaderboard():
         leaderboard = {}
     return leaderboard
 
-    # try:
-    #     obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
-    #     df = pl.read_csv(BytesIO(obj["Body"].read()))
-    # except s3.exceptions.NoSuchKey:
-    #     df = pl.DataFrame(columns=["name", "score"])
-    # return df
-
 
 def write_leaderboard(leaderboard):
     json_buffer = BytesIO(json.dumps(leaderboard).encode("utf-8"))
     s3.put_object(
         Bucket=extras_bucket, Key=leaderboard_file, Body=json_buffer.getvalue()
     )
-
-    # csv_buffer = BytesIO()
-    # df.to_csv(csv_buffer, index=False)
-    # s3.put_object(
-    #     Bucket=extras_bucket, Key=leaderboard_file, Body=csv_buffer.getvalue()
-    # )
 
 
 def update_leaderboard(user_name):
@@ -69,4 +56,9 @@ def display_leaderboard():
         else:
             medal = ""
 
-        st.write(f"{i+1} - {medal} {entry['name']}: {entry['score']} documents")
+        st.write(f"{i+1} - {medal} {entry['name']}: {entry['score']} paycodes")
+
+
+# Utility function to reset the leaderboard
+def reset_leaderboard():
+    write_leaderboard({"leaderboard": []})
