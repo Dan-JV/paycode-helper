@@ -6,14 +6,14 @@ from streamlit_tags import st_tags
 from src.utils.leaderboard_utils import update_leaderboard
 from src.utils.aws_helper_functions import submit_paycode
 
+
 def create_field(field: dict, disabled: bool = False):
     field_type = field["type"]
     label = field["front_end_name"]
     value = field["input"]
 
-
     if field_type == "text_input":
-        field["input"]= st.text_input(
+        field["input"] = st.text_input(
             label,
             value=value,
             help=field["help"],
@@ -30,7 +30,11 @@ def create_field(field: dict, disabled: bool = False):
         )
     elif field_type == "multiselect":
         field["input"] = st.multiselect(
-            label, options=field["options"], default=[], help=field["help"], disabled=disabled
+            label,
+            options=field["options"],
+            default=[],
+            help=field["help"],
+            disabled=disabled,
         )
     elif field_type == "text_area":
         field["input"] = st.text_area(
@@ -52,10 +56,17 @@ def create_field(field: dict, disabled: bool = False):
         )
     elif field_type == "write":
         field["input"] = st.write(label)
+
+    elif field_type == "markdown":
+        field["input"] = st.markdown(
+            body=value,
+            help=field["help"],
+        )
     else:
         st.error(f'Unsupported field type: {field["type"]}')
-    
+
     return field
+
 
 def create_paycode_form(form_template):
     with st.form(key="data_form", clear_on_submit=True):
@@ -96,7 +107,5 @@ def create_paycode_form(form_template):
                     form_template, allow_unicode=True
                 )  # Convert to YAML string
 
-                submit_paycode(
-                    yaml_string, key
-                )
+                submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state.user_name}!")
