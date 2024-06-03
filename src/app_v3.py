@@ -9,9 +9,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.image("imgs/visma_enterprise.png")
-st.title("Future Paycodes🙏")
-
 from src.pages.utils import sidebar_navigation
 from src.utils.aws_helper_functions import (
     upload_feedback,
@@ -19,8 +16,14 @@ from src.utils.aws_helper_functions import (
 )
 from src.utils.leaderboard_utils import update_leaderboard
 from src.utils.ai_summary import ai_summary
-from src.app_utils import create_field, create_paycode_form
+from src.app_utils import create_field, create_paycode_form, paycode_progress
 
+
+st.image("imgs/visma_enterprise.png")
+st.title("Future Paycodes🙏")
+st.divider()
+paycode_progress()
+st.divider()
 
 
 def main():
@@ -58,7 +61,9 @@ def main():
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
-                    for index, field in enumerate(template["feedback_template"]["fields"]):
+                    for index, field in enumerate(
+                        template["feedback_template"]["fields"]
+                    ):
 
                         if field["name"] == "user_name":
                             field["input"] = st.session_state.user_name
@@ -70,7 +75,6 @@ def main():
                             disabled = False
 
                         create_field(field, disabled)
-                        
 
                     paycodenr = st.session_state.get("paycodenr", "")
                     user_name = st.session_state.get("user_name", "")
@@ -92,9 +96,6 @@ def main():
                         update_leaderboard(user_name)
 
         create_paycode_form(form_template)
-
-
-
 
 
 if __name__ == "__main__":
