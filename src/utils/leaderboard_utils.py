@@ -57,3 +57,8 @@ def display_leaderboard():
             medal = ""
 
         st.write(f"{i+1} - {medal} {entry['name']}: {entry['score']} paycodes")
+
+
+# Utility function to reset the leaderboard
+def reset_leaderboard():
+    write_leaderboard({"leaderboard": []})
