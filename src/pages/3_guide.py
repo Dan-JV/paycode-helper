@@ -8,8 +8,7 @@ st.set_page_config(
 )
 
 
-from streamlit_utils import sidebar_navigation
-from aws_helper_functions import read_feedback
+from src.pages.utils import sidebar_navigation
 
 st.title("Guide📖")
 

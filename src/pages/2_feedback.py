@@ -1,6 +1,5 @@
 import streamlit as st
 import re
-import datetime
 
 st.set_page_config(
     page_title="Feedback",
@@ -10,8 +9,8 @@ st.set_page_config(
 )
 
 
-from streamlit_utils import sidebar_navigation
-from aws_helper_functions import read_feedback
+from src.pages.utils import sidebar_navigation
+from src.utils.aws_helper_functions import read_feedback
 
 st.title("Feedback")
 
