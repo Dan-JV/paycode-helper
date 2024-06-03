@@ -17,6 +17,7 @@ class FieldModel(BaseModel):
         "write",
         "toggle",
         "markdown",
+        "bool_Ja_Nej",
     ]
     placeholder: Optional[str] = None
     help: Optional[str] = None

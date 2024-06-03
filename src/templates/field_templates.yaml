@@ -6,7 +6,7 @@ form_template:
       description: The user provides this information
       fields:
         - name: input
-          front_end_name: Input
+          front_end_name: Input(s)
           type: multiselect
           placeholder: Enter employee name
           help: Full name of the employee
@@ -92,7 +92,7 @@ form_template:
           front_end_name: Kommentar
           catalog_name: Kommentar
           type: text_input
-          placeholder: Enter comment
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: input
@@ -126,7 +126,7 @@ form_template:
         - name: ferieberettiget
           front_end_name: Ferieberettiget
           catalog_name: Ferieberretiget
-          type: toggle
+          type: bool_Ja_Nej
           placeholder: Enter ferieberettiget
           help: "Help us fill this"
           input: null
@@ -140,7 +140,7 @@ form_template:
         - name: ATP_timer
           front_end_name: ATP Timer
           catalog_name: ATP-Timer
-          type: toggle
+          type: bool_Ja_Nej
           placeholder: Enter ATP timer
           help: "Help us fill this"
           input: null
@@ -170,7 +170,7 @@ form_template:
           front_end_name: Guides
           type: markdown
           placeholder: Enter guides
-          help: "Help us fill this"
+          help: "Guides that Guide helper thinks are relevant"
           input: null
 
 feedback_template:
