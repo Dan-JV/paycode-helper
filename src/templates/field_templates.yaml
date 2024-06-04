@@ -38,7 +38,7 @@ form_template:
         - name: important_information
           front_end_name: Important information
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt bør indeholde enhver kritisk information relateret til lønart og dens brug"
           input: null
         - name: use_case_1
           front_end_name: Use case 1
