@@ -95,7 +95,7 @@ def main():
                         st.success("Thank you for your feedback!")
                         update_leaderboard(user_name)
 
-        create_paycode_form(form_template)
+        create_paycode_form(form_template, "paycode")
 
 
 if __name__ == "__main__":

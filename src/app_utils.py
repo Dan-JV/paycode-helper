@@ -76,7 +76,7 @@ def create_field(field: dict, disabled: bool = False):
     return field
 
 
-def create_paycode_form(form_template):
+def create_paycode_form(form_template, paycode_session_state_name):
     with st.form(key="data_form", clear_on_submit=True):
         col1, col2, col3 = st.columns(3)
 
@@ -85,10 +85,10 @@ def create_paycode_form(form_template):
             with col1:
                 if area["name"] == "User Input":
                     st.header(
-                        f"User Input for paycode {st.session_state.paycode['areas'][1]['fields'][0]['input']}"
+                        f"User Input for paycode {st.session_state[paycode_session_state_name]['areas'][1]['fields'][0]['input']}"
                     )
                     st.subheader(
-                        f"{st.session_state.paycode['areas'][1]['fields'][1]['input']}"
+                        f"{st.session_state[paycode_session_state_name]['areas'][1]['fields'][1]['input']}"
                     )
 
                     with st.expander(area["name"], expanded=True):
@@ -122,6 +122,8 @@ def create_paycode_form(form_template):
 
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state.user_name}!")
+        else:
+            st.error("Please enter your name to submit the paycode") #TODO: not having entered name should not be possible at this point
 
 
 st.cache_data(ttl=60)

@@ -52,7 +52,6 @@ def main():
         # returns the paycode as a dictionary and a session state
         # TODO: make this paycode in session_state different from the one on the main page
         paycode = get_paycode(bucket="paycodehelper-documented", key=paycode)
-        st.session_state["paycode"] = paycode
 
         # st.json(st.session_state["paycode"], expanded=False)
 
@@ -69,7 +68,7 @@ def main():
             st.button(
                 "Generate AI Summary🤖",
                 on_click=ai_summary,
-                args=(st.session_state["paycode"],),
+                args=(st.session_state["documented_paycode"],),
             )
             if "ai_summary" in st.session_state:
                 form_template["areas"][2]["fields"][0]["input"] = st.session_state[
@@ -83,10 +82,10 @@ def main():
                     ):
 
                         if field["name"] == "user_name":
-                            field["input"] = st.session_state.user_name
+                            field["input"] = st.session_state["user_name"]
                             disabled = True
                         elif field["name"] == "paycodenr":
-                            field["input"] = st.session_state.paycodenr
+                            field["input"] = st.session_state["paycodenr"]
                             disabled = True
                         else:
                             disabled = False
@@ -111,7 +110,7 @@ def main():
                         upload_feedback(feedback_dict, key=key)
                         st.success("Thank you for your feedback!")
 
-        create_paycode_form(form_template)
+        create_paycode_form(form_template, "documented_paycode")
 
 
 if __name__ == "__main__":  #
