@@ -17,7 +17,6 @@ documented_bucket = "paycodehelper-documented"
 feedback_bucket = "paycodehelper-feedback"
 lock_timeout = datetime.timedelta(minutes=30)
 
-
 def upload_yaml_object(
     s3_client, bucket_name, paycode_yaml_string, paycodenr, verbose=False
 ):
@@ -26,11 +25,9 @@ def upload_yaml_object(
     if verbose:
         print(f"Uploaded paycode {key} to S3 bucket {bucket_name}")
 
-
 @add_to_streamlit_session_state(name="paycodenr")
 def get_paycodenr(paycode: str) -> str:
     return paycode.split("_")[1].split(".")[0]
-
 
 def submit_paycode(paycode, key):
     s3.put_object(Body=paycode, Bucket="paycodehelper-documented", Key=key)
@@ -76,17 +73,21 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     paycode_yaml = yaml.safe_load(paycode_string)
 
     # Delete the paycode from the source bucket
-    # s3.delete_object(Bucket=source_bucket, Key=paycode_object)
+    s3.delete_object(Bucket=source_bucket, Key=paycode_object)
 
     return paycode_yaml
 
 
-@add_to_streamlit_session_state(name="paycode")
+@add_to_streamlit_session_state(name="documented_paycode")
 def get_paycode(bucket: str, key: str) -> dict:
     """Retrieves a specific paycode json from the bucket given a filename key"""
     try:
         paycode_object = s3.get_object(Bucket=bucket, Key=key)
-        paycode = yaml.safe_load(paycode_object.get("Body").read().decode("utf-8"))
+        paycode = yaml.safe_load(
+            paycode_object.get("Body").read().decode("utf-8")
+        )
+
+        return paycode
 
     except Exception as e:
         print(e)
