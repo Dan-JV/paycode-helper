@@ -4,7 +4,16 @@ import streamlit as st
 from streamlit_tags import st_tags
 
 from src.utils.leaderboard_utils import update_leaderboard
-from src.utils.aws_helper_functions import get_random_paycode, submit_paycode, list_available_paycodes
+from src.utils.aws_helper_functions import (
+    get_random_paycode,
+    submit_paycode,
+    list_available_paycodes,
+)
+
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
 
 
 def create_field(field: dict, disabled: bool = False):
@@ -52,7 +61,10 @@ def create_field(field: dict, disabled: bool = False):
         )
     elif field_type == "toggle":
         field["input"] = st.toggle(
-            label=label, value=value == True, help=field["help"], disabled=disabled,
+            label=label,
+            value=value == True,
+            help=field["help"],
+            disabled=disabled,
         )
     elif field_type == "write":
         field["input"] = st.write(label)
@@ -123,11 +135,14 @@ def create_paycode_form(form_template, paycode_session_state_name):
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state['user_name']}!")
 
+
 st.cache_data(ttl=60)
 
 
 def paycode_progress():
-    num_documented_paycodes = len(list_available_paycodes("paycodehelper-documented"))
+    num_documented_paycodes = len(
+        list_available_paycodes(bucket_config.documented_bucket)
+    )
 
     if num_documented_paycodes > 100:
         progress_text = (
