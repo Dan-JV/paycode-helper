@@ -16,9 +16,10 @@ form_template:
             - Sats
             - Beløb
             - Procent
-            - Reducer ej
-            - Pens. firmabeløb
-            - Pens. firma %
+            - Firma procent
+            - Firmabeløb
+            - Medarbejder procent
+            - Medarbejder beløb
             - Pensionsgrundlag
             - Saldo
             - Årstal
@@ -30,7 +31,9 @@ form_template:
         - name: general_description
           front_end_name: Generel beskrivelse
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde en generel beskrivelse af lønart og dens anvendelse
+          
+          Eksempel: Dette er en lønart der bliver brugt til bonus som er ferieberettiget og går i pensionsgrundlag 2,3,6."
           input: null
         - name: important_information
           front_end_name: Important information
@@ -40,22 +43,30 @@ form_template:
         - name: use_case_1
           front_end_name: Use case 1
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
+          
+          Eksempel: Udbetaler kvartalsbonus"
           input: null
         - name: use_case_2
           front_end_name: Use case 2
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
+          
+          Eksempel: Udbetaling af månedensmedarbejder bonus"
           input: null
         - name: use_case_3
           front_end_name: Use case 3
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
+          
+          Eksempel: Udbetaling af provision"
           input: null
         - name: tags
           front_end_name: Tags
           type: tags
-          help: "Helps us fill this"
+          help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart
+          
+          Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
     - name: Catalog Input
       description: Data from the paycodes catalog
