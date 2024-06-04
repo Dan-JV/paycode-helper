@@ -58,6 +58,7 @@ def main():
                 form_template["areas"][2]["fields"][0]["input"] = st.session_state[
                     "ai_summary"
                 ]
+                del st.session_state["ai_summary"]
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
