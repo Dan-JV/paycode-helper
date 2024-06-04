@@ -84,7 +84,7 @@ def create_paycode_form(form_template):
         for area in form_template["areas"]:
             with col1:
                 if area["name"] == "User Input":
-                    st.header(f"User Input for paycode {st.session_state.paycode["areas"][1]["fields"][0]["input"]}")
+                    st.header(f"User Input for paycode {st.session_state.paycode['areas'][1]['fields'][0]['input']}")
                     st.subheader(f"{st.session_state.paycode["areas"][1]["fields"][1]["input"]}")
 
                     with st.expander(area["name"], expanded=True):
