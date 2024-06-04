@@ -16,9 +16,10 @@ form_template:
             - Sats
             - Beløb
             - Procent
-            - Reducer ej
-            - Pens. firmabeløb
-            - Pens. firma %
+            - Firma procent
+            - Firmabeløb
+            - Medarbejder procent
+            - Medarbejder beløb
             - Pensionsgrundlag
             - Saldo
             - Årstal
@@ -30,32 +31,42 @@ form_template:
         - name: general_description
           front_end_name: Generel beskrivelse
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde en generel beskrivelse af lønart og dens anvendelse
+          
+          Eksempel: Dette er en lønart der bliver brugt til bonus som er ferieberettiget og går i pensionsgrundlag 2,3,6."
           input: null
         - name: important_information
           front_end_name: Important information
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt bør indeholde enhver kritisk information relateret til lønart og dens brug"
           input: null
         - name: use_case_1
           front_end_name: Use case 1
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
+          
+          Eksempel: Udbetaler kvartalsbonus"
           input: null
         - name: use_case_2
           front_end_name: Use case 2
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
+          
+          Eksempel: Udbetaling af månedensmedarbejder bonus"
           input: null
         - name: use_case_3
           front_end_name: Use case 3
           type: text_area
-          help: "Helps us fill this"
+          help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
+          
+          Eksempel: Udbetaling af provision"
           input: null
         - name: tags
           front_end_name: Tags
           type: tags
-          help: "Helps us fill this"
+          help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart
+          
+          Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
     - name: Catalog Input
       description: Data from the paycodes catalog
@@ -64,28 +75,28 @@ form_template:
           front_end_name: Paycode Number
           catalog_name: Lønartnr
           type: text_input
-          placeholder: Enter paycode number
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: paycodename
           front_end_name: Paycode Name
           catalog_name: Navn
           type: text_input
-          placeholder: Enter paycode name
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: alternative_names
           front_end_name: Alternative names
           catalog_name: Alternative_Navne
           type: text_input
-          placeholder: Enter alternative names
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: type
           front_end_name: Type
           catalog_name: Type
           type: text_input
-          placeholder: Enter type
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: kommentar
@@ -99,56 +110,56 @@ form_template:
           front_end_name: Input
           catalog_name: Input
           type: text_input
-          placeholder: Enter input
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: e_indkomst
           front_end_name: E-Indkomst
           catalog_name: E-indkomst
           type: text_input
-          placeholder: Enter e-indkomst
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: før_efter_skat
           front_end_name: Før/Efter Skat
           catalog_name: Før/efter skat
           type: text_input
-          placeholder: Enter før/efter skat
+          placeholder: 
           help: help us fill this
           input: null
         - name: tillæg_fradrag
           front_end_name: Tillæg/Fradrag
           catalog_name: Tillæg/fradrag
           type: text_input
-          placeholder: Enter tillæg/fradrag
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: ferieberettiget
           front_end_name: Ferieberettiget
           catalog_name: Ferieberretiget
           type: bool_Ja_Nej
-          placeholder: Enter ferieberettiget
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: pensionsgrundlag
           front_end_name: Pensionsgrundlag
           catalog_name: Pensionsgrundlag
           type: text_input
-          placeholder: Enter pensionsgrundlag
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: ATP_timer
           front_end_name: ATP Timer
           catalog_name: ATP-Timer
           type: bool_Ja_Nej
-          placeholder: Enter ATP timer
+          placeholder: 
           help: "Help us fill this"
           input: null
         - name: IL_typer
           front_end_name: IL Typer
           catalog_name: IL-typer
           type: text_input
-          placeholder: Enter IL typer
+          placeholder: 
           help: "Help us fill this"
           input: null
     - name: AI Input
