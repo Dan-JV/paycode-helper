@@ -19,7 +19,7 @@ from src.utils.ai_summary import ai_summary
 from src.app_utils import create_field, create_paycode_form, paycode_progress
 
 
-st.image("imgs/visma_enterprise.png")
+# st.image("imgs/visma_enterprise.png")
 st.title("Future Paycodes🙏")
 st.divider()
 paycode_progress()
