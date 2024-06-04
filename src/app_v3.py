@@ -27,6 +27,8 @@ st.divider()
 
 
 def main():
+
+
     file_path = "src/templates/field_templates.yaml"
     template = load_template(file_path).model_dump()
     form_template = template["form_template"]
@@ -52,7 +54,7 @@ def main():
             st.button(
                 "Generate AI Summary🤖",
                 on_click=ai_summary,
-                args=(st.session_state["paycode"],),
+                args=(st.session_state["paycode"],)
             )
             if "ai_summary" in st.session_state:
                 form_template["areas"][2]["fields"][0]["input"] = st.session_state[
@@ -98,6 +100,11 @@ def main():
 
         create_paycode_form(form_template, "paycode")
 
+        if st.session_state["submit_button"]:
+            get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
+
+
+
 
 if __name__ == "__main__":
     if "user_name" not in st.session_state or not st.session_state.user_name:
@@ -106,7 +113,7 @@ if __name__ == "__main__":
             submitted = st.form_submit_button("Submit")
 
             if submitted and user_name:
-                st.session_state.user_name = user_name
+                st.session_state["user_name"] = user_name
                 st.rerun()
             elif submitted and not user_name:
                 st.warning("Name cannot be empty. Please enter your name.")
