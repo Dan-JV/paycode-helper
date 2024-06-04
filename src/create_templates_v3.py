@@ -8,6 +8,11 @@ from src.utils.helper_functions import create_yaml_object
 
 from src.RAG_pipeline.pipeline import create_pipeline
 
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
+
 form_template = load_template("src/templates/field_templates.yaml")
 form_template = form_template.form_template
 
@@ -43,7 +48,6 @@ system_prompt: str = system_prompts[1].messages[0].prompt.template
 
 
 s3 = boto3.client("s3")
-bucket_name = "paycodehelper-templates"  # Update with your S3 bucket name
 
 for paycode in paycodes:
     paycode_data = paycode_df.filter(pl.col("Lønartnr") == paycode).to_dict(
@@ -93,6 +97,6 @@ for paycode in paycodes:
         yaml_string = yaml.dump(
             yaml_object, allow_unicode=True
         )  # Convert to YAML string
-        upload_yaml_object(s3, bucket_name, yaml_string, paycode)
+        upload_yaml_object(s3, bucket_config.template_bucket, yaml_string, paycode)
     else:
         print(f"Paycode {paycode} not found in paycode_df")

@@ -4,14 +4,18 @@ import polars as pl
 import boto3
 import json
 
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
+
 s3 = boto3.client("s3")
-extras_bucket = "paycodehelper-extras"
 leaderboard_file = "leaderboard.json"
 
 
 def read_leaderboard():
     try:
-        obj = s3.get_object(Bucket=extras_bucket, Key=leaderboard_file)
+        obj = s3.get_object(Bucket=bucket_config.extras_bucket, Key=leaderboard_file)
         leaderboard = json.loads(obj["Body"].read().decode("utf-8"))
     except s3.exceptions.NoSuchKey:
         leaderboard = {}
@@ -21,7 +25,9 @@ def read_leaderboard():
 def write_leaderboard(leaderboard):
     json_buffer = BytesIO(json.dumps(leaderboard).encode("utf-8"))
     s3.put_object(
-        Bucket=extras_bucket, Key=leaderboard_file, Body=json_buffer.getvalue()
+        Bucket=bucket_config.extras_bucket,
+        Key=leaderboard_file,
+        Body=json_buffer.getvalue(),
     )
 
 

@@ -2,6 +2,11 @@ from datetime import datetime
 import streamlit as st
 from src.field_model import load_template
 
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
+
 st.set_page_config(
     page_title="Future Paycodes",
     page_icon="imgs/page_icon.png",
@@ -42,7 +47,7 @@ def main():
         st.button(
             "Pick Random Paycode🎲",
             on_click=get_random_paycode,
-            args=("paycodehelper-templates", "paycodehelper-processing"),
+            args=(bucket_config.template_bucket, bucket_config.processing_bucket),
         )
     if not "paycode" in st.session_state:
         st.info("No paycode selected", icon="ℹ")

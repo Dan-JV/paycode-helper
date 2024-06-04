@@ -2,6 +2,10 @@ from datetime import datetime
 import streamlit as st
 import boto3
 from src.field_model import load_template
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
 
 
 st.set_page_config(
@@ -19,9 +23,9 @@ from src.utils.aws_helper_functions import list_available_paycodes, get_paycode
 from src.app_utils import create_field, create_paycode_form
 
 
-@st.cache_data(ttl=120)
+@st.cache_data(ttl=30)
 def get_paycode_list():
-    paycodes_list = list_available_paycodes(bucket="paycodehelper-documented")
+    paycodes_list = list_available_paycodes(bucket=bucket_config.documented_bucket)
     return paycodes_list
 
 
@@ -29,7 +33,7 @@ s3 = boto3.client("s3")
 
 
 def submit_paycode(paycode, key):
-    s3.put_object(Body=paycode, Bucket="paycodehelper-documented", Key=key)
+    s3.put_object(Body=paycode, Bucket=bucket_config.documented_bucket, Key=key)
 
 
 def main():
@@ -51,7 +55,7 @@ def main():
 
         # returns the paycode as a dictionary and a session state
         # TODO: make this paycode in session_state different from the one on the main page
-        paycode = get_paycode(bucket="paycodehelper-documented", key=paycode)
+        paycode = get_paycode(bucket=bucket_config.documented_bucket, key=paycode)
 
         # st.json(st.session_state["paycode"], expanded=False)
 
