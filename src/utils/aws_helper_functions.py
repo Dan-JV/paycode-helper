@@ -73,7 +73,7 @@ def get_random_paycode(source_bucket: str, target_bucket: str) -> dict:
     paycode_yaml = yaml.safe_load(paycode_string)
 
     # Delete the paycode from the source bucket
-    s3.delete_object(Bucket=source_bucket, Key=paycode_object)
+    s3.delete_object(Bucket=source_bucket, Key=paycodenr)
 
     return paycode_yaml
 
