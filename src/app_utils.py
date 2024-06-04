@@ -64,11 +64,11 @@ def create_field(field: dict, disabled: bool = False):
         )
     elif field_type == "bool_Ja_Nej":
         if value == "Ja":
-            st.text(label,help=field["help"])
+            st.text(label, help=field["help"])
             st.markdown("✅")
-            
+
         elif value == "Nej":
-            st.text(label,help=field["help"])
+            st.text(label, help=field["help"])
             st.markdown("❌")
     else:
         st.error(f'Unsupported field type: {field["type"]}')
@@ -84,8 +84,12 @@ def create_paycode_form(form_template):
         for area in form_template["areas"]:
             with col1:
                 if area["name"] == "User Input":
-                    st.header(f"User Input for paycode {st.session_state.paycode['areas'][1]['fields'][0]['input']}")
-                    st.subheader(f"{st.session_state.paycode["areas"][1]["fields"][1]["input"]}")
+                    st.header(
+                        f"User Input for paycode {st.session_state.paycode['areas'][1]['fields'][0]['input']}"
+                    )
+                    st.subheader(
+                        f"{st.session_state.paycode['areas'][1]['fields'][1]['input']}"
+                    )
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
@@ -119,17 +123,21 @@ def create_paycode_form(form_template):
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state.user_name}!")
 
+
 st.cache_data(ttl=60)
+
+
 def paycode_progress():
     num_documented_paycodes = len(list_available_paycodes("paycodehelper-documented"))
 
     if num_documented_paycodes > 100:
-        progress_text = f"All paycodes documented 🎉 - Count : {num_documented_paycodes} / 100"
+        progress_text = (
+            f"All paycodes documented 🎉 - Count : {num_documented_paycodes} / 100"
+        )
         st.progress(num_documented_paycodes, text=progress_text)
 
     else:
-        progress_text = f"Documented paycodes 🚀 - Count : {num_documented_paycodes} / 100"
+        progress_text = (
+            f"Documented paycodes 🚀 - Count : {num_documented_paycodes} / 100"
+        )
         st.progress(num_documented_paycodes, text=progress_text)
-
-
-
