@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Guide📖",
-    page_icon=None,
+    page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )

@@ -2,8 +2,8 @@ import streamlit as st
 
 
 st.set_page_config(
-    page_title="Lønart Leaderboard",
-    page_icon=None,
+    page_title="Leaderboard",
+    page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )

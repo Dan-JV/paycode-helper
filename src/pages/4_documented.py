@@ -6,7 +6,7 @@ from src.field_model import load_template
 
 st.set_page_config(
     page_title="Documented📂",
-    page_icon=None,
+    page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
