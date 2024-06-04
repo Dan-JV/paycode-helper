@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit_tags import st_tags
 
 from src.utils.leaderboard_utils import update_leaderboard
-from src.utils.aws_helper_functions import submit_paycode, list_available_paycodes
+from src.utils.aws_helper_functions import get_random_paycode, submit_paycode, list_available_paycodes
 
 
 def create_field(field: dict, disabled: bool = False):
@@ -52,7 +52,7 @@ def create_field(field: dict, disabled: bool = False):
         )
     elif field_type == "toggle":
         field["input"] = st.toggle(
-            label=label, value=value == True, help=field["help"], disabled=disabled
+            label=label, value=value == True, help=field["help"], disabled=disabled,
         )
     elif field_type == "write":
         field["input"] = st.write(label)
@@ -111,9 +111,9 @@ def create_paycode_form(form_template, paycode_session_state_name):
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
-        if st.session_state.user_name:
+        if st.session_state["user_name"]:
             if st.session_state["submit_button"]:
-                update_leaderboard(st.session_state.user_name)
+                update_leaderboard(st.session_state["user_name"])
                 key = f"paycode_{st.session_state['paycodenr']}.yaml"
 
                 yaml_string = yaml.dump(
@@ -121,10 +121,7 @@ def create_paycode_form(form_template, paycode_session_state_name):
                 )  # Convert to YAML string
 
                 submit_paycode(yaml_string, key)
-                st.success(f"Document submitted by {st.session_state.user_name}!")
-        else:
-            st.error("Please enter your name to submit the paycode") #TODO: not having entered name should not be possible at this point
-
+                st.success(f"Document submitted by {st.session_state['user_name']}!")
 
 st.cache_data(ttl=60)
 
