@@ -120,6 +120,8 @@ def create_paycode_form(form_template, paycode_session_state_name):
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
                             create_field(field, disabled=True)
+        
+        st.info("Please review the paycode information and AI summary before submitting")
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
