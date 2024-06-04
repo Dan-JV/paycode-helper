@@ -88,7 +88,7 @@ form_template:
         - name: alternative_names
           front_end_name: Alternative names
           catalog_name: Alternative_Navne
-          type: text_input
+          type: text_area
           placeholder: 
           help: "Help us fill this"
           input: null
@@ -167,22 +167,22 @@ form_template:
       fields:
         - name: user_input_summary
           front_end_name: User Input Summary
-          type: text_area
-          placeholder: Enter user input summary
-          help: "Help us fill this"
-          input: null
-        - name: guide_summary
-          front_end_name: Guide Summary
-          type: text_area
-          placeholder: Enter guide summary
-          help: "Help us fill this"
-          input: null
-        - name: guides
-          front_end_name: Guides
           type: markdown
-          placeholder: Enter guides
-          help: "Guides that Guide helper thinks are relevant"
-          input: null
+          placeholder: 
+          help: "Efter at have klikket på knappen Generer AI-oversigt vil dette felt blive udfyldt"
+          input: " "
+        # - name: guide_summary
+        #   front_end_name: Guide Summary
+        #   type: text_area
+        #   placeholder: Enter guide summary
+        #   help: "Help us fill this"
+        #   input: null
+        # - name: guides
+        #   front_end_name: Guides
+        #   type: markdown
+        #   placeholder: Enter guides
+        #   help: "Guides that Guide helper thinks are relevant"
+        #   input: null
 
 feedback_template:
   name: Feedback Template
