@@ -53,36 +53,42 @@ for paycode in paycodes:
     if len(paycode_data["Lønartnr"]) == 1:
         yaml_object = create_yaml_object(paycode_data, form_template.model_dump())
 
-        chain_response = chain.invoke(
-            {
-                "input": f"Kan du beskrive variabel lønart {paycode}",
-                "chat_history": chain.get_session_history(paycode),
-            },
-            config={"configurable": {"session_id": paycode}},
-        )
+        # TODO: Commented out since guide buddy kinda bad. Need to fix
+        # Should probably be moved to a separate function
+        ######################################################
+        #
+        #
+        #
+        # chain_response = chain.invoke(
+        #     {
+        #         "input": f"Kan du beskrive variabel lønart {paycode}",
+        #         "chat_history": chain.get_session_history(paycode),
+        #     },
+        #     config={"configurable": {"session_id": paycode}},
+        # )
 
-        # Parse out the urls from the chain response
-        try:
-            guide_links = list(
-                set([i.metadata["url"] for i in chain_response["context"]])
-            )
-            guide_titels = list(
-                set([i.metadata["Header 1"] for i in chain_response["context"]])
-            )
-            guide_markdown = [
-                f"- [{guide_titels[i]}]({url})" for i, url in enumerate(guide_links)
-            ]
-            guide_markdown = "\n".join(guide_markdown)
-            guide_markdown = "#### Guides:\n" + guide_markdown
+        # # Parse out the urls from the chain response
+        # try:
+        #     guide_links = list(
+        #         set([i.metadata["url"] for i in chain_response["context"]])
+        #     )
+        #     guide_titels = list(
+        #         set([i.metadata["Header 1"] for i in chain_response["context"]])
+        #     )
+        #     guide_markdown = [
+        #         f"- [{guide_titels[i]}]({url})" for i, url in enumerate(guide_links)
+        #     ]
+        #     guide_markdown = "\n".join(guide_markdown)
+        #     guide_markdown = "#### Guides:\n" + guide_markdown
 
-            # Add the AI guide summary to the yaml object
-            yaml_object["areas"][2]["fields"][1]["input"] = chain_response["answer"]
+        #     # Add the AI guide summary to the yaml object
+        #     yaml_object["areas"][2]["fields"][1]["input"] = chain_response["answer"]
 
-            # Add the guides to the yaml object
-            yaml_object["areas"][2]["fields"][2]["input"] = guide_markdown
+        #     # Add the guides to the yaml object
+        #     yaml_object["areas"][2]["fields"][2]["input"] = guide_markdown
 
-        except Exception as e:
-            print(f"AI guide could not be generated for paycode {paycode} - {e}")
+        # except Exception as e:
+        #     print(f"AI guide could not be generated for paycode {paycode} - {e}")
 
         yaml_string = yaml.dump(
             yaml_object, allow_unicode=True
