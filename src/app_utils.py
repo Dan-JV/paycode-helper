@@ -44,6 +44,7 @@ def create_field(field: dict, disabled: bool = False):
             default=field["input"],
             help=field["help"],
             disabled=disabled,
+            placeholder=field["placeholder"],
         )
     elif field_type == "text_area":
         field["input"] = st.text_area(
@@ -97,7 +98,7 @@ def create_paycode_form(form_template, paycode_session_state_name):
             with col1:
                 if area["name"] == "User Input":
                     st.header(
-                        f"User Input for paycode {st.session_state[paycode_session_state_name]['areas'][1]['fields'][0]['input']}"
+                        f"Bruger Input for Lønart {st.session_state[paycode_session_state_name]['areas'][1]['fields'][0]['input']}"
                     )
                     st.subheader(
                         f"{st.session_state[paycode_session_state_name]['areas'][1]['fields'][1]['input']}"
@@ -108,21 +109,21 @@ def create_paycode_form(form_template, paycode_session_state_name):
                             create_field(field, disabled=False)
             with col2:
                 if area["name"] == "Catalog Input":
-                    st.header("Paycode Information")
+                    st.header("Lønartskatalog Information")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
                             create_field(field, disabled=True)
             with col3:
                 if area["name"] == "AI Input":
-                    st.header("AI Paycode Summary")
-                    st.info("Lønarts Summary Genereret af AI", icon="ℹ")
+                    st.header("AI Referat")
+                    st.info("Lønarts Referat Genereret af AI", icon="ℹ")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
                             create_field(field, disabled=False)
         
-        st.info("Please review the paycode information and AI summary before submitting", icon="🚨")
+        st.info("Har du sikret at alt er korrekt?", icon="ℹ")
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
@@ -149,12 +150,12 @@ def paycode_progress():
 
     if num_documented_paycodes > 100:
         progress_text = (
-            f"All paycodes documented 🎉 - Count : {num_documented_paycodes} / 100"
+            f"Alle lønarter dokumenteret 🎉 - Antal : {num_documented_paycodes} / 100"
         )
         st.progress(num_documented_paycodes, text=progress_text)
 
     else:
         progress_text = (
-            f"Documented paycodes 🚀 - Count : {num_documented_paycodes} / 100"
+            f"Dokumenterede Lønarter 🚀 - Antal: {num_documented_paycodes} / 100"
         )
         st.progress(num_documented_paycodes, text=progress_text)

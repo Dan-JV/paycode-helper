@@ -9,7 +9,7 @@ bucket_config = get_bucket_config()
 
 
 st.set_page_config(
-    page_title="Documented📂",
+    page_title="Lønarter",
     page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -47,7 +47,7 @@ def main():
     if paycode_list:
 
         paycode = st.selectbox(
-            "Select a paycode",
+            "Vælg en Lønart",
             paycode_list,
         )
         paycodenr = paycode.split("_")[1].split(".")[0]
@@ -70,7 +70,7 @@ def main():
 
         with col2:
             st.button(
-                "Generate AI Summary🤖",
+                "Generer et AI Referat",
                 on_click=ai_summary,
                 args=(st.session_state["documented_paycode"],),
             )
@@ -112,7 +112,7 @@ def main():
 
                     if submitted:
                         upload_feedback(feedback_dict, key=key)
-                        st.success("Thank you for your feedback!")
+                        st.success("Tak for din feedback!")
 
         create_paycode_form(form_template, "documented_paycode")
 
