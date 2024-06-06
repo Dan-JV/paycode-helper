@@ -10,6 +10,8 @@ from src.utils.aws_helper_functions import (
     list_available_paycodes,
 )
 
+from src.utils.ai_summary import ai_summary
+
 from src.config import get_bucket_config
 
 # Get the appropriate bucket configuration
@@ -20,6 +22,10 @@ def create_field(field: dict, disabled: bool = False):
     field_type = field["type"]
     label = field["front_end_name"]
     value = field["input"]
+
+    # if value is None, set it to an empty string
+    if value is None:
+        value = ""
 
     if field_type == "text_input":
         field["input"] = st.text_input(
@@ -71,7 +77,8 @@ def create_field(field: dict, disabled: bool = False):
         field["input"] = st.write(label)
 
     elif field_type == "markdown":
-        st.markdown(
+        placeholder = st.empty()
+        placeholder.markdown(
             body=value,
             help=field["help"],
         )
@@ -138,6 +145,17 @@ def create_paycode_form(form_template, paycode_session_state_name):
 
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state['user_name']}!")
+                
+                if "ai_summary" in st.session_state:
+                    del st.session_state["ai_summary"]
+                else:
+                    ai_summary = ai_summary(st.session_state["paycode"])
+                    form_template["areas"][2]["fields"][0]["input"] = ai_summary
+                
+                get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
+
+                
+                st.rerun()
 
 
 st.cache_data(ttl=60)

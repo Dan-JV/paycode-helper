@@ -68,8 +68,6 @@ def main():
 
         paycode = get_paycode(bucket=bucket_config.documented_bucket, key=paycode)
 
-        # st.json(st.session_state["paycode"], expanded=False)
-
         file_path = "src/templates/field_templates.yaml"
         template = load_template(file_path).model_dump()
         form_template = template["form_template"]

@@ -20,7 +20,7 @@ prod_bucket_config = BucketConfig(
     template_bucket="prod-paycodehelper-templates",
     processing_bucket="prod-paycodehelper-processing",
     documented_bucket="prod-paycodehelper-documented",
-    feedback_bucket="paycodehelper-feedback",
+    feedback_bucket="prod-paycodehelper-feedback",
     extras_bucket="prod-paycodehelper-extras",
     lock_timeout=timedelta(minutes=30),
 )

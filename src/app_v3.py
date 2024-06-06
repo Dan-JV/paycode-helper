@@ -19,7 +19,6 @@ from src.utils.aws_helper_functions import (
     upload_feedback,
     get_random_paycode,
 )
-from src.utils.leaderboard_utils import update_leaderboard
 from src.utils.ai_summary import ai_summary
 from src.app_utils import create_field, create_paycode_form, paycode_progress
 
@@ -65,7 +64,6 @@ def main():
                 form_template["areas"][2]["fields"][0]["input"] = st.session_state[
                     "ai_summary"
                 ]
-                del st.session_state["ai_summary"]
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
@@ -101,13 +99,11 @@ def main():
                     if submitted:
                         upload_feedback(feedback_dict, key=key)
                         st.success("Tak for din feedback!")
-                        update_leaderboard(user_name)
 
         create_paycode_form(form_template, "paycode")
 
-        if st.session_state["submit_button"]:
-            get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
-
+        
+        
 
 
 

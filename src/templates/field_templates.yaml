@@ -89,11 +89,11 @@ form_template:
           help: ""
           input: null
         - name: alternative_names
-          front_end_name: Alternative Navne
+          front_end_name: Konkrete Navne
           catalog_name: Alternative_Navne
           type: text_area
           placeholder: 
-          help: "Help us fill this"
+          help: "Alternative Navne, Nicher, Ofte brugte udtryk"
           input: null
         - name: type
           front_end_name: Type
