@@ -203,3 +203,38 @@ feedback_template:
       placeholder: Skriv din feedback her
       help: ""
       input: null
+
+verification_template:
+  name: Verification Template
+  description: This is a template for the submission verification
+  areas:
+    - name: Verification template
+      description: This is a template for the submission verification
+      fields:
+        - name: input_verification
+          front_end_name: Er input-feltet korrekt?
+          type: radio
+          placeholder: null
+          help: ""
+          input: null
+
+        - name: input_comment
+          front_end_name: Hvis Nej - Input uddyb
+          type: text_input
+          placeholder: Uddyb
+          help: ""
+          input: null
+
+        - name: ai_verification
+          front_end_name: Er AI-resuméet acceptabelt?
+          type: radio
+          placeholder: 
+          help: ""
+          input: null
+
+        - name: ai_comment
+          front_end_name: Hvis Nej - AI uddyb
+          type: text_input
+          placeholder: Uddyb
+          help: ""
+          input: null
