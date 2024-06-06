@@ -64,16 +64,14 @@ form_template:
         - name: tags
           front_end_name: Tags
           type: tags
-          help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart
-          
-          Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
+          help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
         - name: guides
           front_end_name: Guides Fra Lønarts Hjælpecenteret
           type: tags
           help: "Input links fra help.vismaenterprise.dk som er relevante til denne lønart"
           input: null
-      - name: Catalog Input
+    - name: Catalog Input
       description: Data from the paycodes catalog
       fields:
         - name: paycodenr
