@@ -171,6 +171,12 @@ form_template:
           placeholder: 
           help: "Efter at have klikket på knappen Generer AI-oversigt vil dette felt blive udfyldt"
           input: " "
+        - name: guides
+          front_end_name: Guides
+          type: markdown
+          placeholder: 
+          help: " "
+          input: " "
         # - name: guide_summary
         #   front_end_name: Guide Summary
         #   type: text_area
