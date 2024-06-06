@@ -98,7 +98,7 @@ def create_paycode_form(form_template, paycode_session_state_name):
             with col1:
                 if area["name"] == "User Input":
                     st.header(
-                        f"Bruger Input for Lønart {st.session_state[paycode_session_state_name]['areas'][1]['fields'][0]['input']}"
+                        f"Lønart: {st.session_state[paycode_session_state_name]['areas'][1]['fields'][0]['input']}"
                     )
                     st.subheader(
                         f"{st.session_state[paycode_session_state_name]['areas'][1]['fields'][1]['input']}"
@@ -109,7 +109,7 @@ def create_paycode_form(form_template, paycode_session_state_name):
                             create_field(field, disabled=False)
             with col2:
                 if area["name"] == "Catalog Input":
-                    st.header("Lønartskatalog Information")
+                    st.header("Lønartskatalog")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:

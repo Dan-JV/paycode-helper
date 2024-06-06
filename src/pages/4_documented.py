@@ -31,6 +31,7 @@ if "user_name" not in st.session_state or not st.session_state.user_name:
 # @st.cache_data(ttl=5)
 def get_paycode_list():
     paycodes_list = list_available_paycodes(bucket=bucket_config.documented_bucket)
+
     if len(paycodes_list) == 0:
         st.session_state["paycode_list"] = None
 
