@@ -51,7 +51,7 @@ if "paycode_list" not in st.session_state:
 
 
 def main():
-    st.title("Paycodes📂")
+    st.title("Lønarter📂")
 
     sidebar_navigation()
 
