@@ -6,7 +6,7 @@ from src.field_model import load_template
 from src.utils.aws_helper_functions import upload_yaml_object
 from src.utils.helper_functions import create_yaml_object
 
-from src.RAG_pipeline.pipeline import create_pipeline
+# from src.RAG_pipeline.pipeline import create_pipeline
 
 from src.config import get_bucket_config
 
@@ -16,7 +16,7 @@ bucket_config = get_bucket_config()
 form_template = load_template("src/templates/field_templates.yaml")
 form_template = form_template.form_template
 
-paycodes = pl.read_csv("data/paycode_variabel_count.csv")["LOENARTNR"].to_list()
+paycodes = pl.read_csv("data/raw/paycode_variabel_count.csv")["LOENARTNR"].to_list()
 
 catalog_input_columns = [
     field.catalog_name
@@ -28,28 +28,28 @@ catalog_input_columns = [
 
 
 paycode_df = pl.read_csv(
-    "data/paycode_jens_cleaned_with_count.csv",
+    "data/processed/paycode_jens_cleaned_final.csv",
     infer_schema_length=int(1e10),
     columns=catalog_input_columns,
 )
 
 
 # RAG config and setup for AI guide summary
-def load_config():
-    with open("src/RAG_pipeline/conf/config.yaml", "r") as file:
-        config = yaml.safe_load(file)
-    return config
+# def load_config():
+#     with open("src/RAG_pipeline/conf/config.yaml", "r") as file:
+#         config = yaml.safe_load(file)
+#     return config
 
 
-config = load_config()
-chain = create_pipeline(**config["system_settings"])
-system_prompts: list = chain.get_prompts()
-system_prompt: str = system_prompts[1].messages[0].prompt.template
+# config = load_config()
+# chain = create_pipeline(**config["system_settings"])
+# system_prompts: list = chain.get_prompts()
+# system_prompt: str = system_prompts[1].messages[0].prompt.template
 
 
 s3 = boto3.client("s3")
 
-for paycode in paycodes:
+for paycode in paycodes[0:10]:
     paycode_data = paycode_df.filter(pl.col("Lønartnr") == paycode).to_dict(
         as_series=False
     )
