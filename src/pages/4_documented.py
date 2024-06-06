@@ -65,8 +65,6 @@ def main():
         paycodenr = paycode.split("_")[1].split(".")[0]
         st.session_state["paycodenr"] = paycodenr
 
-        # returns the paycode as a dictionary and a session state
-        # TODO: make this paycode in session_state different from the one on the main page
         paycode = get_paycode(bucket=bucket_config.documented_bucket, key=paycode)
 
         # st.json(st.session_state["paycode"], expanded=False)
