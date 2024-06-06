@@ -1,14 +1,18 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Guide📖",
-    page_icon=None,
+    page_title="Vejledning",
+    page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 
 from src.pages.utils import sidebar_navigation
+
+# If user reloads the page, redirect to login page
+if "user_name" not in st.session_state or not st.session_state.user_name:
+    st.switch_page("app_v3.py")
 
 st.title("Guide📖")
 

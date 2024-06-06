@@ -3,7 +3,7 @@ import re
 
 st.set_page_config(
     page_title="Feedback",
-    page_icon=None,
+    page_icon="imgs/page_icon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -11,6 +11,11 @@ st.set_page_config(
 
 from src.pages.utils import sidebar_navigation
 from src.utils.aws_helper_functions import read_feedback
+
+
+# If user reloads the page, redirect to login page
+if "user_name" not in st.session_state or not st.session_state.user_name:
+    st.switch_page("app_v3.py")
 
 st.title("Feedback")
 

@@ -2,6 +2,11 @@ from datetime import datetime
 import streamlit as st
 from src.field_model import load_template
 
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
+
 st.set_page_config(
     page_title="Future Paycodes",
     page_icon="imgs/page_icon.png",
@@ -19,14 +24,16 @@ from src.utils.ai_summary import ai_summary
 from src.app_utils import create_field, create_paycode_form, paycode_progress
 
 
-st.image("imgs/visma_enterprise.png")
-st.title("Future Paycodes🙏")
+# st.image("imgs/visma_enterprise.png")
+st.title("Fremtidige Lønarter🙏")
 st.divider()
 paycode_progress()
 st.divider()
 
 
 def main():
+
+
     file_path = "src/templates/field_templates.yaml"
     template = load_template(file_path).model_dump()
     form_template = template["form_template"]
@@ -38,26 +45,27 @@ def main():
 
     with col1:
         st.button(
-            "Pick Random Paycode🎲",
+            "Vælg Tilfældig Lønart🎲",
             on_click=get_random_paycode,
-            args=("paycodehelper-templates", "paycodehelper-processing"),
+            args=(bucket_config.template_bucket, bucket_config.processing_bucket),
         )
     if not "paycode" in st.session_state:
-        st.info("No paycode selected", icon="ℹ")
+        st.info("Vælg en Lønart", icon="ℹ")
     else:
         paycode = st.session_state["paycode"]
         form_template["areas"] = paycode["areas"]
 
         with col2:
             st.button(
-                "Generate AI Summary🤖",
+                "Generer et AI Referat",
                 on_click=ai_summary,
-                args=(st.session_state["paycode"],),
+                args=(st.session_state["paycode"],)
             )
             if "ai_summary" in st.session_state:
                 form_template["areas"][2]["fields"][0]["input"] = st.session_state[
                     "ai_summary"
                 ]
+                del st.session_state["ai_summary"]
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
@@ -92,22 +100,27 @@ def main():
 
                     if submitted:
                         upload_feedback(feedback_dict, key=key)
-                        st.success("Thank you for your feedback!")
+                        st.success("Tak for din feedback!")
                         update_leaderboard(user_name)
 
-        create_paycode_form(form_template)
+        create_paycode_form(form_template, "paycode")
+
+        if st.session_state["submit_button"]:
+            get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
+
+
 
 
 if __name__ == "__main__":
     if "user_name" not in st.session_state or not st.session_state.user_name:
         with st.form(key="name_form"):
-            user_name = st.text_input("Enter your name", placeholder="Your Name")
+            user_name = st.text_input("Skriv dit navn", placeholder="Your Name")
             submitted = st.form_submit_button("Submit")
 
             if submitted and user_name:
-                st.session_state.user_name = user_name
+                st.session_state["user_name"] = user_name
                 st.rerun()
             elif submitted and not user_name:
-                st.warning("Name cannot be empty. Please enter your name.")
+                st.warning("Dit navn kan ikke vær tomt")
     else:
         main()

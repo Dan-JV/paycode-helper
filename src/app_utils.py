@@ -4,7 +4,16 @@ import streamlit as st
 from streamlit_tags import st_tags
 
 from src.utils.leaderboard_utils import update_leaderboard
-from src.utils.aws_helper_functions import submit_paycode, list_available_paycodes
+from src.utils.aws_helper_functions import (
+    get_random_paycode,
+    submit_paycode,
+    list_available_paycodes,
+)
+
+from src.config import get_bucket_config
+
+# Get the appropriate bucket configuration
+bucket_config = get_bucket_config()
 
 
 def create_field(field: dict, disabled: bool = False):
@@ -35,6 +44,7 @@ def create_field(field: dict, disabled: bool = False):
             default=field["input"],
             help=field["help"],
             disabled=disabled,
+            placeholder=field["placeholder"],
         )
     elif field_type == "text_area":
         field["input"] = st.text_area(
@@ -52,7 +62,10 @@ def create_field(field: dict, disabled: bool = False):
         )
     elif field_type == "toggle":
         field["input"] = st.toggle(
-            label=label, value=value == True, help=field["help"], disabled=disabled
+            label=label,
+            value=value == True,
+            help=field["help"],
+            disabled=disabled,
         )
     elif field_type == "write":
         field["input"] = st.write(label)
@@ -76,7 +89,7 @@ def create_field(field: dict, disabled: bool = False):
     return field
 
 
-def create_paycode_form(form_template):
+def create_paycode_form(form_template, paycode_session_state_name):
     with st.form(key="data_form", clear_on_submit=True):
         col1, col2, col3 = st.columns(3)
 
@@ -85,10 +98,10 @@ def create_paycode_form(form_template):
             with col1:
                 if area["name"] == "User Input":
                     st.header(
-                        f"User Input for paycode {st.session_state.paycode['areas'][1]['fields'][0]['input']}"
+                        f"Lønart: {st.session_state[paycode_session_state_name]['areas'][1]['fields'][0]['input']}"
                     )
                     st.subheader(
-                        f"{st.session_state.paycode['areas'][1]['fields'][1]['input']}"
+                        f"{st.session_state[paycode_session_state_name]['areas'][1]['fields'][1]['input']}"
                     )
 
                     with st.expander(area["name"], expanded=True):
@@ -96,24 +109,27 @@ def create_paycode_form(form_template):
                             create_field(field, disabled=False)
             with col2:
                 if area["name"] == "Catalog Input":
-                    st.header("Paycode Information")
+                    st.header("Standard Lønartskatalog")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
                             create_field(field, disabled=True)
             with col3:
                 if area["name"] == "AI Input":
-                    st.header("AI Paycode Summary")
+                    st.header("AI Referat")
+                    st.info("Lønarts Referat Genereret af AI", icon="ℹ")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
-                            create_field(field, disabled=True)
+                            create_field(field, disabled=False)
+        
+        st.info("Har du sikret at alt er korrekt?", icon="ℹ")
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
-        if st.session_state.user_name:
+        if st.session_state["user_name"]:
             if st.session_state["submit_button"]:
-                update_leaderboard(st.session_state.user_name)
+                update_leaderboard(st.session_state["user_name"])
                 key = f"paycode_{st.session_state['paycodenr']}.yaml"
 
                 yaml_string = yaml.dump(
@@ -121,23 +137,25 @@ def create_paycode_form(form_template):
                 )  # Convert to YAML string
 
                 submit_paycode(yaml_string, key)
-                st.success(f"Document submitted by {st.session_state.user_name}!")
+                st.success(f"Document submitted by {st.session_state['user_name']}!")
 
 
 st.cache_data(ttl=60)
 
 
 def paycode_progress():
-    num_documented_paycodes = len(list_available_paycodes("paycodehelper-documented"))
+    num_documented_paycodes = len(
+        list_available_paycodes(bucket_config.documented_bucket)
+    )
 
     if num_documented_paycodes > 100:
         progress_text = (
-            f"All paycodes documented 🎉 - Count : {num_documented_paycodes} / 100"
+            f"Alle lønarter dokumenteret 🎉 - Antal : {num_documented_paycodes} / 100"
         )
         st.progress(num_documented_paycodes, text=progress_text)
 
     else:
         progress_text = (
-            f"Documented paycodes 🚀 - Count : {num_documented_paycodes} / 100"
+            f"Dokumenterede Lønarter 🚀 - Antal: {num_documented_paycodes} / 100"
         )
         st.progress(num_documented_paycodes, text=progress_text)
