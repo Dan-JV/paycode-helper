@@ -109,7 +109,7 @@ def create_paycode_form(form_template, paycode_session_state_name):
                             create_field(field, disabled=False)
             with col2:
                 if area["name"] == "Catalog Input":
-                    st.header("Lønartskatalog")
+                    st.header("Standard Lønartskatalog")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:

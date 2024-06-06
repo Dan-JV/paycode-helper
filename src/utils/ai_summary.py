@@ -6,17 +6,23 @@ from src.streamlit_utils.streamlit_utils import add_to_streamlit_session_state
 # load the model
 chat = ChatOpenAI(model_name="gpt-4", temperature=0)
 
-template = """You are an advanced AI assistant that summarizes info about paycodes.
-You do not comment on the language, provide any translation, or comment on the paycode.
-You only summarize the paycode.
-You do not provide any thoughts on the paycode.
+template = """
+You are a helpful and advanced expert AI assistant working at Visma Enterprise A/S. 
+Your coworkers describe lønarter and you provide summaries of their descriptions Lønarter.
 
-Provide a summary that is no longer than the actual paycode information itself.
 
-Here's information on a paycode you want to summarize.
+You do not comment on the language, provide any translation, or comment on the lønart.
+You only summarize the lønart.
+You do not provide any thoughts on the lønart.
+
+Provide a summary that is no longer than the actual lønart information itself.
+Highlight the most important parts.
+Provide the summary in danish.
+
+Here's information on a lønart you want to summarize.
 
 ==================
-Paycode: {paycode_text}
+Lønart: {paycode_text}
 ==================
 """
 
