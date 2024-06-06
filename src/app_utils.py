@@ -3,6 +3,7 @@ import streamlit as st
 
 from streamlit_tags import st_tags
 
+
 from src.utils.leaderboard_utils import update_leaderboard
 from src.utils.aws_helper_functions import (
     get_random_paycode,
@@ -90,16 +91,25 @@ def create_field(field: dict, disabled: bool = False):
         elif value == "Nej":
             st.text(label, help=field["help"])
             st.markdown("❌")
+
+    elif field_type == "radio":
+        field["input"] = st.radio(
+            label=label,
+            options=[True, False],
+            format_func=lambda x: "Ja" if x else "Nej",
+            index=1,
+        )
     else:
         st.error(f'Unsupported field type: {field["type"]}')
 
     return field
 
 
-def create_paycode_form(form_template, paycode_session_state_name):
-    with st.form(key="data_form", clear_on_submit=True):
+def create_paycode_form(key, form_template, paycode_session_state_name):
+    with st.form(key=key, clear_on_submit=True):
         col1, col2, col3 = st.columns(3)
 
+        # if form_template["name"] == "Paycode Input Template":
         # Use form_template to structure the layout dynamically
         for area in form_template["areas"]:
             with col1:
@@ -129,8 +139,11 @@ def create_paycode_form(form_template, paycode_session_state_name):
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
                             create_field(field, disabled=False)
-        
-        st.info("Har du sikret at alt er korrekt?", icon="ℹ")
+
+        for area in form_template["areas"]:
+            if area["name"] == "Verification template":
+                for field in area["fields"]:
+                    create_field(field, disabled=False)
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
@@ -158,14 +171,11 @@ def create_paycode_form(form_template, paycode_session_state_name):
                 st.rerun()
 
 
-st.cache_data(ttl=60)
-
-
+@st.cache_data(ttl=20)
 def paycode_progress():
     num_documented_paycodes = len(
         list_available_paycodes(bucket_config.documented_bucket)
     )
-
     if num_documented_paycodes > 100:
         progress_text = (
             f"Alle lønarter dokumenteret 🎉 - Antal : {num_documented_paycodes} / 100"

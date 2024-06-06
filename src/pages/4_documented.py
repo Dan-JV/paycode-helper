@@ -51,7 +51,7 @@ if "paycode_list" not in st.session_state:
 
 
 def main():
-    st.title("Paycodes📂")
+    st.title("Lønarter📂")
 
     sidebar_navigation()
 
@@ -72,6 +72,7 @@ def main():
         template = load_template(file_path).model_dump()
         form_template = template["form_template"]
         feedback_template = template["feedback_template"]
+        verification_template = template["verification_template"]
 
         col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -125,7 +126,12 @@ def main():
                         upload_feedback(feedback_dict, key=key)
                         st.success("Tak for din feedback!")
 
-        create_paycode_form(form_template, "documented_paycode")
+        create_paycode_form(form_template["name"], form_template, "documented_paycode")
+
+        st.info("Har du sikret at alt er korrekt?", icon="ℹ")
+        create_paycode_form(
+            verification_template["name"], verification_template, "documented_paycode"
+        )
 
 
 if __name__ == "__main__":  #

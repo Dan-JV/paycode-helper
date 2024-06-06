@@ -7,5 +7,5 @@ def sidebar_navigation():
         st.page_link("app_v3.py", label="Home", icon="🏠")
         st.page_link("pages/1_leaderboard.py", label="Leaderboard", icon="🎖️")
         st.page_link("pages/2_feedback.py", label="Feedback", icon="😅")
-        st.page_link("pages/3_guide.py", label="Guide", icon="📖")
-        st.page_link("pages/4_documented.py", label="Paycodes", icon="📂")
+        st.page_link("pages/3_guide.py", label="Vejledning", icon="📖")
+        st.page_link("pages/4_documented.py", label="Lønarter", icon="📂")
