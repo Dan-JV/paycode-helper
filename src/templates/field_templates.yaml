@@ -68,7 +68,12 @@ form_template:
           
           Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
-    - name: Catalog Input
+        - name: guides
+          front_end_name: Guides Fra Lønarts Hjælpecenteret
+          type: tags
+          help: "Input links fra help.vismaenterprise.dk som er relevante til denne lønart"
+          input: null
+      - name: Catalog Input
       description: Data from the paycodes catalog
       fields:
         - name: paycodenr
@@ -170,25 +175,7 @@ form_template:
           type: markdown
           placeholder: 
           help: "Efter at have klikket på knappen Generer AI-oversigt vil dette felt blive udfyldt"
-          input: " "
-        - name: guides
-          front_end_name: Guides
-          type: markdown
-          placeholder: 
-          help: " "
-          input: " "
-        # - name: guide_summary
-        #   front_end_name: Guide Summary
-        #   type: text_area
-        #   placeholder: Enter guide summary
-        #   help: "Help us fill this"
-        #   input: null
-        # - name: guides
-        #   front_end_name: Guides
-        #   type: markdown
-        #   placeholder: Enter guides
-        #   help: "Guides that Guide helper thinks are relevant"
-        #   input: null
+          input: null
 
 feedback_template:
   name: Feedback Template

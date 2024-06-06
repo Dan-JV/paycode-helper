@@ -116,10 +116,11 @@ def create_paycode_form(form_template, paycode_session_state_name):
             with col3:
                 if area["name"] == "AI Input":
                     st.header("AI Paycode Summary")
+                    st.info("Lønarts Summary Genereret af AI", icon="ℹ")
 
                     with st.expander(area["name"], expanded=True):
                         for field in area["fields"]:
-                            create_field(field, disabled=True)
+                            create_field(field, disabled=False)
         
         st.info("Please review the paycode information and AI summary before submitting", icon="🚨")
 
