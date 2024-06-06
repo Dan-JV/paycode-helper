@@ -23,10 +23,19 @@ from src.utils.aws_helper_functions import list_available_paycodes, get_paycode
 from src.app_utils import create_field, create_paycode_form
 
 
-@st.cache_data(ttl=30)
+# If user reloads the page, redirect to login page
+if "user_name" not in st.session_state or not st.session_state.user_name:
+    st.switch_page("app_v3.py")
+
+
+# @st.cache_data(ttl=5)
 def get_paycode_list():
     paycodes_list = list_available_paycodes(bucket=bucket_config.documented_bucket)
-    return paycodes_list
+    if len(paycodes_list) == 0:
+        st.session_state["paycode_list"] = None
+
+    else:
+        st.session_state["paycode_list"] = paycodes_list
 
 
 s3 = boto3.client("s3")
@@ -36,19 +45,22 @@ def submit_paycode(paycode, key):
     s3.put_object(Body=paycode, Bucket=bucket_config.documented_bucket, Key=key)
 
 
+if "paycode_list" not in st.session_state:
+    get_paycode_list()
+
+
 def main():
     st.title("Paycodes📂")
 
     sidebar_navigation()
 
-    paycode_list = get_paycode_list()
-
     # check if there are any paycodes available
-    if paycode_list:
+    if st.session_state["paycode_list"] is not None:
 
         paycode = st.selectbox(
             "Vælg en Lønart",
-            paycode_list,
+            options=st.session_state["paycode_list"],
+            on_change=get_paycode_list,
         )
         paycodenr = paycode.split("_")[1].split(".")[0]
         st.session_state["paycodenr"] = paycodenr
@@ -108,7 +120,9 @@ def main():
                     }
 
                     key = f'{user_name}_{datetime.now().strftime("%Y-%m-%d-%H:%M:%S")}_paycode_{paycodenr}.json'
-                    submitted = st.form_submit_button("Submit")
+                    submitted = st.form_submit_button(
+                        "Submit", on_click=get_paycode_list
+                    )
 
                     if submitted:
                         upload_feedback(feedback_dict, key=key)

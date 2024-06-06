@@ -10,6 +10,10 @@ st.set_page_config(
 
 from src.pages.utils import sidebar_navigation
 
+# If user reloads the page, redirect to login page
+if "user_name" not in st.session_state or not st.session_state.user_name:
+    st.switch_page("app_v3.py")
+
 st.title("Guide📖")
 
 sidebar_navigation()
