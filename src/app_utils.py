@@ -3,6 +3,7 @@ import yaml
 import streamlit as st
 
 from streamlit_tags import st_tags
+from src.utils.ai_summary import ai_summary
 
 
 from src.utils.leaderboard_utils import update_leaderboard
@@ -126,7 +127,7 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                     create_area_fields(area, fields_disabled=True)
 
             with col3:
-                if area["name"] == "AI Input":
+                if area["name"] == "AI Referat":
                     st.header("AI Referat")
                     st.info("Lønarts Referat Genereret af AI", icon="ℹ")
                     create_area_fields(area, fields_disabled=False)
@@ -151,8 +152,8 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                 if "ai_summary" in st.session_state:
                     del st.session_state["ai_summary"]
                 else:
-                    ai_summary = ai_summary(st.session_state["paycode"])
-                    form_template["areas"][2]["fields"][0]["input"] = ai_summary
+                    ai_summary_response = ai_summary(st.session_state["paycode"])
+                    form_template["areas"][2]["fields"][0]["input"] = ai_summary_response
                 
                 get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
                 st.rerun()
