@@ -23,7 +23,6 @@ from src.utils.ai_summary import ai_summary
 from src.app_utils import create_field, create_paycode_form, paycode_progress
 
 
-# st.image("imgs/visma_enterprise.png")
 st.title("Fremtidige Lønarter🙏")
 st.divider()
 paycode_progress()
@@ -99,7 +98,6 @@ def main():
                     if submitted:
                         upload_feedback(feedback_dict, key=key)
                         st.success("Tak for din feedback!")
-                        update_leaderboard(user_name)
 
         create_paycode_form(form_template["name"], form_template, "paycode")
 

@@ -1,3 +1,4 @@
+import math
 import yaml
 import streamlit as st
 
@@ -11,7 +12,6 @@ from src.utils.aws_helper_functions import (
     list_available_paycodes,
 )
 
-from src.utils.ai_summary import ai_summary
 
 from src.config import get_bucket_config
 
@@ -25,7 +25,7 @@ def create_field(field: dict, disabled: bool = False):
     value = field["input"]
 
     # if value is None, set it to an empty string
-    if value is None:
+    if value == "nan":
         value = ""
 
     if field_type == "text_input":
@@ -109,8 +109,6 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
     with st.form(key=key, clear_on_submit=True):
         col1, col2, col3 = st.columns(3)
 
-        # if form_template["name"] == "Paycode Input Template":
-        # Use form_template to structure the layout dynamically
         for area in form_template["areas"]:
             with col1:
                 if area["name"] == "User Input":
@@ -120,30 +118,21 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                     st.subheader(
                         f"{st.session_state[paycode_session_state_name]['areas'][1]['fields'][1]['input']}"
                     )
+                    create_area_fields(area, fields_disabled=False)
 
-                    with st.expander(area["name"], expanded=True):
-                        for field in area["fields"]:
-                            create_field(field, disabled=False)
             with col2:
                 if area["name"] == "Catalog Input":
                     st.header("Standard Lønartskatalog")
+                    create_area_fields(area, fields_disabled=True)
 
-                    with st.expander(area["name"], expanded=True):
-                        for field in area["fields"]:
-                            create_field(field, disabled=True)
             with col3:
                 if area["name"] == "AI Input":
                     st.header("AI Referat")
                     st.info("Lønarts Referat Genereret af AI", icon="ℹ")
+                    create_area_fields(area, fields_disabled=False)
 
-                    with st.expander(area["name"], expanded=True):
-                        for field in area["fields"]:
-                            create_field(field, disabled=False)
-
-        for area in form_template["areas"]:
             if area["name"] == "Verification template":
-                for field in area["fields"]:
-                    create_field(field, disabled=False)
+                create_area_fields(area, fields_disabled=False)
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
@@ -166,9 +155,14 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                     form_template["areas"][2]["fields"][0]["input"] = ai_summary
                 
                 get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
-
-                
                 st.rerun()
+
+def create_area_fields(area: dict, fields_disabled=False):
+    with st.expander(area["name"], expanded=True):
+        fields = area["fields"]
+
+        for field in fields:
+            create_field(field, disabled=fields_disabled)
 
 
 @st.cache_data(ttl=20)
