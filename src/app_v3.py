@@ -102,9 +102,9 @@ def main():
         create_paycode_form(form_template["name"], form_template, "paycode")
 
         st.info("Har du sikret at alt er korrekt?", icon="ℹ")
-        create_paycode_form(
-            verification_template["name"], verification_template, "paycode"
-        )
+        #create_paycode_form(
+        #    verification_template["name"], verification_template, "paycode"
+        #)
 
         if st.session_state["submit_button"]:
             get_random_paycode(
