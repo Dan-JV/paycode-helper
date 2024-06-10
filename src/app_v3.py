@@ -19,12 +19,10 @@ from src.utils.aws_helper_functions import (
     upload_feedback,
     get_random_paycode,
 )
-from src.utils.leaderboard_utils import update_leaderboard
 from src.utils.ai_summary import ai_summary
 from src.app_utils import create_field, create_paycode_form, paycode_progress
 
 
-# st.image("imgs/visma_enterprise.png")
 st.title("Fremtidige Lønarter🙏")
 st.divider()
 paycode_progress()
@@ -33,11 +31,11 @@ st.divider()
 
 def main():
 
-
     file_path = "src/templates/field_templates.yaml"
     template = load_template(file_path).model_dump()
     form_template = template["form_template"]
     feedback_template = template["feedback_template"]
+    verification_template = template["verification_template"]
 
     sidebar_navigation()
 
@@ -59,13 +57,12 @@ def main():
             st.button(
                 "Generer et AI Referat",
                 on_click=ai_summary,
-                args=(st.session_state["paycode"],)
+                args=(st.session_state["paycode"],),
             )
             if "ai_summary" in st.session_state:
                 form_template["areas"][2]["fields"][0]["input"] = st.session_state[
                     "ai_summary"
                 ]
-                del st.session_state["ai_summary"]
         with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
@@ -101,14 +98,19 @@ def main():
                     if submitted:
                         upload_feedback(feedback_dict, key=key)
                         st.success("Tak for din feedback!")
-                        update_leaderboard(user_name)
 
-        create_paycode_form(form_template, "paycode")
+        create_paycode_form(form_template["name"], form_template, "paycode")
+
+        st.info("Har du sikret at alt er korrekt?", icon="ℹ")
+        create_paycode_form(
+            verification_template["name"], verification_template, "paycode"
+        )
 
         if st.session_state["submit_button"]:
-            get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
-
-
+            get_random_paycode(
+                source_bucket="paycodehelper-templates",
+                target_bucket="paycodehelper-processing",
+            )
 
 
 if __name__ == "__main__":

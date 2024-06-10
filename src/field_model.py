@@ -18,18 +18,13 @@ class FieldModel(BaseModel):
         "toggle",
         "markdown",
         "bool_Ja_Nej",
+        "radio",
     ]
     placeholder: Optional[str] = None
     help: Optional[str] = None
     input: Optional[str] = None
     options: Optional[List[str]] = None
     catalog_name: Optional[str] = None
-
-
-class FormTemplate(BaseModel):
-    user_input_fields: List[FieldModel]
-    data_input_fields: List[FieldModel]
-    ai_summary_fields: List[FieldModel]
 
 
 class AreaModel(BaseModel):
@@ -50,9 +45,16 @@ class FeedbackTemplateModel(BaseModel):
     fields: List[FieldModel]
 
 
+class VerificationTemplateModel(BaseModel):
+    name: str
+    description: str
+    areas: List[AreaModel]
+
+
 class TemplateModel(BaseModel):
     form_template: FormTemplateModel
     feedback_template: FeedbackTemplateModel
+    verification_template: VerificationTemplateModel
 
 
 def load_template(file_path: str) -> TemplateModel:

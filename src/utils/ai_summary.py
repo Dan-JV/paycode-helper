@@ -18,6 +18,7 @@ You do not provide any thoughts on the lønart.
 Provide a summary that is no longer than the actual lønart information itself.
 Highlight the most important parts.
 Provide the summary in danish.
+Have the summary focus on Type, Input, Sats, Pensionsgrundlag and Ferieberettiget. 
 
 Here's information on a lønart you want to summarize.
 

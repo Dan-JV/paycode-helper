@@ -5,40 +5,10 @@ form_template:
     - name: User Input
       description: The user provides this information
       fields:
-        - name: input
-          front_end_name: Input(s)
-          type: multiselect
-          placeholder: Vælg Inputs
-          help: ""
-          input: null
-          options: 
-            - Enheder
-            - Sats
-            - Beløb
-            - Procent
-            - Firma procent
-            - Firmabeløb
-            - Medarbejder procent
-            - Medarbejder beløb
-            - Pensionsgrundlag
-            - Saldo
-            - Årstal
-        - name: AM-bidrag
-          front_end_name: AM Bidrag
-          type: toggle
-          help: "Vælg om AM bidrag skal med"
-          input: null
-        - name: general_description
-          front_end_name: Generel beskrivelse
-          type: text_area
-          help: "Dette felt skal indeholde en generel beskrivelse af lønart og dens anvendelse
-          
-          Eksempel: Dette er en lønart der bliver brugt til bonus som er ferieberettiget og går i pensionsgrundlag 2,3,6."
-          input: null
-        - name: important_information
-          front_end_name: Vigtig Information 
-          type: text_area
-          help: "Dette felt bør indeholde enhver kritisk information relateret til lønart og dens brug"
+        - name: tags
+          front_end_name: Tags
+          type: tags
+          help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
         - name: use_case_1
           front_end_name: Use case 1
@@ -60,11 +30,6 @@ form_template:
           help: "Dette felt skal indeholde et tydeligt eksempel på, hvordan denne lønart er blevet brugt
           
           Eksempel: Udbetaling af provision"
-          input: null
-        - name: tags
-          front_end_name: Tags
-          type: tags
-          help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
         - name: guides
           front_end_name: Guides Fra Lønarts Hjælpecenteret
@@ -88,23 +53,9 @@ form_template:
           placeholder: 
           help: ""
           input: null
-        - name: alternative_names
-          front_end_name: Alternative Navne
-          catalog_name: Alternative_Navne
-          type: text_area
-          placeholder: 
-          help: "Help us fill this"
-          input: null
         - name: type
           front_end_name: Type
           catalog_name: Type
-          type: text_input
-          placeholder: 
-          help: "Help us fill this"
-          input: null
-        - name: kommentar
-          front_end_name: Kommentar
-          catalog_name: Kommentar
           type: text_input
           placeholder: 
           help: "Help us fill this"
@@ -115,6 +66,34 @@ form_template:
           type: text_input
           placeholder: 
           help: "Help us fill this"
+          input: null
+        - name: sats
+          front_end_name: Sats
+          catalog_name: Sats
+          type: text_input
+          placeholder: 
+          help: ""
+          input: null
+        - name: pensionsgrundlag
+          front_end_name: Pensionsgrundlag
+          catalog_name: Pensionsgrundlag
+          type: text_input
+          placeholder: 
+          help: ""
+          input: null
+        - name: ferieberettiget
+          front_end_name: Ferieberettiget
+          catalog_name: Ferieberretiget
+          type: bool_Ja_Nej
+          placeholder: 
+          help: ""
+          input: null
+        - name: alternative_names
+          front_end_name: Konkrete Navne
+          catalog_name: Alternative_Navne
+          type: text_area
+          placeholder: 
+          help: "Alternative Navne, Nicher, Ofte brugte udtryk"
           input: null
         - name: e_indkomst
           front_end_name: E-Indkomst
@@ -137,20 +116,6 @@ form_template:
           placeholder: 
           help: ""
           input: null
-        - name: ferieberettiget
-          front_end_name: Ferieberettiget
-          catalog_name: Ferieberretiget
-          type: bool_Ja_Nej
-          placeholder: 
-          help: ""
-          input: null
-        - name: pensionsgrundlag
-          front_end_name: Pensionsgrundlag
-          catalog_name: Pensionsgrundlag
-          type: text_input
-          placeholder: 
-          help: ""
-          input: null
         - name: ATP_timer
           front_end_name: ATP Timer
           catalog_name: ATP-Timer
@@ -164,6 +129,13 @@ form_template:
           type: text_input
           placeholder: 
           help: ""
+          input: null
+        - name: kommentar
+          front_end_name: Kommentar
+          catalog_name: Kommentar
+          type: text_input
+          placeholder: 
+          help: "Help us fill this"
           input: null
     - name: AI Referat
       description: Data generated by AI
@@ -203,3 +175,38 @@ feedback_template:
       placeholder: Skriv din feedback her
       help: ""
       input: null
+
+verification_template:
+  name: Verification Template
+  description: This is a template for the submission verification
+  areas:
+    - name: Verification template
+      description: This is a template for the submission verification
+      fields:
+        - name: input_verification
+          front_end_name: Er input-feltet korrekt?
+          type: radio
+          placeholder: null
+          help: ""
+          input: null
+
+        - name: input_comment
+          front_end_name: Hvis Nej - Input uddyb
+          type: text_input
+          placeholder: Uddyb
+          help: ""
+          input: null
+
+        - name: ai_verification
+          front_end_name: Er AI-resuméet acceptabelt?
+          type: radio
+          placeholder: 
+          help: ""
+          input: null
+
+        - name: ai_comment
+          front_end_name: Hvis Nej - AI uddyb
+          type: text_input
+          placeholder: Uddyb
+          help: ""
+          input: null
