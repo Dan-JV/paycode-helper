@@ -37,7 +37,7 @@ def main():
     feedback_template = template["feedback_template"]
     verification_template = template["verification_template"]
 
-    sidebar_navigation()
+    #sidebar_navigation()
 
     col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -54,16 +54,6 @@ def main():
         form_template["areas"] = paycode["areas"]
 
         with col2:
-            st.button(
-                "Generer et AI Referat",
-                on_click=ai_summary,
-                args=(st.session_state["paycode"],),
-            )
-            if "ai_summary" in st.session_state:
-                form_template["areas"][2]["fields"][0]["input"] = st.session_state[
-                    "ai_summary"
-                ]
-        with col3:
             with st.popover("Feedback😅"):
                 with st.form(key="feedback_form", clear_on_submit=True):
                     for index, field in enumerate(

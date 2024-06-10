@@ -6,7 +6,7 @@ from streamlit_tags import st_tags
 from src.utils.ai_summary import ai_summary
 
 
-from src.utils.leaderboard_utils import update_leaderboard
+from src.utils.leaderboard_utils import display_leaderboard, update_leaderboard
 from src.utils.aws_helper_functions import (
     get_random_paycode,
     submit_paycode,
@@ -125,15 +125,11 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                 if area["name"] == "Catalog Input":
                     st.header("Standard Lønartskatalog")
                     create_area_fields(area, fields_disabled=True)
-
-            with col3:
-                if area["name"] == "AI Referat":
-                    st.header("AI Referat")
-                    st.info("Lønarts Referat Genereret af AI", icon="ℹ")
-                    create_area_fields(area, fields_disabled=False)
-
-            if area["name"] == "Verification template":
-                create_area_fields(area, fields_disabled=False)
+            
+        with col3:
+            # leaderboard
+            st.header("Leaderboard")
+            display_leaderboard()
 
         st.session_state["submit_button"] = st.form_submit_button(label="Submit")
 
