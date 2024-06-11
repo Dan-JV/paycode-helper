@@ -7,7 +7,7 @@ form_template:
       fields:
         - name: tags
           front_end_name: Tags
-          type: tags
+          type: text_area
           help: "Dette felt bør indeholde eventuelle relevante tags/kategorier, der beskriver denne lønart Eksempel: månedensmedarbejder, kvartalsbonus, provision, udbetaler, udbetaling"
           input: null
         - name: use_case_1
