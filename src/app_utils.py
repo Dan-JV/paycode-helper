@@ -139,8 +139,8 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                 # This solution is duct tape on here please fix
                 # if the tags input is none or empty list then stop the submission
                 if (
-                    st.session_state.paycode["areas"][0]["fields"][0]["input"] is None
-                    or not st.session_state.paycode["areas"][0]["fields"][0]["input"]
+                    form_template["areas"][0]["fields"][0]["input"] is None
+                    or not form_template["areas"][0]["fields"][0]["input"]
                 ):
                     st.error("Du skal udfylde tags feltet før du kan submitte!")
                     st.stop()
