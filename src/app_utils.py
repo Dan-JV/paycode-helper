@@ -155,14 +155,6 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state['user_name']}!")
 
-                if "ai_summary" in st.session_state:
-                    del st.session_state["ai_summary"]
-                else:
-                    ai_summary_response = ai_summary(st.session_state["paycode"])
-                    form_template["areas"][2]["fields"][0][
-                        "input"
-                    ] = ai_summary_response
-
                 get_random_paycode(
                     source_bucket="paycodehelper-templates",
                     target_bucket="paycodehelper-processing",
