@@ -125,7 +125,7 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                 if area["name"] == "Catalog Input":
                     st.header("Standard Lønartskatalog")
                     create_area_fields(area, fields_disabled=True)
-            
+
         with col3:
             # leaderboard
             st.header("Leaderboard")
@@ -135,6 +135,16 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
 
         if st.session_state["user_name"]:
             if st.session_state["submit_button"]:
+                # TODO: Add validation for tags field
+                # This solution is duct tape on here please fix
+                # if the tags input is none or empty list then stop the submission
+                if (
+                    form_template["areas"][0]["fields"][0]["input"] is None
+                    or not form_template["areas"][0]["fields"][0]["input"]
+                ):
+                    st.error("Du skal udfylde tags feltet før du kan submitte!")
+                    st.stop()
+
                 update_leaderboard(st.session_state["user_name"])
                 key = f"paycode_{st.session_state['paycodenr']}.yaml"
 
@@ -144,15 +154,21 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
 
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state['user_name']}!")
-                
+
                 if "ai_summary" in st.session_state:
                     del st.session_state["ai_summary"]
                 else:
                     ai_summary_response = ai_summary(st.session_state["paycode"])
-                    form_template["areas"][2]["fields"][0]["input"] = ai_summary_response
-                
-                get_random_paycode(source_bucket="paycodehelper-templates", target_bucket="paycodehelper-processing")
+                    form_template["areas"][2]["fields"][0][
+                        "input"
+                    ] = ai_summary_response
+
+                get_random_paycode(
+                    source_bucket="paycodehelper-templates",
+                    target_bucket="paycodehelper-processing",
+                )
                 st.rerun()
+
 
 def create_area_fields(area: dict, fields_disabled=False):
     with st.expander(area["name"], expanded=True):
