@@ -1,6 +1,7 @@
 import math
 import yaml
 import streamlit as st
+from time import sleep
 
 from streamlit_tags import st_tags
 from src.utils.ai_summary import ai_summary
@@ -135,14 +136,18 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
 
         if st.session_state["user_name"]:
             if st.session_state["submit_button"]:
-                # TODO: Add validation for tags field
+                # TODO: Add validation for tags field and use_case_1
                 # This solution is duct tape on here please fix
                 # if the tags input is none or empty list then stop the submission
                 if (
                     form_template["areas"][0]["fields"][0]["input"] is None
                     or not form_template["areas"][0]["fields"][0]["input"]
+                    and form_template["areas"][0]["fields"][1]["input"] is None
+                    or not form_template["areas"][0]["fields"][1]["input"]
                 ):
-                    st.error("Du skal udfylde tags feltet før du kan submitte!")
+                    st.error(
+                        "Du skal udfylde tags og mindst én use case, før du kan indsende!"
+                    )
                     st.stop()
 
                 update_leaderboard(st.session_state["user_name"])
@@ -155,18 +160,12 @@ def create_paycode_form(key, form_template, paycode_session_state_name):
                 submit_paycode(yaml_string, key)
                 st.success(f"Document submitted by {st.session_state['user_name']}!")
 
-                if "ai_summary" in st.session_state:
-                    del st.session_state["ai_summary"]
-                else:
-                    ai_summary_response = ai_summary(st.session_state["paycode"])
-                    form_template["areas"][2]["fields"][0][
-                        "input"
-                    ] = ai_summary_response
-
-                get_random_paycode(
-                    source_bucket="paycodehelper-templates",
-                    target_bucket="paycodehelper-processing",
-                )
+                del st.session_state["paycode"]
+                # get_random_paycode(
+                #     source_bucket="paycodehelper-templates",
+                #     target_bucket="paycodehelper-processing",
+                # )
+                sleep(5)
                 st.rerun()
 
 
