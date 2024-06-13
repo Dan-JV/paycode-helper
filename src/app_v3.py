@@ -22,7 +22,6 @@ from src.utils.aws_helper_functions import (
 from src.utils.ai_summary import ai_summary
 from src.app_utils import create_field, create_paycode_form, paycode_progress
 
-
 st.title("Fremtidige Lønarter🙏")
 st.divider()
 paycode_progress()
@@ -36,8 +35,6 @@ def main():
     form_template = template["form_template"]
     feedback_template = template["feedback_template"]
     verification_template = template["verification_template"]
-
-    #sidebar_navigation()
 
     col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -92,9 +89,9 @@ def main():
         create_paycode_form(form_template["name"], form_template, "paycode")
 
         st.info("Har du sikret at alt er korrekt?", icon="ℹ")
-        #create_paycode_form(
+        # create_paycode_form(
         #    verification_template["name"], verification_template, "paycode"
-        #)
+        # )
 
         if st.session_state["submit_button"]:
             get_random_paycode(
@@ -115,4 +112,5 @@ if __name__ == "__main__":
             elif submitted and not user_name:
                 st.warning("Dit navn kan ikke vær tomt")
     else:
+        sidebar_navigation()
         main()
